@@ -1,0 +1,6 @@
+framework module Pods_Score2 {
+  umbrella header "Pods-Score2-umbrella.h"
+
+  export *
+  module * { export * }
+}
