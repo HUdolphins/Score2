@@ -21,6 +21,18 @@
 		87B6DFFC2189D0550062F959 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B6DFFB2189D0550062F959 /* ResultViewController.swift */; };
 		87B6DFFE218AA2B20062F959 /* FIRPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B6DFFD218AA2B20062F959 /* FIRPlayer.swift */; };
 		87B6E000218AA34D0062F959 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87B6DFFF218AA34D0062F959 /* GoogleService-Info.plist */; };
+		87B6E002218AFD940062F959 /* GameSuperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B6E001218AFD940062F959 /* GameSuperViewController.swift */; };
+		87B6E004218B03A70062F959 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B6E003218B03A70062F959 /* VideoViewController.swift */; };
+		87B6E006218B03D10062F959 /* TopTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B6E005218B03D10062F959 /* TopTeamViewController.swift */; };
+		87B6E008218B03E40062F959 /* BottomTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B6E007218B03E40062F959 /* BottomTeamViewController.swift */; };
+		87B6E00A218B04AD0062F959 /* GameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B6E009218B04AD0062F959 /* GameSettingViewController.swift */; };
+		87B6E00D218B3A890062F959 /* ResultChildViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B6E00C218B3A890062F959 /* ResultChildViewController1.swift */; };
+		87B6E00F218B3AA60062F959 /* ResultChildViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B6E00E218B3AA60062F959 /* ResultChildViewController2.swift */; };
+		87B6E011218B3ABF0062F959 /* ResultChildViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B6E010218B3ABF0062F959 /* ResultChildViewController3.swift */; };
+		87B6E013218B3ACE0062F959 /* ResultChildViewController4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B6E012218B3ACD0062F959 /* ResultChildViewController4.swift */; };
+		87B6E015218B4B930062F959 /* FIRGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B6E014218B4B930062F959 /* FIRGame.swift */; };
+		87B6E017218B4D110062F959 /* FIRTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B6E016218B4D110062F959 /* FIRTeam.swift */; };
+		87B6E019218B4D330062F959 /* FIRResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B6E018218B4D330062F959 /* FIRResult.swift */; };
 		9893AA714AE1E59A1C012A74 /* Pods_Score2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9FCB089577C3760B0A0EE66 /* Pods_Score2.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +53,18 @@
 		87B6DFFB2189D0550062F959 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		87B6DFFD218AA2B20062F959 /* FIRPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRPlayer.swift; sourceTree = "<group>"; };
 		87B6DFFF218AA34D0062F959 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		87B6E001218AFD940062F959 /* GameSuperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSuperViewController.swift; sourceTree = "<group>"; };
+		87B6E003218B03A70062F959 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		87B6E005218B03D10062F959 /* TopTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTeamViewController.swift; sourceTree = "<group>"; };
+		87B6E007218B03E40062F959 /* BottomTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTeamViewController.swift; sourceTree = "<group>"; };
+		87B6E009218B04AD0062F959 /* GameSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingViewController.swift; sourceTree = "<group>"; };
+		87B6E00C218B3A890062F959 /* ResultChildViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultChildViewController1.swift; sourceTree = "<group>"; };
+		87B6E00E218B3AA60062F959 /* ResultChildViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultChildViewController2.swift; sourceTree = "<group>"; };
+		87B6E010218B3ABF0062F959 /* ResultChildViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultChildViewController3.swift; sourceTree = "<group>"; };
+		87B6E012218B3ACD0062F959 /* ResultChildViewController4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultChildViewController4.swift; sourceTree = "<group>"; };
+		87B6E014218B4B930062F959 /* FIRGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRGame.swift; sourceTree = "<group>"; };
+		87B6E016218B4D110062F959 /* FIRTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRTeam.swift; sourceTree = "<group>"; };
+		87B6E018218B4D330062F959 /* FIRResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRResult.swift; sourceTree = "<group>"; };
 		9E5EE9C915613CE933F9A9CF /* Pods-Score2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Score2.release.xcconfig"; path = "Pods/Target Support Files/Pods-Score2/Pods-Score2.release.xcconfig"; sourceTree = "<group>"; };
 		ACBD0D8F2150B04EBA6FDD1A /* Pods-Score2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Score2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Score2/Pods-Score2.debug.xcconfig"; sourceTree = "<group>"; };
 		B9FCB089577C3760B0A0EE66 /* Pods_Score2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Score2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,8 +138,14 @@
 		87B6DFF02189AB670062F959 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				87B6E001218AFD940062F959 /* GameSuperViewController.swift */,
 				87B6DFDB2189A4120062F959 /* GameViewController.swift */,
 				87B6DFFB2189D0550062F959 /* ResultViewController.swift */,
+				87B6E00B218B3A350062F959 /* ResultChildViewControllers */,
+				87B6E003218B03A70062F959 /* VideoViewController.swift */,
+				87B6E005218B03D10062F959 /* TopTeamViewController.swift */,
+				87B6E007218B03E40062F959 /* BottomTeamViewController.swift */,
+				87B6E009218B04AD0062F959 /* GameSettingViewController.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -126,6 +156,9 @@
 				87B6DFF22189AC020062F959 /* ResultEnum.swift */,
 				87B6DFF42189AC410062F959 /* Situation.swift */,
 				87B6DFFD218AA2B20062F959 /* FIRPlayer.swift */,
+				87B6E014218B4B930062F959 /* FIRGame.swift */,
+				87B6E016218B4D110062F959 /* FIRTeam.swift */,
+				87B6E018218B4D330062F959 /* FIRResult.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -136,6 +169,17 @@
 				87B6DFF72189AC950062F959 /* AccountViewController.swift */,
 			);
 			path = Account;
+			sourceTree = "<group>";
+		};
+		87B6E00B218B3A350062F959 /* ResultChildViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				87B6E00C218B3A890062F959 /* ResultChildViewController1.swift */,
+				87B6E00E218B3AA60062F959 /* ResultChildViewController2.swift */,
+				87B6E010218B3ABF0062F959 /* ResultChildViewController3.swift */,
+				87B6E012218B3ACD0062F959 /* ResultChildViewController4.swift */,
+			);
+			path = ResultChildViewControllers;
 			sourceTree = "<group>";
 		};
 		AD20D2F04513DBFA77EBA091 /* Pods */ = {
@@ -273,14 +317,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				87B6DFF52189AC410062F959 /* Situation.swift in Sources */,
+				87B6E00F218B3AA60062F959 /* ResultChildViewController2.swift in Sources */,
 				87B6DFF32189AC020062F959 /* ResultEnum.swift in Sources */,
+				87B6E015218B4B930062F959 /* FIRGame.swift in Sources */,
+				87B6E004218B03A70062F959 /* VideoViewController.swift in Sources */,
 				87B6DFF82189AC950062F959 /* AccountViewController.swift in Sources */,
 				87B6DFFA2189CEDF0062F959 /* Extensions.swift in Sources */,
 				87B6DFFE218AA2B20062F959 /* FIRPlayer.swift in Sources */,
 				87B6DFDC2189A4120062F959 /* GameViewController.swift in Sources */,
+				87B6E013218B3ACE0062F959 /* ResultChildViewController4.swift in Sources */,
 				87B6DFDA2189A4120062F959 /* AppDelegate.swift in Sources */,
+				87B6E008218B03E40062F959 /* BottomTeamViewController.swift in Sources */,
 				87B6DFEC2189A4B70062F959 /* RootViewController.swift in Sources */,
+				87B6E002218AFD940062F959 /* GameSuperViewController.swift in Sources */,
 				87B6DFEE2189AB280062F959 /* HomeViewController.swift in Sources */,
+				87B6E00D218B3A890062F959 /* ResultChildViewController1.swift in Sources */,
+				87B6E011218B3ABF0062F959 /* ResultChildViewController3.swift in Sources */,
+				87B6E00A218B04AD0062F959 /* GameSettingViewController.swift in Sources */,
+				87B6E019218B4D330062F959 /* FIRResult.swift in Sources */,
+				87B6E017218B4D110062F959 /* FIRTeam.swift in Sources */,
+				87B6E006218B03D10062F959 /* TopTeamViewController.swift in Sources */,
 				87B6DFFC2189D0550062F959 /* ResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

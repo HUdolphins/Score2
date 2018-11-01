@@ -17,6 +17,13 @@ class GameViewController: UIViewController {
         return imageView
     }()
     
+    let homeButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("home", for: .normal)
+        return button
+    }()
+    
     let firstBaseView = UIView()
     let secondBaseView = UIView()
     let thirdBaseView = UIView()
@@ -51,6 +58,8 @@ class GameViewController: UIViewController {
     var playerOriginArray: [CGPoint] = []
     var hitButtonArray: [UIButton] = []
     
+    
+    
     //Ohashi:ドラッグ時初期位置取得用変数
     var panStartPoint: CGPoint!
     
@@ -64,9 +73,15 @@ class GameViewController: UIViewController {
         
         setupView()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
     
     func setupView(){
         self.view.addSubview(backgroundImageView)
+        self.homeButton.addTarget(self, action: #selector(homeButton(sender:)), for: .touchUpInside)
+        self.view.addSubview(homeButton)
         
         baseViewArray.forEach{
             //Ohashi:ベースのautolayout適用，viewに追加
@@ -112,6 +127,7 @@ class GameViewController: UIViewController {
             self.view.addConstraints([NSLayoutConstraint(item: value, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.1, constant: 0)])
             self.view.addConstraints([NSLayoutConstraint(item: value, attribute: .height, relatedBy: .equal, toItem: value, attribute: .width, multiplier: 1, constant: 0)])
         }
+        
         //Ohashi:以下制約
         //Ohashi:背景
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: [], metrics: nil, views: ["v0": backgroundImageView] ))
@@ -288,7 +304,6 @@ class GameViewController: UIViewController {
         let resultViewController = ResultViewController()
         resultViewController.modalPresentationStyle = .custom
         resultViewController.transitioningDelegate = self
-        resultViewController.view.backgroundColor = .green//Ohashi:実験用
         self.present(resultViewController, animated: true, completion: nil)
     }
     //Ohashi:フライボタン用メソッド
@@ -329,6 +344,12 @@ class GameViewController: UIViewController {
             break
         }
         modalAppear()
+    }
+    
+    @objc func homeButton(sender: UIButton){
+//        presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        //Ohashi:仮
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
