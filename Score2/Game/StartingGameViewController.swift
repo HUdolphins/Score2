@@ -85,9 +85,9 @@ class StartingGameViewController: UIViewController {
         }
     
         //Ohashi:ゲームデータ作成
-        if let topTeamName = topPlayerSettingViewController.teamNameTextField.text, let bottomTeamName = bottomPlayerSettingViewController.teamNameTextField.text{
+        if let topTeamName = topPlayerSettingViewController.teamNameTextField.text, let bottomTeamName = bottomPlayerSettingViewController.teamNameTextField.text, let stadium = gameStatusViewController.stadiumTextField.text{
             let time = Date.timeIntervalSinceReferenceDate
-            let gameData = ["topTeam": topTeamName, "bottomTeam": bottomTeamName, "time": String(time)]
+            let gameData = ["topTeam": topTeamName, "bottomTeam": bottomTeamName, "time": String(time), "stadium": stadium]
             gameRef.childByAutoId().setValue(gameData)
             
         }

@@ -10,6 +10,13 @@ import UIKit
 
 class GameStatusViewController: UIViewController {
 
+    var stadiumTextField: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.placeholder = "球場名"
+        return textField
+    }()
+    
     let gameStartButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -33,13 +40,14 @@ class GameStatusViewController: UIViewController {
     
 
     func setupView(){
+        self.view.addSubview(stadiumTextField)
         self.view.addSubview(gameStartButton)
         self.view.addSubview(cancelButton)
         
         self.view.addConstraints([NSLayoutConstraint(item: gameStartButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0)])
          self.view.addConstraints([NSLayoutConstraint(item: gameStartButton, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1, constant: 0)])
          self.view.addConstraints([NSLayoutConstraint(item: cancelButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0)])
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[gameStart]-10-[cancel]", options: .alignAllCenterX, metrics: nil, views: ["gameStart": gameStartButton, "cancel": cancelButton]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[stadium]-10-[gameStart]-10-[cancel]", options: .alignAllCenterX, metrics: nil, views: ["stadium": stadiumTextField, "gameStart": gameStartButton, "cancel": cancelButton]))
     }
 
 }
