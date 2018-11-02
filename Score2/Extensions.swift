@@ -81,6 +81,11 @@ class CustomPresentationController: UIPresentationController {
     
     // overlayViewをタップした時に呼ばれる
     @objc func overlayViewDidTouch(_ sender: UITapGestureRecognizer) {
+        //Ohashi:startingGame画面では後ろタッチできないように
+        if Situation.playingGame == nil{
+            return
+        }else{
         presentedViewController.dismiss(animated: true, completion: nil)
+        }
     }
 }

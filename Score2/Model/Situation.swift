@@ -13,6 +13,7 @@ class Situation: NSObject {
     
     
     //ohashi : 最終回設定しておく？
+    internal static var playingGame: FIRGame?
     //現在の状況
     internal static var result:ResultEnum!
     //カウント

@@ -76,6 +76,12 @@ class GameViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        if Situation.playingGame == nil {
+            let startingGameViewController = StartingGameViewController()
+            startingGameViewController.modalPresentationStyle = .custom
+            startingGameViewController.transitioningDelegate = self
+            self.present(startingGameViewController, animated: true, completion: nil)
+        }
     }
     
     func setupView(){
@@ -105,18 +111,18 @@ class GameViewController: UIViewController {
             self.view.addConstraints([NSLayoutConstraint(item: value, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 0.07, constant: 0)])
         }
         //Ohashi:内野手にだけドラッグつける
-        let pitcherPan = UIGestureRecognizer(target: self, action: #selector(self.handlePitcherPan(sender:)))
+        let pitcherPan = UIPanGestureRecognizer(target: self, action: #selector(self.handlePitcherPan(sender:)))
         pitcherPlayerButton.addGestureRecognizer(pitcherPan)
-        let catcherPan = UIGestureRecognizer(target: self, action: #selector(self.handleCatcherPan(sender:)))
-        pitcherPlayerButton.addGestureRecognizer(catcherPan)
-        let firstPan = UIGestureRecognizer(target: self, action: #selector(self.handleFirstPan(sender:)))
-        pitcherPlayerButton.addGestureRecognizer(firstPan)
-        let secondPan = UIGestureRecognizer(target: self, action: #selector(self.handleSecondPan(sender:)))
-        pitcherPlayerButton.addGestureRecognizer(secondPan)
-        let thirdPan = UIGestureRecognizer(target: self, action: #selector(self.handleThirdPan(sender:)))
-        pitcherPlayerButton.addGestureRecognizer(thirdPan)
-        let shortPan = UIGestureRecognizer(target: self, action: #selector(self.handleShortPan(sender:)))
-        pitcherPlayerButton.addGestureRecognizer(shortPan)
+        let catcherPan = UIPanGestureRecognizer(target: self, action: #selector(self.handleCatcherPan(sender:)))
+        catcherPlayerButton.addGestureRecognizer(catcherPan)
+        let firstPan = UIPanGestureRecognizer(target: self, action: #selector(self.handleFirstPan(sender:)))
+        firstPlayerButton.addGestureRecognizer(firstPan)
+        let secondPan = UIPanGestureRecognizer(target: self, action: #selector(self.handleSecondPan(sender:)))
+        secondPlayerButton.addGestureRecognizer(secondPan)
+        let thirdPan = UIPanGestureRecognizer(target: self, action: #selector(self.handleThirdPan(sender:)))
+        thirdPlayerButton.addGestureRecognizer(thirdPan)
+        let shortPan = UIPanGestureRecognizer(target: self, action: #selector(self.handleShortPan(sender:)))
+        shortPlayerButton.addGestureRecognizer(shortPan)
         
         for (index, value) in hitButtonArray.enumerated(){
             value.translatesAutoresizingMaskIntoConstraints = false
@@ -211,6 +217,9 @@ class GameViewController: UIViewController {
         //Ohashi:ライトオーバー
         self.view.addConstraints([NSLayoutConstraint(item: hitButtonArray[12], attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 160)])
         self.view.addConstraints([NSLayoutConstraint(item: hitButtonArray[12], attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: -270)])
+        //Ohashi:ホームボタン
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[home]", options: .alignAllTop, metrics: nil, views: ["home": homeButton]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[home]-50-|", options: .alignAllTop, metrics: nil, views: ["home": homeButton]))
         
     }
     
