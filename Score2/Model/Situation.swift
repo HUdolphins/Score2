@@ -10,10 +10,9 @@ import UIKit
 
 //現在の状況、一つ前の状況を保存しておく
 class Situation: NSObject {
+    //Ohashi:データベース上のどの試合かを試合中保持しておく
+    internal static var gameId: String!
     
-    
-    //ohashi : 最終回設定しておく？
-    internal static var playingGame: FIRGame?
     //現在の状況
     internal static var result:ResultEnum!
     //カウント
@@ -30,8 +29,8 @@ class Situation: NSObject {
     internal static var bottomBattingOrder:Int = 0
     
     //ohashi: 打者の配列
-    internal static var topBattersArray: [FIRPlayer] = []
-    internal static var bottomBattersArray: [FIRPlayer] = []
+    internal static var topPlayerArray: [FIRPlayer] = []
+    internal static var bottomPlayerArray: [FIRPlayer] = []
     //ランナーの有無
     internal static var firstRunnerExists = false
     internal static var secondRunnerExists = false

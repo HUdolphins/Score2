@@ -76,12 +76,14 @@ class GameViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if Situation.playingGame == nil {
+        if Situation.gameId == nil {
             let startingGameViewController = StartingGameViewController()
             startingGameViewController.modalPresentationStyle = .custom
             startingGameViewController.transitioningDelegate = self
             self.present(startingGameViewController, animated: true, completion: nil)
         }
+        
+        print(Situation.topPlayerArray)
     }
     
     func setupView(){
@@ -358,6 +360,7 @@ class GameViewController: UIViewController {
     @objc func homeButton(sender: UIButton){
 //        presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
         //Ohashi:仮
+        print(Situation.topPlayerArray)
         self.dismiss(animated: true, completion: nil)
     }
 }

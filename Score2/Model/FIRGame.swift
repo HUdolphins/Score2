@@ -14,4 +14,6 @@ class FIRGame: NSObject {
 
 //    var id: String?
 //    var date:
+    //Ohashi: 軟式か硬式か
+    //Ohashi: topPlayer, bottomPlayer, lastIning, winner, loser
 }

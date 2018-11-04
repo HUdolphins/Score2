@@ -44,9 +44,8 @@ class GameStatusViewController: UIViewController {
         self.view.addSubview(gameStartButton)
         self.view.addSubview(cancelButton)
         
-        self.view.addConstraints([NSLayoutConstraint(item: gameStartButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0)])
-         self.view.addConstraints([NSLayoutConstraint(item: gameStartButton, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1, constant: 0)])
-         self.view.addConstraints([NSLayoutConstraint(item: cancelButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0)])
+        gameStartButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+         gameStartButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[stadium]-10-[gameStart]-10-[cancel]", options: .alignAllCenterX, metrics: nil, views: ["stadium": stadiumTextField, "gameStart": gameStartButton, "cancel": cancelButton]))
     }
 

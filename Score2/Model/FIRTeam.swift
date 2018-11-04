@@ -9,5 +9,5 @@
 import UIKit
 
 class FIRTeam: NSObject {
-
+//Ohashi:menber, icon, teamname, league
 }

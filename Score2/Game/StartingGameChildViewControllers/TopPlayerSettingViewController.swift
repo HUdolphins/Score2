@@ -73,7 +73,7 @@ class TopPlayerSettingViewController: UIViewController {
         
         for (index, value) in playerNames.enumerated(){
             value.translatesAutoresizingMaskIntoConstraints = false
-            value.text = "player\(index + 1)"
+//            value.text = "player\(index + 1)"
             self.view.addSubview(value)
         }
         

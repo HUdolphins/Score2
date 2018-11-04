@@ -30,6 +30,7 @@ class ResultChildViewController1: UIViewController {
     let sendButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .red
         button.setTitle("send", for: .normal)
         return button
     }()
@@ -37,6 +38,7 @@ class ResultChildViewController1: UIViewController {
     let cancelButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .red
         button.setTitle("cancel", for: .normal)
         return button
     }()
@@ -53,5 +55,16 @@ class ResultChildViewController1: UIViewController {
         view.addSubview(commentTextField)
         view.addSubview(sendButton)
         view.addSubview(cancelButton)
+        
+        let objects = ["imageView": resultImageView, "textView": resultTextView, "comment": commentTextField, "send": sendButton, "cancel": cancelButton]
+        
+        
+        resultImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        resultTextView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        commentTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        sendButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        cancelButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[imageView]-[textView]-[comment]-[send]-[cancel]", options: .alignAllLeft, metrics: nil, views: objects))
     }
 }

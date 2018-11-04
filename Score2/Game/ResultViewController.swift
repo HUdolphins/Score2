@@ -8,6 +8,7 @@
 
 import UIKit
 import PageMenu
+import FirebaseDatabase
 
 class ResultViewController: UIViewController {
     
@@ -60,10 +61,10 @@ class ResultViewController: UIViewController {
         resultChildViewController3.resultTextView.text = childOptionOne().resultString
         resultChildViewController4.resultTextView.text = childOptionOne().resultString
         
-        resultChildViewController1.sendButton.addTarget(self, action: #selector(sendResult(sender:)), for: .touchUpInside)
-        resultChildViewController2.sendButton.addTarget(self, action: #selector(sendResult(sender:)), for: .touchUpInside)
-        resultChildViewController3.sendButton.addTarget(self, action: #selector(sendResult(sender:)), for: .touchUpInside)
-        resultChildViewController4.sendButton.addTarget(self, action: #selector(sendResult(sender:)), for: .touchUpInside)
+        resultChildViewController1.sendButton.addTarget(self, action: #selector(sendResultOne), for: .touchUpInside)
+        resultChildViewController2.sendButton.addTarget(self, action: #selector(sendResultOne), for: .touchUpInside)
+        resultChildViewController3.sendButton.addTarget(self, action: #selector(sendResultOne), for: .touchUpInside)
+        resultChildViewController4.sendButton.addTarget(self, action: #selector(sendResultOne), for: .touchUpInside)
         
         resultChildViewController1.cancelButton.addTarget(self, action: #selector(cancelTapped(sender:)), for: .touchUpInside)
         resultChildViewController2.cancelButton.addTarget(self, action: #selector(cancelTapped(sender:)), for: .touchUpInside)
@@ -73,8 +74,31 @@ class ResultViewController: UIViewController {
       
     }
     
-    @objc func sendResult(sender: UIButton){
-        print("sendResult")
+    @objc func sendResultOne(sender: UIButton){
+        print("DEBUG_PRiNT:sendResult")
+        let playerRef = Database.database().reference().child(Const.playerPath)
+        let resultRef = Database.database().reference().child(Const.resultPath)
+        
+        if Situation.topOrBottom == "Top"{
+            //Ohashi:firresult型のchildbyautoid
+            let key = resultRef.childByAutoId().key
+            let batter = Situation.topPlayerArray[Situation.topBattingOrder]
+            
+            //Ohashi:辞書にidを追加
+            
+            //Ohashi:打者の結果辞書を更新，追加できるようvarで宣言
+            if var resultDic = batter.battingResultsDic{
+                resultDic[key] = true
+                playerRef.child(batter.id!).updateChildValues(resultDic)
+            }else{
+                let resultDic = [key: true]
+                playerRef.child(batter.id!).child("results").setValue(resultDic)
+            }
+            //Ohashi:対戦投手，何球目か
+            let resultDic = ["results": childOptionOne().resultTitle, "player": batter.id, "game": Situation.gameId]
+            resultRef.child(key).setValue(resultDic)
+        }
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func cancelTapped(sender: UIButton){
@@ -3056,7 +3080,7 @@ class ResultViewController: UIViewController {
     
     func batterOnBase(){
         if Situation.topOrBottom == "Top"{
-            let ranner:FIRPlayer = Situation.topBattersArray[Situation.topBattingOrder]
+            let ranner:FIRPlayer = Situation.topPlayerArray[Situation.topBattingOrder]
             Situation.topBattingOrder += 1
         }
     }
