@@ -60,7 +60,7 @@ class StartingGameViewController: UIViewController {
             value.text = "Player\(index + 1)"
         }
         
-        let topNumberTFArray = [topPlayerSettingViewController.uniformNumber1, topPlayerSettingViewController.uniformNumber2, topPlayerSettingViewController.playerName3, topPlayerSettingViewController.uniformNumber4, topPlayerSettingViewController.uniformNumber5, topPlayerSettingViewController.uniformNumber6, topPlayerSettingViewController.uniformNumber7, topPlayerSettingViewController.uniformNumber8, topPlayerSettingViewController.uniformNumber9]
+        let topNumberTFArray = [topPlayerSettingViewController.uniformNumber1, topPlayerSettingViewController.uniformNumber2, topPlayerSettingViewController.uniformNumber3, topPlayerSettingViewController.uniformNumber4, topPlayerSettingViewController.uniformNumber5, topPlayerSettingViewController.uniformNumber6, topPlayerSettingViewController.uniformNumber7, topPlayerSettingViewController.uniformNumber8, topPlayerSettingViewController.uniformNumber9]
         for (index, value) in topNumberTFArray.enumerated(){
             value.text = "\(index + 1)"
         }
