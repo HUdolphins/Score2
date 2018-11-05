@@ -71,11 +71,16 @@ class GameViewController: UIViewController {
         playerButtonArray = [pitcherPlayerButton, catcherPlayerButton, firstPlayerButton, secondPlayerButton, thirdPlayerButton, shortPlayerButton, leftPlayerButton, centerPlayerButton, rightPlayerButton]
         hitButtonArray = [pitcherOrCatcherHitButton, firstHitButton, secondHitButton, thirdHitButton, shortHitButton, leftHitButton, centerHitButton, rightHitButton, leftIntermediateHitButton, rightIntermediateHitButton, leftOverHitButton, centerOverHitButton, rightOverHitButton]
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupView()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        //Ohashi:試合中はgameid入っているから試合開始の時だけ呼ばれる
         if Situation.gameId == nil {
             let startingGameViewController = StartingGameViewController()
             startingGameViewController.modalPresentationStyle = .custom
@@ -361,6 +366,10 @@ class GameViewController: UIViewController {
 //        presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
         //Ohashi:仮
         print(Situation.topPlayerArray)
+        print(Situation.bottomPlayerArray)
+        for x in 0...8{
+            print(Situation.topPlayerArray[x].name)
+        }
         self.dismiss(animated: true, completion: nil)
     }
 }

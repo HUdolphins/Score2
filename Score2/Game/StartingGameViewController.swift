@@ -26,17 +26,10 @@ class StartingGameViewController: UIViewController {
     var bottomPlayerNameArray: [String] = []
     var bottomPlaterNumberArray: [String] = []
     
-    //Ohashi:送信用辞書
-    var topPlayersDic:[String:Bool] = [:]
-    var bottomPlayerDic: [String:Bool] = [:]
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPageMenu()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
     }
     
     func setupPageMenu(){
@@ -112,9 +105,15 @@ class StartingGameViewController: UIViewController {
             for index in 0...8{
                 let batterData = ["name": topPlayerNameArray[index], "uniNum": topPlayerUniNumberArray[index], "team": topTeamName]
                 let key = playerRef.childByAutoId().key
+                //Ohashi:セットして取得
                 playerRef.child(key).setValue(batterData)
-                topPlayersDic[key] = true
-                print("DEBUG_PRINT: topPlayerセット")
+                playerRef.child(key).observeSingleEvent(of: .value) { (snapshot) in
+                    Situation.topPlayerArray.append(FIRPlayer(snapshot: snapshot))
+                }
+                //Ohashi:TODOポジションもここに
+                 //Ohashi:試合の方のノードにもプレイヤーIDをセット
+                let  orderData = ["order": "\(index + 1)"]
+                gameRef.child(Situation.gameId).child("topPlayer").child(key).setValue(orderData)
             }
         }
         
@@ -129,41 +128,21 @@ class StartingGameViewController: UIViewController {
             for index in 0...8{
                 let batterData = ["name": bottomPlayerNameArray[index], "uniNum": bottomPlaterNumberArray[index], "team": bottomTeamName]
                 let key = playerRef.childByAutoId().key
+                //Ohashi:セットして取得
                 playerRef.child(key).setValue(batterData)
-                bottomPlayerDic.updateValue(true, forKey: key)
-                print("DEBUG_PRiNT:bottomPlayerセット")
+                playerRef.child(key).observeSingleEvent(of: .value) { (snapshot) in
+                    Situation.bottomPlayerArray.append(FIRPlayer(snapshot: snapshot))
+                }
+                //Ohashi:TODO:ポシションもここに
+                let orderData = ["order": "\(index + 1)"]
+                gameRef.child(Situation.gameId).child("botPlayer").child(key).setValue(orderData)
             }
         }
-    
-        //Ohashi:ゲームの下にもプレイヤーセット
-        gameRef.child(Situation.gameId).child("topPlayer").setValue(topPlayersDic)
-        gameRef.child(Situation.gameId).child("botPlayer").setValue(bottomPlayerDic)
-        
-        //Ohashi:Situation.swiftの打順の配列にも入れておく
-        //Ohashi:順番sortしないといけない
-        for (key, value) in topPlayersDic{
-            playerRef.child(key).observeSingleEvent(of: .value, with: { (snapshot) in
-                print(snapshot.value!)
-                let player = FIRPlayer(snapshot: snapshot)
-                Situation.topPlayerArray.append(player)
-                print(player)
-                })
-        }
-        for (key, value) in bottomPlayerDic{
-            playerRef.child(key).observeSingleEvent(of: .value) { (snapshot) in
-                Situation.bottomPlayerArray.append(FIRPlayer(snapshot: snapshot))
-            }
-        }
-        
-        //Ohashi:ここの順番よくわからない。
-        print(Situation.topPlayerArray)
         //Ohashi:次の試合のために空にしておく。
         topPlayerNameArray.removeAll()
         bottomPlayerNameArray.removeAll()
         topPlayerUniNumberArray.removeAll()
         bottomPlaterNumberArray.removeAll()
-        topPlayersDic.removeAll()
-        bottomPlayerDic.removeAll()
         self.dismiss(animated: true, completion: nil)
         
     }

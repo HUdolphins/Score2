@@ -94,7 +94,7 @@ class ResultViewController: UIViewController {
                 let resultDic = [key: true]
                 playerRef.child(batter.id!).child("results").setValue(resultDic)
             }
-            //Ohashi:対戦投手，何球目か
+            //Ohashi:対戦投手，何球目か，捕殺者
             let resultDic = ["results": childOptionOne().resultTitle, "player": batter.id, "game": Situation.gameId]
             resultRef.child(key).setValue(resultDic)
         }
