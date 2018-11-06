@@ -84,9 +84,8 @@ class ResultViewController: UIViewController {
             let key = resultRef.childByAutoId().key
             let batter = Situation.topPlayerArray[Situation.topBattingOrder]
             
-            //Ohashi:辞書にidを追加
-            
-            //Ohashi:打者の結果辞書を更新，追加できるようvarで宣言
+            //Ohashi:打者の結果辞書を更新，追加できるようvarで宣言,初打席ならデータ作成，データあればアンラップ
+            //Ohashi:プレイヤーノード
             if var resultDic = batter.battingResultsDic{
                 resultDic[key] = true
                 playerRef.child(batter.id!).updateChildValues(resultDic)
@@ -95,6 +94,7 @@ class ResultViewController: UIViewController {
                 playerRef.child(batter.id!).child("results").setValue(resultDic)
             }
             //Ohashi:対戦投手，何球目か，捕殺者
+            //Ohashi:結果ノード
             let resultDic = ["results": childOptionOne().resultTitle, "player": batter.id, "game": Situation.gameId]
             resultRef.child(key).setValue(resultDic)
         }

@@ -7,24 +7,43 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
-class HomeViewController: UIViewController {
+class HomeViewController: UITableViewController{
 
+    var dataArray: [FIRGame] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setData()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataArray.count
     }
-    */
-
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        <#code#>
+//    }
+//
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        <#code#>
+//    }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        return cell
+    }
+    
+    func setData(){
+        Database.database().reference().child(Const.gamePath).observe(.childAdded) { (snapshot) in
+            print(snapshot)
+            self.dataArray.append(FIRGame(snapshot: snapshot))
+        }
+    }
+    
+    func handleLogout(){
+        
+    }
+    
 }

@@ -44,4 +44,6 @@ class RootViewController: UIViewController {
         
         
     }
+    
+    //Ohashi:TODOログインチェックメソッド
 }

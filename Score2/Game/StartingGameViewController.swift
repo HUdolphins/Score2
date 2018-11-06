@@ -80,7 +80,7 @@ class StartingGameViewController: UIViewController {
     
     @objc func gameStart(sender: UIButton){
         let gameRef = Database.database().reference().child(Const.gamePath)
-        let playerRef = Database.database().reference().child(Const.playerPath)
+        let playerRef = Database.database().reference().child("player")
         
         //Ohashi:空欄がある時の処理
         
@@ -88,7 +88,7 @@ class StartingGameViewController: UIViewController {
         if let topTeamName = topPlayerSettingViewController.teamNameTextField.text, let bottomTeamName = bottomPlayerSettingViewController.teamNameTextField.text, let stadium = gameStatusViewController.stadiumTextField.text{
             
             let time = Date.timeIntervalSinceReferenceDate
-            let gameData = ["topTeam": topTeamName, "bottomTeam": bottomTeamName, "time": String(time), "stadium": stadium] as [String : Any]
+            let gameData = ["topTeam": topTeamName, "botTeam": bottomTeamName, "time": String(time), "stadium": stadium] as [String : Any]
             Situation.gameId = gameRef.childByAutoId().key
             print("DEBUG_PRINT: gameIdセット")
             gameRef.child(Situation.gameId).setValue(gameData)
