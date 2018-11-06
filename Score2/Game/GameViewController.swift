@@ -280,21 +280,31 @@ class GameViewController: UIViewController {
                 UIView.animate(withDuration: 0.5, animations: {
                     panView.alpha = 0
                     self.baseViewArray[0].backgroundColor = .clear
+                }, completion:{ _ in
+                    panView.center = self.panStartPoint
+                    panView.alpha = 1
                 })
                 Situation.result = throwToFirst
                 modalAppear()
-                
             }else if panView.frame.intersects(baseViewArray[1].frame){
                 UIView.animate(withDuration: 0.5, animations: {
                     panView.alpha = 0
                     self.baseViewArray[1].backgroundColor = .clear
+                }, completion:{ _ in
+                    panView.center = self.panStartPoint
+                    panView.alpha = 1
                 })
+                
                 Situation.result = throwToSecond
                 modalAppear()
             }else if panView.frame.intersects(baseViewArray[2].frame){
                 UIView.animate(withDuration: 0.5, animations: {
                     panView.alpha = 0
+                    panView.center = self.panStartPoint
                     self.baseViewArray[2].backgroundColor = .clear
+                }, completion:{ _ in
+                    panView.center = self.panStartPoint
+                    panView.alpha = 1
                 })
                 Situation.result = throwToThird
                 modalAppear()
@@ -302,7 +312,11 @@ class GameViewController: UIViewController {
             }else if panView.frame.intersects(baseViewArray[3].frame){
                 UIView.animate(withDuration: 0.5, animations: {
                     panView.alpha = 0
+                    panView.center = self.panStartPoint
                     self.baseViewArray[3].backgroundColor = .clear
+                }, completion:{ _ in
+                    panView.center = self.panStartPoint
+                    panView.alpha = 1
                 })
                 Situation.result = throwToHome
                 modalAppear()

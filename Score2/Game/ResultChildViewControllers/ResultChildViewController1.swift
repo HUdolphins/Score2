@@ -18,6 +18,11 @@ class ResultChildViewController1: UIViewController {
     
     var resultTextView: UITextView = {
         let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.isScrollEnabled = false
+        textView.font?.withSize(10)
+        textView.isEditable = false
+        textView.backgroundColor = .yellow
         return textView
     }()
     
@@ -48,7 +53,7 @@ class ResultChildViewController1: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-         setupView()
+        setupView()
     }
     
     func setupView(){
@@ -57,20 +62,16 @@ class ResultChildViewController1: UIViewController {
         view.addSubview(commentTextField)
         view.addSubview(sendButton)
         view.addSubview(cancelButton)
+        self.view.bringSubviewToFront(resultTextView)
+        print(resultTextView.text!)
+        
         
         let objects = ["imageView": resultImageView, "textView": resultTextView, "comment": commentTextField, "send": sendButton, "cancel": cancelButton]
-        
-        
-//        resultImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-//        resultTextView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-//        commentTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-//        sendButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-//        cancelButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+//
+//
         resultImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        resultImageView.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        sendButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        sendButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        //Ohashi:テキストビュー入るとできない
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-50-[imageView(==100)]-10-[textView(==10)]-10-[comment]-10-[send]-10-[cancel]", options: .alignAllCenterX, metrics: nil, views: objects))
+        resultTextView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        commentTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-50-[imageView(==100)]-10-[textView(==50)]-10-[comment]-10-[send]-10-[cancel]", options: .alignAllCenterX, metrics: nil, views: objects))
     }
 }
