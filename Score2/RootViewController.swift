@@ -30,10 +30,10 @@ class RootViewController: UIViewController {
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([tabBarView.topAnchor.constraint(equalTo: safeArea.topAnchor), tabBarView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor), tabBarView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor), tabBarView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)])
         tabBarController.didMove(toParent: self)
-        let homeViewController = HomeViewController()
+        let homeNavViewController = UINavigationController(rootViewController: HomeViewController())
         let accountViewController = AccountViewController()
         
-        tabBarController.setView(homeViewController, at: 0)
+        tabBarController.setView(homeNavViewController, at: 0)
         tabBarController.setView(accountViewController, at: 2)
         
         tabBarController.highlightButton(at: 1)

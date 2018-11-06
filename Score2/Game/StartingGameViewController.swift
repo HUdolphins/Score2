@@ -33,7 +33,7 @@ class StartingGameViewController: UIViewController {
     }
     
     func setupPageMenu(){
-        
+        //Ohashi:pagemenuに格納する画面の配列
         startingGameViewControllers = [gameStatusViewController, topPlayerSettingViewController, bottomPlayerSettingViewController]
         //Ohashi:メニューバーのタイトル設定
         gameStatusViewController.title = "試合設定"
@@ -42,7 +42,7 @@ class StartingGameViewController: UIViewController {
         //Ohashi:各ビューのデフォルト値設定
         topPlayerSettingViewController.teamNameTextField.text = "チームA"
         bottomPlayerSettingViewController.teamNameTextField.text = "チームB"
-        
+        //Ohashi:プレイヤー名のデフォルト値を設定する。配列に入れて，繰り返し処理。裏と表。
         let topNameTFArray = [topPlayerSettingViewController.playerName1, topPlayerSettingViewController.playerName2, topPlayerSettingViewController.playerName3, topPlayerSettingViewController.playerName4, topPlayerSettingViewController.playerName5, topPlayerSettingViewController.playerName6, topPlayerSettingViewController.playerName7, topPlayerSettingViewController.playerName8, topPlayerSettingViewController.playerName9]
         for (index, value) in topNameTFArray.enumerated(){
             value.text = "Player\(index + 1)"
@@ -52,7 +52,7 @@ class StartingGameViewController: UIViewController {
         for (index, value) in bottomNameTFArray.enumerated(){
             value.text = "Player\(index + 1)"
         }
-        
+        //Ohashi:背番号のデフォルト値設定。名前と同様。
         let topNumberTFArray = [topPlayerSettingViewController.uniformNumber1, topPlayerSettingViewController.uniformNumber2, topPlayerSettingViewController.uniformNumber3, topPlayerSettingViewController.uniformNumber4, topPlayerSettingViewController.uniformNumber5, topPlayerSettingViewController.uniformNumber6, topPlayerSettingViewController.uniformNumber7, topPlayerSettingViewController.uniformNumber8, topPlayerSettingViewController.uniformNumber9]
         for (index, value) in topNumberTFArray.enumerated(){
             value.text = "\(index + 1)"
@@ -63,9 +63,11 @@ class StartingGameViewController: UIViewController {
             value.text = "\(index + 1)"
         }
         
+        //Ohashi:キャンセルボタンとスタートボタンにメソッドつける。
         gameStatusViewController.gameStartButton.addTarget(self, action: #selector(gameStart(sender:)), for: .touchUpInside)
         gameStatusViewController.cancelButton.addTarget(self, action: #selector(cancel(sender:)), for: .touchUpInside)
         
+        //Ohashi:pagemenuの設定。
         let parameters: [CAPSPageMenuOption] = [
             .menuItemSeparatorWidth(4.0),
             .useMenuLikeSegmentedControl(true),
@@ -74,6 +76,7 @@ class StartingGameViewController: UIViewController {
             .selectionIndicatorColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
         ]
         
+        //Ohashi:pagemenuのインスタンス作って，変数に入れる。addsubviewで画面に表示する。
         pageMenu =  CAPSPageMenu(viewControllers: startingGameViewControllers, frame: view.bounds, pageMenuOptions: parameters)
         view.addSubview(pageMenu!.view)
     }
@@ -82,19 +85,23 @@ class StartingGameViewController: UIViewController {
         let gameRef = Database.database().reference().child(Const.gamePath)
         let playerRef = Database.database().reference().child("player")
         
-        //Ohashi:空欄がある時の処理
+        //Ohashi:TODO：空欄がある時の処理
         
         //Ohashi:ゲームデータ作成
+        //Ohashi:チーム名，球場名をアンラップして時間を取得
         if let topTeamName = topPlayerSettingViewController.teamNameTextField.text, let bottomTeamName = bottomPlayerSettingViewController.teamNameTextField.text, let stadium = gameStatusViewController.stadiumTextField.text{
             
             let time = Date.timeIntervalSinceReferenceDate
             let gameData = ["topTeam": topTeamName, "botTeam": bottomTeamName, "time": String(time), "stadium": stadium] as [String : Any]
+            //Ohashi:idを発行して，試合中のIDをSituationに保管
             Situation.gameId = gameRef.childByAutoId().key
             print("DEBUG_PRINT: gameIdセット")
+            //Ohashi:データベースに保存
             gameRef.child(Situation.gameId).setValue(gameData)
         }
         
         //Ohashi:先攻の選手データ作成
+        //Ohashi:チーム名，名前，背番号を全てアンラップ
         if let topTeamName = topPlayerSettingViewController.teamNameTextField.text, let topPlayer1Name = topPlayerSettingViewController.playerName1.text, let topPlayer2Name = topPlayerSettingViewController.playerName2.text, let topPlayer3Name = topPlayerSettingViewController.playerName3.text, let topPlayer4Name = topPlayerSettingViewController.playerName4.text, let topPlayer5Name = topPlayerSettingViewController.playerName5.text, let topPlayer6Name = topPlayerSettingViewController.playerName6.text, let topPlayer7Name = topPlayerSettingViewController.playerName7.text, let topPlayer8Name = topPlayerSettingViewController.playerName8.text, let topPlayer9Name = topPlayerSettingViewController.playerName9.text, let topPlayer1Number = topPlayerSettingViewController.uniformNumber1.text, let topPlayer2Number = topPlayerSettingViewController.uniformNumber2.text, let topPlayer3Number = topPlayerSettingViewController.uniformNumber3.text, let topPlayer4Number = topPlayerSettingViewController.uniformNumber4.text, let topPlayer5Number = topPlayerSettingViewController.uniformNumber5.text, let topPlayer6Number = topPlayerSettingViewController.uniformNumber6.text, let topPlayer7Number = topPlayerSettingViewController.uniformNumber7.text, let topPlayer8Number = topPlayerSettingViewController.uniformNumber8.text, let topPlayer9Number = topPlayerSettingViewController.uniformNumber9.text{
             
             //Ohashi:配列に格納
@@ -111,7 +118,7 @@ class StartingGameViewController: UIViewController {
                     Situation.topPlayerArray.append(FIRPlayer(snapshot: snapshot))
                 }
                 //Ohashi:TODOポジションもここに
-                 //Ohashi:試合の方のノードにもプレイヤーIDをセット
+                //Ohashi:試合の方のノードにもプレイヤーIDをセット
                 let  orderData = ["order": "\(index + 1)"]
                 gameRef.child(Situation.gameId).child("topPlayer").child(key).setValue(orderData)
             }
