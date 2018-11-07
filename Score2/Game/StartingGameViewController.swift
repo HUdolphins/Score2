@@ -88,8 +88,8 @@ class StartingGameViewController: UIViewController {
         let teamRef = Database.database().reference().child(Const.teamPath)
         let playerRef = Database.database().reference().child(Const.playerPath)
         
-        var topTeamKey: String?
-        var bottomTeamKey: String?
+        
+        
         //Ohashi:TODO：空欄がある時の処理
         
         
@@ -104,24 +104,22 @@ class StartingGameViewController: UIViewController {
             let gameData = ["time": String(time),"stadium": stadium] as [String : Any]
             //Ohashi:idを発行して，試合中のIDをSituationに保管
             Situation.gameId = gameRef.childByAutoId().key
-            print("DEBUG_PRINT: gameIdセット")
             //Ohashi:データベースに保存
-            gameRef.child(Situation.gameId).setValue(gameData)
+            gameRef.child(Situation.gameId!).setValue(gameData)
         }
         //Ohashi:チームのデータ作成
         if let topTeamName = topPlayerSettingViewController.teamNameTextField.text{
-            topTeamKey = teamRef.childByAutoId().key
-            teamRef.child(topTeamKey!).setValue(["name": topTeamName, "games": [Situation.gameId: true]])
+            Situation.topTeamId = teamRef.childByAutoId().key
+            teamRef.child(Situation.topTeamId!).setValue(["name": topTeamName, "games": [Situation.gameId: true]])
             //Ohashi:試合のノードにも追加
-            gameRef.child(Situation.gameId).updateChildValues(["topTeam": topTeamKey!])
-            print(Situation.gameId)
+            gameRef.child(Situation.gameId!).updateChildValues(["topTeam": Situation.topTeamId!])
         }
         //Ohashi:後攻チーム
         if let bottomTeamName = bottomPlayerSettingViewController.teamNameTextField.text{
-            bottomTeamKey = teamRef.childByAutoId().key
-            teamRef.child(bottomTeamKey!).setValue(["name": bottomTeamName, "games": [Situation.gameId: true]])
+            Situation.bottomTeamId = teamRef.childByAutoId().key
+            teamRef.child(Situation.bottomTeamId!).setValue(["name": bottomTeamName, "games": [Situation.gameId: true]])
             //Ohashi:試合のノードの方にも追加
-            gameRef.child(Situation.gameId).updateChildValues(["botTeam": bottomTeamKey!])
+            gameRef.child(Situation.gameId!).updateChildValues(["botTeam": Situation.bottomTeamId!])
         }
         //Ohashi:先攻の選手データ作成
         //Ohashi:チーム名，名前，背番号を全てアンラップ
@@ -143,8 +141,8 @@ class StartingGameViewController: UIViewController {
                 }
                 //Ohashi:TODOポジションもここに
                 //Ohashi:チームのノードにプレイヤーIDをセット
-                gameRef.child(Situation.gameId).child("topPlayer").updateChildValues([key: true])
-                teamRef.child(topTeamKey!).child("member").updateChildValues([key: true])
+                gameRef.child(Situation.gameId!).child("topPlayer").updateChildValues([key: true])
+                teamRef.child(Situation.topTeamId!).child("member").updateChildValues([key: true])
             
             }
             //Ohashi:TODO:ポジションと一緒に書かないといけない
@@ -170,8 +168,8 @@ class StartingGameViewController: UIViewController {
                     Situation.bottomPlayerArray.append(FIRPlayer(snapshot: snapshot))
                 }
                 //Ohashi:TODO:ポシションもここに
-                gameRef.child(Situation.gameId).child("botPlayer").updateChildValues([key: true])
-                teamRef.child(bottomTeamKey!).child("member").updateChildValues([key: true])
+                gameRef.child(Situation.gameId!).child("botPlayer").updateChildValues([key: true])
+                teamRef.child(Situation.bottomTeamId!).child("member").updateChildValues([key: true])
             }
         }
         //Ohashi:次の試合のために空にしておく。
@@ -181,8 +179,6 @@ class StartingGameViewController: UIViewController {
         bottomPlaterNumberArray.removeAll()
         topPlayerIdDic.removeAll()
         bottomPlayerIdDic.removeAll()
-        topTeamKey = nil
-        bottomTeamKey = nil
         self.dismiss(animated: true, completion: nil)
         
     }

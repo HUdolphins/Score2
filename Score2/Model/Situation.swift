@@ -11,8 +11,10 @@ import UIKit
 //現在の状況、一つ前の状況を保存しておく
 class Situation: NSObject {
     //Ohashi:データベース上のどの試合かを試合中保持しておく
-    internal static var gameId: String!
-    
+    internal static var gameId: String?
+    //Ohashi:チームも保持しておく？
+    internal static var topTeamId: String?
+    internal static var bottomTeamId: String?
     //現在の状況
     internal static var result:ResultEnum!
     //カウント
