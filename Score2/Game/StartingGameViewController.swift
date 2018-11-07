@@ -26,6 +26,8 @@ class StartingGameViewController: UIViewController {
     var bottomPlayerNameArray: [String] = []
     var bottomPlaterNumberArray: [String] = []
     
+    var topPlayerIdDic:[String: Bool] = [:]
+    var bottomPlayerIdDic:[String: Bool] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,23 +85,44 @@ class StartingGameViewController: UIViewController {
     
     @objc func gameStart(sender: UIButton){
         let gameRef = Database.database().reference().child(Const.gamePath)
-        let playerRef = Database.database().reference().child("player")
+        let teamRef = Database.database().reference().child(Const.teamPath)
+        let playerRef = Database.database().reference().child(Const.playerPath)
         
+        var topTeamKey: String?
+        var bottomTeamKey: String?
         //Ohashi:TODO：空欄がある時の処理
         
+        
+        //Ohashi:全て初回作成時のデータ設定
         //Ohashi:ゲームデータ作成
         //Ohashi:チーム名，球場名をアンラップして時間を取得
-        if let topTeamName = topPlayerSettingViewController.teamNameTextField.text, let bottomTeamName = bottomPlayerSettingViewController.teamNameTextField.text, let stadium = gameStatusViewController.stadiumTextField.text{
+        if let stadium = gameStatusViewController.stadiumTextField.text{
             
+            //Ohashi:TODO:チームデータをkeyに変える
             let time = Date.timeIntervalSinceReferenceDate
-            let gameData = ["topTeam": topTeamName, "botTeam": bottomTeamName, "time": String(time), "stadium": stadium] as [String : Any]
+            print(time)
+            let gameData = ["time": String(time),"stadium": stadium] as [String : Any]
             //Ohashi:idを発行して，試合中のIDをSituationに保管
             Situation.gameId = gameRef.childByAutoId().key
             print("DEBUG_PRINT: gameIdセット")
             //Ohashi:データベースに保存
             gameRef.child(Situation.gameId).setValue(gameData)
         }
-        
+        //Ohashi:チームのデータ作成
+        if let topTeamName = topPlayerSettingViewController.teamNameTextField.text{
+            topTeamKey = teamRef.childByAutoId().key
+            teamRef.child(topTeamKey!).setValue(["name": topTeamName, "games": [Situation.gameId: true]])
+            //Ohashi:試合のノードにも追加
+            gameRef.child(Situation.gameId).updateChildValues(["topTeam": topTeamKey!])
+            print(Situation.gameId)
+        }
+        //Ohashi:後攻チーム
+        if let bottomTeamName = bottomPlayerSettingViewController.teamNameTextField.text{
+            bottomTeamKey = teamRef.childByAutoId().key
+            teamRef.child(bottomTeamKey!).setValue(["name": bottomTeamName, "games": [Situation.gameId: true]])
+            //Ohashi:試合のノードの方にも追加
+            gameRef.child(Situation.gameId).updateChildValues(["botTeam": bottomTeamKey!])
+        }
         //Ohashi:先攻の選手データ作成
         //Ohashi:チーム名，名前，背番号を全てアンラップ
         if let topTeamName = topPlayerSettingViewController.teamNameTextField.text, let topPlayer1Name = topPlayerSettingViewController.playerName1.text, let topPlayer2Name = topPlayerSettingViewController.playerName2.text, let topPlayer3Name = topPlayerSettingViewController.playerName3.text, let topPlayer4Name = topPlayerSettingViewController.playerName4.text, let topPlayer5Name = topPlayerSettingViewController.playerName5.text, let topPlayer6Name = topPlayerSettingViewController.playerName6.text, let topPlayer7Name = topPlayerSettingViewController.playerName7.text, let topPlayer8Name = topPlayerSettingViewController.playerName8.text, let topPlayer9Name = topPlayerSettingViewController.playerName9.text, let topPlayer1Number = topPlayerSettingViewController.uniformNumber1.text, let topPlayer2Number = topPlayerSettingViewController.uniformNumber2.text, let topPlayer3Number = topPlayerSettingViewController.uniformNumber3.text, let topPlayer4Number = topPlayerSettingViewController.uniformNumber4.text, let topPlayer5Number = topPlayerSettingViewController.uniformNumber5.text, let topPlayer6Number = topPlayerSettingViewController.uniformNumber6.text, let topPlayer7Number = topPlayerSettingViewController.uniformNumber7.text, let topPlayer8Number = topPlayerSettingViewController.uniformNumber8.text, let topPlayer9Number = topPlayerSettingViewController.uniformNumber9.text{
@@ -112,16 +135,22 @@ class StartingGameViewController: UIViewController {
             for index in 0...8{
                 let batterData = ["name": topPlayerNameArray[index], "uniNum": topPlayerUniNumberArray[index], "team": topTeamName]
                 let key = playerRef.childByAutoId().key
+                
                 //Ohashi:セットして取得
                 playerRef.child(key).setValue(batterData)
                 playerRef.child(key).observeSingleEvent(of: .value) { (snapshot) in
                     Situation.topPlayerArray.append(FIRPlayer(snapshot: snapshot))
                 }
                 //Ohashi:TODOポジションもここに
-                //Ohashi:試合の方のノードにもプレイヤーIDをセット
-                let  orderData = ["order": "\(index + 1)"]
-                gameRef.child(Situation.gameId).child("topPlayer").child(key).setValue(orderData)
+                //Ohashi:チームのノードにプレイヤーIDをセット
+                gameRef.child(Situation.gameId).child("topPlayer").updateChildValues([key: true])
+                teamRef.child(topTeamKey!).child("member").updateChildValues([key: true])
+            
             }
+            //Ohashi:TODO:ポジションと一緒に書かないといけない
+            //Ohashi:trueのとこをポジションに変える？
+            //Ohashi:シチュエーションの配列作成は打順通りになったけど，また試合データ取得するときに打順データ入れとかないといけない？
+            
         }
         
         //Ohashi:後攻の選手データ作成
@@ -131,7 +160,7 @@ class StartingGameViewController: UIViewController {
             bottomPlayerNameArray = [bottomPlayer1Name, bottomPlayer2Name, bottomPlayer3Name, bottomPlayer4Name, bottomPlayer5Name, bottomPlayer6Name, bottomPlayer7Name, bottomPlayer8Name, bottomPlayer9Name]
             bottomPlaterNumberArray = [bottomPlayer1Number, bottomPlayer2Number, bottomPlayer3Number, bottomPlayer4Number, bottomPlayer5Number, bottomPlaye6Number, bottomPlayer7Number, bottomPlayer8Number,bottomPlayer9Number]
           
-            //Ohashi:それぞれデータをセットし，辞書にも追加
+            //Ohashi:それぞれデータをセットし，配列にも追加
             for index in 0...8{
                 let batterData = ["name": bottomPlayerNameArray[index], "uniNum": bottomPlaterNumberArray[index], "team": bottomTeamName]
                 let key = playerRef.childByAutoId().key
@@ -141,8 +170,8 @@ class StartingGameViewController: UIViewController {
                     Situation.bottomPlayerArray.append(FIRPlayer(snapshot: snapshot))
                 }
                 //Ohashi:TODO:ポシションもここに
-                let orderData = ["order": "\(index + 1)"]
-                gameRef.child(Situation.gameId).child("botPlayer").child(key).setValue(orderData)
+                gameRef.child(Situation.gameId).child("botPlayer").updateChildValues([key: true])
+                teamRef.child(bottomTeamKey!).child("member").updateChildValues([key: true])
             }
         }
         //Ohashi:次の試合のために空にしておく。
@@ -150,11 +179,14 @@ class StartingGameViewController: UIViewController {
         bottomPlayerNameArray.removeAll()
         topPlayerUniNumberArray.removeAll()
         bottomPlaterNumberArray.removeAll()
+        topPlayerIdDic.removeAll()
+        bottomPlayerIdDic.removeAll()
+        topTeamKey = nil
+        bottomTeamKey = nil
         self.dismiss(animated: true, completion: nil)
         
     }
     @objc func cancel(sender: UIButton){
         self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
-        //Ohashi:他のとこの値をリセットする処理
     }
 }

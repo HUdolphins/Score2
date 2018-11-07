@@ -39,27 +39,49 @@ class HomeViewController: UITableViewController{
         
         //Ohashi:強制アンラップ多用。大丈夫か。
         Database.database().reference().child(Const.teamPath).child(game.topTeamKey!).child("name").observeSingleEvent(of: .value) { (snapshot) in
-            let valueDictionary = snapshot.value as! [String: Any]
-            topTeamName = valueDictionary["name"] as? String
+            topTeamName =  snapshot.value as? String
         }
         Database.database().reference().child(Const.teamPath).child(game.botTeamKey!).child("name").observeSingleEvent(of: .value) { (snapshot) in
-            let valueDictionary = snapshot.value as! [String: Any]
-            botTeamName = valueDictionary["name"] as? String
+            
+            botTeamName = snapshot.value as? String
+            //Ohashi:こっちのが後に起こってる
+            print(botTeamName)
+            if let topTeamName = topTeamName, let botTeamName = botTeamName{
+                print(topTeamName)
+                cell.textLabel?.text = "\(topTeamName) vs \(botTeamName)"
+            }
         }
         //Ohashi:セルのタイトル設定
-        cell.textLabel?.text = "\(topTeamName!)vs\(botTeamName!)"
+        
+        
+//        cell.textLabel?.text = "lalala"
         //Ohashi:セルの詳細に日付つける
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        cell.detailTextLabel?.text = formatter.string(from: game.date!)
+        cell.detailTextLabel?.text = "\(formatter.string(from: game.date!)) @\(game.stadium!)"
         
         return cell
     }
     
     func setData(){
         Database.database().reference().child(Const.gamePath).observe(.childAdded) { (snapshot) in
-            print(snapshot)
+            print("DEBUG_PRINT:.childAdded発生！！！！！！！！")
             self.gamesArray.append(FIRGame(snapshot: snapshot))
+            self.tableView.reloadData()
+        }
+        Database.database().reference().child(Const.gamePath).observe(.childChanged) { (snapshot) in
+            print("DEBUG_PRiNT:.childChanged発生！！！！！！！！！！！！")
+            let gameData = FIRGame(snapshot: snapshot)
+            var index = 0
+            for game in self.gamesArray{
+                if game.id == gameData.id{
+                    index = self.gamesArray.index(of: game)!
+                    break
+                }
+            }
+            
+            self.gamesArray.remove(at: index)
+            self.gamesArray.insert(gameData, at: index)
             self.tableView.reloadData()
         }
     }
