@@ -1115,7 +1115,7 @@ class ResultViewController: UIViewController {
             }
             else if Situation.twoOutFullBase{
                 return ("右中二", "右中間ツーベース\n2死2,3塁", UIImage(named: "2-2,3,4_2")!)
-                        }
+            }
         case .leftSingleHit:
             if Situation.noOutNoRunner {
                 return ("左前安", "レフト前ヒット\n無死1塁", UIImage(named: "0-1")!)
@@ -1187,7 +1187,7 @@ class ResultViewController: UIViewController {
             }
             else if Situation.twoOutFullBase{
                 return ("左前安", "レフト前ヒット\n2死満塁", UIImage(named: "2-1,2,3,4_1")!)
-                        }
+            }
         case .centerSingleHit:
             if Situation.noOutNoRunner {
                 return ("中前安", "センター前ヒット\n無死1塁", UIImage(named: "0-1")!)
@@ -1259,7 +1259,7 @@ class ResultViewController: UIViewController {
             }
             else if Situation.twoOutFullBase{
                 return ("中前安", "センター前ヒット\n2死満塁", UIImage(named: "2-1,2,3,4_1")!)
-                        }
+            }
         case .rightSingleHit:
             if Situation.noOutNoRunner {
                 return ("右前安", "ライト前ヒット\n無死1塁", UIImage(named: "0-1")!)
@@ -1338,7 +1338,8 @@ class ResultViewController: UIViewController {
             }
             else if Situation.twoOutFullBase{
                 return ("右前安", "ライト前ヒット\n2死満塁", UIImage(named: "2-1,2,3,4_1")!)
-                        }
+                
+            }
         case .pitcherOrCatcherHit:
             if Situation.noOutNoRunner {
                 return ("投前安", "ピッチャー内野安打\n無死1塁", UIImage(named: "0-1")!)
@@ -1485,8 +1486,7 @@ class ResultViewController: UIViewController {
             }
             else if Situation.twoOutFullBase{
                 return ("一前安", "ファースト内野安打\n2死満塁", UIImage(named: "2-1,2,3,4_1")!)
-                
-                        }
+            }
             
         case .secondHit:
             if Situation.noOutNoRunner {
@@ -1559,7 +1559,7 @@ class ResultViewController: UIViewController {
             }
             else if Situation.twoOutFullBase{
                 return ("二前安", "セカンド内野安打\n2死満塁", UIImage(named: "2-1,2,3,4_1")!)
-                        }
+            }
         case .thirdHit:
             if Situation.noOutNoRunner {
                 return ("三前安", "サード内野安打\n無死1塁", UIImage(named: "0-1")!)
@@ -1631,7 +1631,7 @@ class ResultViewController: UIViewController {
             }
             else if Situation.twoOutFullBase{
                 return ("三前安", "サード内野安打\n2死満塁", UIImage(named: "2-1,2,3,4_1")!)
-                        }
+            }
         case .shortHit:
             if Situation.noOutNoRunner {
                 return ("遊前安", "ショート内野安打\n無死1塁", UIImage(named: "0-1")!)
@@ -1704,7 +1704,7 @@ class ResultViewController: UIViewController {
             }
             else if Situation.twoOutFullBase{
                 return ("遊前安", "ショート内野安打\n2死満塁", UIImage(named: "2-1,2,3,4_1")!)
-                        }
+            }
         case .leftOverHit:
             if Situation.noOutNoRunner {
                 return ("左越二", "レフトオーバーツーベース\n無死2塁", UIImage(named: "0-2")!)
@@ -1776,7 +1776,7 @@ class ResultViewController: UIViewController {
             }
             else if Situation.twoOutFullBase{
                 return ("左越二", "レフトオーバーツーベース\n2死2,3塁", UIImage(named: "2-2,3,4_2")!)
-                        }
+            }
             
         case .centerOverHit:
             if Situation.noOutNoRunner {
@@ -1849,7 +1849,7 @@ class ResultViewController: UIViewController {
             }
             else if Situation.twoOutFullBase{
                 return ("中越二", "センターオーバーツーベース\n2死2,3塁", UIImage(named: "2-2,3,4_2")!)
-                        }
+            }
             
         case .rightOverHit:
             if Situation.noOutNoRunner {
@@ -1921,7 +1921,7 @@ class ResultViewController: UIViewController {
             }
             else if Situation.twoOutFullBase{
                 return ("右越二", "ライトオーバーツーベース\n2死2,3塁", UIImage(named: "2-2,3,4_2")!)
-                        }
+            }
             
         case .thirdBaseLineHit:
             if Situation.noOutNoRunner {
@@ -1994,7 +1994,7 @@ class ResultViewController: UIViewController {
             }
             else if Situation.twoOutFullBase{
                 return ("三線二", "三塁線ツーベース\n2死2,3塁", UIImage(named: "2-2,3,4_2")!)
-                        }
+            }
             
         case .firstBaseLineHit:
             if Situation.noOutNoRunner {
@@ -2066,7 +2066,7 @@ class ResultViewController: UIViewController {
                 return ("一線二", "一塁線ツーベース\n1死2,3塁", UIImage(named: "1-2,3,4_2")!)            }
             else if Situation.twoOutFullBase{
                 return ("一線二", "一塁線ツーベース\n2死2,3塁", UIImage(named: "2-2,3,4_2")!)
-                        }
+            }
         case .fourBall:
             if Situation.noOutNoRunner {
                 return ("四球", "フォアボール\n無死1塁", UIImage(named: "0-1")! )
@@ -2219,6 +2219,10 @@ class ResultViewController: UIViewController {
         return ("", "", UIImage(named: "")! )
     }
     
+    
+    
+    
+//Ohashi:*※※*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
     func childOptionTwo() -> (resultTitle: String,resultString: String, resultImage: UIImage){
         switch Situation.result!{
             
@@ -2923,7 +2927,8 @@ class ResultViewController: UIViewController {
         //なんかエラーでるから仮置き
         return ("", "", UIImage(named: "")! )
     }
-    
+    //Ohashi:＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+    //Ohashi:フライはファウルフライで
     func childOptionThree() -> String{
         switch Situation.result!{
             

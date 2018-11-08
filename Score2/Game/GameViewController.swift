@@ -17,10 +17,45 @@ class GameViewController: UIViewController {
         return imageView
     }()
     
+    let countImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "count3-2-2")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     let homeButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("home", for: .normal)
+        return button
+    }()
+    
+    let strikeButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "見逃し"), for: .normal)
+        return button
+    }()
+    
+    let takeALookButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "見送り"), for: .normal)
+        return button
+    }()
+    
+    let swingButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "空振り"), for: .normal)
+        return button
+    }()
+    
+    let faulButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "ファール"), for: .normal)
         return button
     }()
     
@@ -52,7 +87,7 @@ class GameViewController: UIViewController {
     let leftOverHitButton = UIButton()
     let centerOverHitButton = UIButton()
     let rightOverHitButton = UIButton()
-    
+
     var baseViewArray: [UIView] = []
     var playerButtonArray: [UIButton] = []
     var playerOriginArray: [CGPoint] = []
@@ -67,6 +102,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         //Ohashi:配列に格納
+        
         baseViewArray = [firstBaseView, secondBaseView, thirdBaseView, homeBaseView]
         playerButtonArray = [pitcherPlayerButton, catcherPlayerButton, firstPlayerButton, secondPlayerButton, thirdPlayerButton, shortPlayerButton, leftPlayerButton, centerPlayerButton, rightPlayerButton]
         hitButtonArray = [pitcherOrCatcherHitButton, firstHitButton, secondHitButton, thirdHitButton, shortHitButton, leftHitButton, centerHitButton, rightHitButton, leftIntermediateHitButton, rightIntermediateHitButton, leftOverHitButton, centerOverHitButton, rightOverHitButton]
@@ -95,6 +131,23 @@ class GameViewController: UIViewController {
         self.view.addSubview(backgroundImageView)
         self.homeButton.addTarget(self, action: #selector(homeButton(sender:)), for: .touchUpInside)
         self.view.addSubview(homeButton)
+        //Ohashi:カウントビューの追加とサイズ
+        self.view.addSubview(countImageView)
+        self.view.addConstraints([NSLayoutConstraint(item: countImageView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.28, constant: 0)])
+        self.view.addConstraints([NSLayoutConstraint(item: countImageView, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 0.13, constant: 0)])
+        //Ohashi:カウントボタン追加と制約
+        self.view.addSubview(strikeButton)
+        self.view.addSubview(takeALookButton)
+        self.view.addSubview(swingButton)
+        self.view.addSubview(faulButton)
+        self.view.addConstraints([NSLayoutConstraint(item: strikeButton, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 0.08, constant: 0)])
+        self.view.addConstraints([NSLayoutConstraint(item: takeALookButton, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 0.08, constant: 0)])
+        self.view.addConstraints([NSLayoutConstraint(item: swingButton, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 0.07, constant: 0)])
+        self.view.addConstraints([NSLayoutConstraint(item: faulButton, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 0.07, constant: 0)])
+        self.view.addConstraints([NSLayoutConstraint(item: strikeButton, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.11, constant: 0)])
+        self.view.addConstraints([NSLayoutConstraint(item: takeALookButton, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.11, constant: 0)])
+        self.view.addConstraints([NSLayoutConstraint(item: swingButton, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.16, constant: 0)])
+        self.view.addConstraints([NSLayoutConstraint(item: faulButton, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.14, constant: 0)])
         
         baseViewArray.forEach{
             //Ohashi:ベースのautolayout適用，viewに追加
@@ -145,6 +198,8 @@ class GameViewController: UIViewController {
         //Ohashi:背景
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: [], metrics: nil, views: ["v0": backgroundImageView] ))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: [], metrics: nil, views: ["v0": backgroundImageView] ))
+        //Ohashi:カウントビュー
+        
         //Ohashi:ピッチャー
         self.view.addConstraints([NSLayoutConstraint(item: playerButtonArray[0], attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0)])
         self.view.addConstraints([NSLayoutConstraint(item: playerButtonArray[0], attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 50)])
@@ -225,8 +280,18 @@ class GameViewController: UIViewController {
         self.view.addConstraints([NSLayoutConstraint(item: hitButtonArray[12], attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 160)])
         self.view.addConstraints([NSLayoutConstraint(item: hitButtonArray[12], attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: -270)])
         //Ohashi:ホームボタン
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[home]", options: .alignAllTop, metrics: nil, views: ["home": homeButton]))
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[home]-50-|", options: .alignAllTop, metrics: nil, views: ["home": homeButton]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[home]", options: .alignAllTop, metrics: nil, views: ["home": homeButton]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[count]-50-[home]-10-|", options: .alignAllLeft, metrics: nil, views: ["home": homeButton, "count": countImageView]))
+        //Ohashi:カウントボタン
+        self.view.addConstraints([NSLayoutConstraint(item: strikeButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 140)])
+        self.view.addConstraints([NSLayoutConstraint(item: strikeButton, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 126)])
+        self.view.addConstraints([NSLayoutConstraint(item: takeALookButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 140)])
+        self.view.addConstraints([NSLayoutConstraint(item: takeALookButton, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 175)])
+        self.view.addConstraints([NSLayoutConstraint(item: swingButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 155)])
+        self.view.addConstraints([NSLayoutConstraint(item: swingButton, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 223)])
+        self.view.addConstraints([NSLayoutConstraint(item: faulButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 140)])
+        self.view.addConstraints([NSLayoutConstraint(item: faulButton, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 270)])
+//         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[strike]-10-[ball]-10-[swing]-10-[faul]-10-|", options: .alignAllLeft, metrics: nil, views: ["strike": strikeButton, "ball": takeALookButton, "swing": swingButton, "faul": faulButton]))
         
     }
     
