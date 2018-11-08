@@ -29,7 +29,8 @@ class FIRGame: NSObject {
         self.date = Date(timeIntervalSinceReferenceDate: TimeInterval(time!)!)
         self.stadium = valueDictionary["stadium"] as? String
         self.topTeamKey = valueDictionary["topTeam"] as? String
-        print(self.topTeamKey)
+        print(self.topTeamKey
+        )
         self.botTeamKey = valueDictionary["botTeam"] as? String
         
     }

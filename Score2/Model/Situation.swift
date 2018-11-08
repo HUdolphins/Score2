@@ -18,7 +18,7 @@ class Situation: NSObject {
     //現在の状況
     internal static var result:ResultEnum!
     //カウント
-    internal static var outCounts:Int = 2
+    internal static var outCounts:Int = 0
     internal static var strikeCounts:Int = 0
     internal static var ballCounts:Int = 0
     
