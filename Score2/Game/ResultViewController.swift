@@ -775,78 +775,1400 @@ class ResultViewController: UIViewController {
             else if twoOutFullBase{
                 return ("右飛", "ライトフライ\n3アウトチェンジ", UIImage(named: "3-1,2,3")! )
             }
-        case .pitcherGoro:
+        
+
+            
+            
+        case .pitcherGoroThrowToFirst:
             if noOutNoRunner {
-                return ("投ゴロ", "投ゴロ,1-3\n1死走者なし", UIImage(named: "1-0")! )
+                return ("投ゴロ", "ピッチャーゴロ\n走者なし", UIImage(named: "1-0")! )
             }else if oneOutNoRunner{
-                return ("投ゴロ", "投ゴロ,1-3\n2死走者なし", UIImage(named: "2-0")! )
+                return ("投ゴロ", "ピッチャーゴロ\n2死走者なし", UIImage(named: "2-0")! )
             }
             else if twoOutNoRunner{
-                return ("投ゴロ", "投ゴロ,1-3\n3アウトチェンジ", UIImage(named: "3-0")! )
+                return ("投ゴロ", "ピッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-0")! )
             }
             else if noOutRunnerOnFirst{
-                return ("投併殺", "ダブルプレー, 1-6-3\n2死走者なし", UIImage(named: "2-0")! )
+                return ("投ゴロ", "ピッチャーゴロ\n1死2塁", UIImage(named: "1-2")! )
             }
             else if oneOutRunnerOnFirst{
-                return ("投併殺", "ダブルプレー,1-6-3\n3アウトチェンジ", UIImage(named: "3-0")! )
+                return ("投ゴロ", "ピッチャーゴロ\n2死2塁", UIImage(named: "2-2")! )
             }
             else if twoOutRunnerOnFirst{
-                return ("投ゴロ", "投ゴロ,1-3\n3アウトチェンジ", UIImage(named: "3-1")! )
+                return ("投ゴロ", "ピッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-1")! )
             }
             else if noOutRunnerOnSecond{
-                return ("投ゴロ", "投ゴロ,1-3\n1死2塁", UIImage(named: "1-2")! )
+                return ("投ゴロ", "ピッチャーゴロ\n1死3塁", UIImage(named: "1-3")! )
             }
             else if oneOutRunnerOnSecond{
-                return ("投ゴロ", "投ゴロ,1-3\n2死2塁", UIImage(named: "2-2")! )
+                return ("投ゴロ", "ピッチャーゴロ\n2死3塁", UIImage(named: "2-3")! )
             }
             else if twoOutRunnerOnSecond{
-                return ("投ゴロ", "投ゴロ,1-3\n3アウトチェンジ", UIImage(named: "3-2")! )
+                return ("投ゴロ", "ピッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-2")! )
             }
             else if noOutRunnerOnThird{
-                return ("投ゴロ", "投ゴロ,1-3\n1死3塁", UIImage(named: "1-3")! )
+                return ("投ゴロ", "ピッチャーゴロ\n1死走者なし\n1点", UIImage(named: "1-4_1")! )
             }
             else if oneOutRunnerOnThird{
-                return ("投ゴロ", "投ゴロ,1-3\n2死3塁", UIImage(named: "2-3")! )
+                return ("投ゴロ", "ピッチャーゴロ\n2死走者なし\n1点", UIImage(named: "2-4_1")! )
             }
             else if twoOutRunnerOnThird{
-                return ("投ゴロ", "投ゴロ,1-3\n3アウトチェンジ", UIImage(named: "3-3")! )
+                return ("投ゴロ", "ピッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-3")! )
             }
             else if noOutRunnersOnFirstAndSecond{
-                return ("投併殺", "ダブルプレー,1-6-3\n2死3塁", UIImage(named: "<#resultImage#>")! )
+                return ("投ゴロ", "ピッチャーゴロ\n1死2,3塁", UIImage(named: "1-2,3")! )
             }
             else if oneOutRunnersOnFirstAndSecond{
-                return ("投併殺", "ダブルプレー,1-6-3\n3アウトチェンジ", UIImage(named: "<#resultImage#>")! )
+                return ("投ゴロ", "ピッチャーゴロ\n2死2,3塁", UIImage(named: "2-2,3")! )
             }
             else if twoOutRunnersOnFirstAndSecond{
-                return ("投ゴロ", "投ゴロ,1-3\n3アウトチェンジ", UIImage(named: "<#resultImage#>")! )
+                return ("投ゴロ", "ピッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-1,2")! )
             }
             else if noOutRunnersOnFirstAndThird{
-                return ("投ゴロ", "投ゴロ,1-3\n1死2,3塁", UIImage(named: "<#resultImage#>")! )
+                return ("投ゴロ", "ピッチャーゴロ\n1死2塁\n1点", UIImage(named: "1-2,4_1")! )
             }
             else if oneOutRunnersOnFirstAndThird{
-                return ("投併殺", "ダブルプレー,1-6-3\n3アウトチェンジ", UIImage(named: "<#resultImage#>")! )
+                return ("投ゴロ", "ピッチャーゴロ\n2死2塁\n1点", UIImage(named: "2-2,4_1")! )
             }
             else if twoOutRunnersOnFirstAndThird{
-                return ("投ゴロ", "投ゴロ,1-3\n3アウトチェンジ", UIImage(named: "<#resultImage#>")! )
+                return ("投ゴロ", "ピッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-1,3")! )
             }
             else if noOutRunnersOnSecondAndThird{
-                return ("投ゴロ", "投ゴロ,1-3\n1死2,3塁", UIImage(named: "<#resultImage#>")! )
+                return ("投ゴロ", "ピッチャーゴロ\n1死3塁\n1点", UIImage(named: "1-3,4_1")! )
             }
             else if oneOutRunnersOnSecondAndThird{
-                return ("投ゴロ", "投ゴロ,1-3\n2死2,3塁", UIImage(named: "<#resultImage#>")! )
+                return ("投ゴロ", "ピッチャーゴロ\n2死3塁\n1点", UIImage(named: "2-3,4_1")! )
             }
             else if twoOutRunnersOnSecondAndThird{
-                return ("投ゴロ", "投ゴロ,1-3\n3アウトチェンジ", UIImage(named: "<#resultImage#>")! )
+                return ("投ゴロ", "ピッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-2,3")! )
             }
             else if noOutFullBase{
-                return ("投併殺", "ホームゲッツー,1-2-3\n1死満塁", UIImage(named: "<#resultImage#>")! )
+                return ("投ゴロ", "ピッチャーゴロ\n1死2,3塁\n1点", UIImage(named: "1-2,3,4_1")! )
             }
             else if oneOutFullBase{
-                return ("投併殺", "ホームゲッツー,1-2-3\n2死満塁", UIImage(named: "<#resultImage#>")! )
+                return ("投ゴロ", "ピッチャーゴロ\n2死2,3塁\n1点", UIImage(named: "2-2,3,4_1")! )
             }
             else if twoOutFullBase{
-                return ("投ゴロ", "投ゴロ,1-3\n3アウトチェンジ", UIImage(named: "<#resultImage#>")! )
+                return ("投ゴロ", "ピッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-1,2,3")! )
             }
+
+        case .pitcherGorothrowToSecond:
+            if noOutNoRunner {
+                return ("", "\n1死走者なし", UIImage(named: "1-0")! )
+            }else if oneOutNoRunner{
+                return ("", "\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if twoOutNoRunner{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnFirst{
+                return ("投併", "1-6-3 ダブルプレー\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if oneOutRunnerOnFirst{
+                return ("投併", "1-6-3 ダブルプレー\n3アウトチェンジ", UIImage(named: "2-1")! )
+            }
+            else if twoOutRunnerOnFirst{
+                return ("投ゴロ", "ピッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnSecond{
+                return ("", "\n1死2塁", UIImage(named: "1-2")! )
+            }
+            else if oneOutRunnerOnSecond{
+                return ("", "\n2死2塁", UIImage(named: "2-2")! )
+            }
+            else if twoOutRunnerOnSecond{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnerOnThird{
+                return ("", "\n1死走者なし\n1点", UIImage(named: "1-4_1")! )
+            }
+            else if oneOutRunnerOnThird{
+                return ("", "\n2死走者なし\n1点", UIImage(named: "2-4_1")! )
+            }
+            else if twoOutRunnerOnThird{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if noOutRunnersOnFirstAndSecond{
+                return ("投併", "1-6-3 ダブルプレー\n2死3塁", UIImage(named: "2-3")! )
+            }
+            else if oneOutRunnersOnFirstAndSecond{
+                return ("投併", "1-6-3 ダブルプレー\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if twoOutRunnersOnFirstAndSecond{
+                return ("投ゴロ", "ピッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnersOnFirstAndThird{
+                return ("投併", "1-6-3 ダブルプレー\n1死1塁\n1点", UIImage(named: "1-4_1")! )
+            }
+            else if oneOutRunnersOnFirstAndThird{
+                return ("投併", "1-6-3 ダブルプレー\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if twoOutRunnersOnFirstAndThird{
+                return ("投ゴロ", "ピッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if noOutRunnersOnSecondAndThird{
+                return ("", "\n1死2塁\n1点", UIImage(named: "1-2,4_1")! )
+            }
+            else if oneOutRunnersOnSecondAndThird{
+                return ("", "\n2死2塁\n1点", UIImage(named: "2-2,4_1")! )
+            }
+            else if twoOutRunnersOnSecondAndThird{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+            else if noOutFullBase{
+                return ("投併", "1-6-3 ダブルプレー\n2死3塁", UIImage(named: "2-3,4-1")! )
+            }
+            else if oneOutFullBase{
+                return ("投併", "1-6-3 ダブルプレー\n2死1,2塁\n1点3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+            else if twoOutFullBase{
+                return ("投ゴロ", "ピッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+        case .pitcherGoroThrowToThird:
+            if noOutRunnerOnSecond{
+                return ("投ゴロ", "投ゴロタッチアウト\n1死1塁", UIImage(named: "1-1")! )
+            }else if oneOutRunnerOnThird{
+                return ("投ゴロ", "投ゴロタッチアウト\n2死1塁", UIImage(named: "2-1")! )
+            }else if twoOutRunnerOnThird{
+                return ("投ゴロ", "投ゴロタッチアウト\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }else if noOutRunnersOnFirstAndSecond{
+                return ("投ゴロ", "投ゴロ\n1死1,2塁", UIImage(named: "1-1,2")! )
+            }else if oneOutRunnersOnFirstAndSecond{
+                return ("投ゴロ", "投ゴロ\n2死1,2塁", UIImage(named: "2-1,2")! )
+            }else if twoOutRunnersOnFirstAndSecond{
+                return ("投ゴロ", "投ゴロ\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+        case .pitcherGoroThrowToHome:
+            if noOutNoRunner {
+                return ("", "\n1死走者なし", UIImage(named: "1-0")! )
+            }else if oneOutNoRunner{
+                return ("", "\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if twoOutNoRunner{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnFirst{
+                return ("", "\n1死1塁", UIImage(named: "1-1")! )
+            }
+            else if oneOutRunnerOnFirst{
+                return ("", "\n2死1塁", UIImage(named: "2-1")! )
+            }
+            else if twoOutRunnerOnFirst{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+            else if noOutRunnerOnSecond{
+                return ("", "\n1死2塁", UIImage(named: "1-2")! )
+            }
+            else if oneOutRunnerOnSecond{
+                return ("", "\n2死2塁", UIImage(named: "2-2")! )
+            }
+            else if twoOutRunnerOnSecond{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnerOnThird{
+                return ("投ゴロ", "ピッチャーゴロ\n1死1塁", UIImage(named: "1-1")! )
+            }
+            else if oneOutRunnerOnThird{
+                return ("投ゴロ", "ピッチャーゴロ\n2死1塁", UIImage(named: "2-1")! )
+            }
+            else if twoOutRunnerOnThird{
+                return ("投ゴロ", "ピッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnersOnFirstAndSecond{
+                return ("", "\n1死1,2塁", UIImage(named: "1-1,2")! )
+            }
+            else if oneOutRunnersOnFirstAndSecond{
+                return ("", "\n2死1,2塁", UIImage(named: "2-1,2")! )
+            }
+            else if twoOutRunnersOnFirstAndSecond{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-1,2")! )
+            }
+            else if noOutRunnersOnFirstAndThird{
+                return ("投ゴロ", "ピッチャーゴロ\n1死1,2塁", UIImage(named: "1-1,2")! )
+            }
+            else if oneOutRunnersOnFirstAndThird{
+                return ("投ゴロ", "ピッチャーゴロ\n2死1,2塁", UIImage(named: "2-1,2")! )
+            }
+            else if twoOutRunnersOnFirstAndThird{
+                return ("投ゴロ", "ピッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+            else if noOutRunnersOnSecondAndThird{
+                return ("投ゴロ", "ピッチャーゴロ\n1死1,3塁", UIImage(named: "1-1,3")! )
+            }
+            else if oneOutRunnersOnSecondAndThird{
+                return ("投ゴロ", "ピッチャーゴロ\n2死1,3塁", UIImage(named: "2-1,3")! )
+            }
+            else if twoOutRunnersOnSecondAndThird{
+                return ("投ゴロ", "ピッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutFullBase{
+                return ("投併殺", "1-2-3ホームゲッツー\n2死2,3塁", UIImage(named: "2-2,3")! )
+            }
+            else if oneOutFullBase{
+                return ("投併殺", "1-2-3ホームゲッツー\n3アウトチェンジ", UIImage(named: "3-1,2")! )
+            }
+            else if twoOutFullBase{
+                return ("投ゴロ", "ピッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-1,2,3")! )
+            }
+            
+        case .catcherGoroThrowToFirst:
+            if noOutNoRunner {
+                return ("捕ゴロ", "キャッチャーゴロ\n走者なし", UIImage(named: "1-0")! )
+            }else if oneOutNoRunner{
+                return ("捕ゴロ", "キャッチャーゴロ\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if twoOutNoRunner{
+                return ("捕ゴロ", "キャッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnFirst{
+                return ("捕ゴロ", "キャッチャーゴロ\n1死2塁", UIImage(named: "1-2")! )
+            }
+            else if oneOutRunnerOnFirst{
+                return ("捕ゴロ", "キャッチャーゴロ\n2死2塁", UIImage(named: "2-2")! )
+            }
+            else if twoOutRunnerOnFirst{
+                return ("捕ゴロ", "キャッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+            else if noOutRunnerOnSecond{
+                return ("捕ゴロ", "キャッチャーゴロ\n1死3塁", UIImage(named: "1-3")! )
+            }
+            else if oneOutRunnerOnSecond{
+                return ("捕ゴロ", "キャッチャーゴロ\n2死3塁", UIImage(named: "2-3")! )
+            }
+            else if twoOutRunnerOnSecond{
+                return ("捕ゴロ", "キャッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnerOnThird{
+                return ("捕ゴロ", "キャッチャーゴロ\n1死走者なし\n1点", UIImage(named: "1-4_1")! )
+            }
+            else if oneOutRunnerOnThird{
+                return ("捕ゴロ", "キャッチャーゴロ\n2死走者なし\n1点", UIImage(named: "2-4_1")! )
+            }
+            else if twoOutRunnerOnThird{
+                return ("捕ゴロ", "キャッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if noOutRunnersOnFirstAndSecond{
+                return ("捕ゴロ", "キャッチャーゴロ\n1死2,3塁", UIImage(named: "1-2,3")! )
+            }
+            else if oneOutRunnersOnFirstAndSecond{
+                return ("捕ゴロ", "キャッチャーゴロ\n2死2,3塁", UIImage(named: "2-2,3")! )
+            }
+            else if twoOutRunnersOnFirstAndSecond{
+                return ("捕ゴロ", "キャッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-1,2")! )
+            }
+            else if noOutRunnersOnFirstAndThird{
+                return ("捕ゴロ", "キャッチャーゴロ\n1死2塁\n1点", UIImage(named: "1-2,4_1")! )
+            }
+            else if oneOutRunnersOnFirstAndThird{
+                return ("捕ゴロ", "キャッチャーゴロ\n2死2塁\n1点", UIImage(named: "2-2,4_1")! )
+            }
+            else if twoOutRunnersOnFirstAndThird{
+                return ("捕ゴロ", "キャッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-1,3")! )
+            }
+            else if noOutRunnersOnSecondAndThird{
+                return ("捕ゴロ", "キャッチャーゴロ\n1死3塁\n1点", UIImage(named: "1-3,4_1")! )
+            }
+            else if oneOutRunnersOnSecondAndThird{
+                return ("捕ゴロ", "キャッチャーゴロ\n2死3塁\n1点", UIImage(named: "2-3,4_1")! )
+            }
+            else if twoOutRunnersOnSecondAndThird{
+                return ("捕ゴロ", "キャッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+            else if noOutFullBase{
+                return ("捕ゴロ", "キャッチャーゴロ\n1死2,3塁\n1点", UIImage(named: "1-2,3,4_1")! )
+            }
+            else if oneOutFullBase{
+                return ("捕ゴロ", "キャッチャーゴロ\n2死2,3塁\n1点", UIImage(named: "2-2,3,4_1")! )
+            }
+            else if twoOutFullBase{
+                return ("捕ゴロ", "キャッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-1,2,3")! )
+            }
+        case .catcherGoroThrowToSecond:
+            if noOutNoRunner {
+                return ("", "\n1死走者なし", UIImage(named: "1-0")! )
+            }else if oneOutNoRunner{
+                return ("", "\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if twoOutNoRunner{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnFirst{
+                return ("捕併", "2-6-3 ダブルプレー\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if oneOutRunnerOnFirst{
+                return ("捕併", "2-6-3 ダブルプレー\n3アウトチェンジ", UIImage(named: "2-1")! )
+            }
+            else if twoOutRunnerOnFirst{
+                return ("捕ゴロ", "キャッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnSecond{
+                return ("", "\n1死2塁", UIImage(named: "1-2")! )
+            }
+            else if oneOutRunnerOnSecond{
+                return ("", "\n2死2塁", UIImage(named: "2-2")! )
+            }
+            else if twoOutRunnerOnSecond{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnerOnThird{
+                return ("", "\n1死走者なし\n1点", UIImage(named: "1-4_1")! )
+            }
+            else if oneOutRunnerOnThird{
+                return ("", "\n2死走者なし\n1点", UIImage(named: "2-4_1")! )
+            }
+            else if twoOutRunnerOnThird{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if noOutRunnersOnFirstAndSecond{
+                return ("捕併", "2-6-3 ダブルプレー\n2死3塁", UIImage(named: "2-3")! )
+            }
+            else if oneOutRunnersOnFirstAndSecond{
+                return ("捕併", "2-6-3 ダブルプレー\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if twoOutRunnersOnFirstAndSecond{
+                return ("捕ゴロ", "キャッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnersOnFirstAndThird{
+                return ("捕併", "2-6-3 ダブルプレー\n1死1塁\n1点", UIImage(named: "1-4_1")! )
+            }
+                
+            else if oneOutRunnersOnFirstAndThird{
+                return ("捕併", "2-6-3 ダブルプレー\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if twoOutRunnersOnFirstAndThird{
+                return ("捕ゴロ", "キャッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if noOutRunnersOnSecondAndThird{
+                return ("", "\n1死2塁\n1点", UIImage(named: "1-2,4_1")! )
+            }
+            else if oneOutRunnersOnSecondAndThird{
+                return ("", "\n2死2塁\n1点", UIImage(named: "2-2,4_1")! )
+            }
+            else if twoOutRunnersOnSecondAndThird{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+            else if noOutFullBase{
+                return ("捕併", "2-6-3 ダブルプレー\n2死3塁", UIImage(named: "2-3,4-1")! )
+            }
+            else if oneOutFullBase{
+                return ("捕併", "2-6-3 ダブルプレー\n2死1,2塁\n1点3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+            else if twoOutFullBase{
+                return ("捕ゴロ", "キャッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+        case .catcherGoroThrowToThird:
+            if noOutRunnerOnSecond{
+                return ("捕ゴロ", "捕ゴロタッチアウト\n1死1塁", UIImage(named: "1-1")! )
+            }else if oneOutRunnerOnThird{
+                return ("捕ゴロ", "捕ゴロタッチアウト\n2死1塁", UIImage(named: "2-1")! )
+            }else if twoOutRunnerOnThird{
+                return ("捕ゴロ", "捕ゴロタッチアウト\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }else if noOutRunnersOnFirstAndSecond{
+                return ("捕ゴロ", "キャッチャーゴロ\n1死1,2塁", UIImage(named: "1-1,2")! )
+            }else if oneOutRunnersOnFirstAndSecond{
+                return ("捕ゴロ", "キャッチャーゴロ\n2死1,2塁", UIImage(named: "2-1,2")! )
+            }else if twoOutRunnersOnFirstAndSecond{
+                return ("捕ゴロ", "キャッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+        case .catcherGoroThrowToHome:
+            if noOutNoRunner {
+                return ("", "\n1死走者なし", UIImage(named: "1-0")! )
+            }else if oneOutNoRunner{
+                return ("", "\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if twoOutNoRunner{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnFirst{
+                return ("", "\n1死1塁", UIImage(named: "1-1")! )
+            }
+            else if oneOutRunnerOnFirst{
+                return ("", "\n2死1塁", UIImage(named: "2-1")! )
+            }
+            else if twoOutRunnerOnFirst{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+            else if noOutRunnerOnSecond{
+                return ("", "\n1死2塁", UIImage(named: "1-2")! )
+            }
+            else if oneOutRunnerOnSecond{
+                return ("", "\n2死2塁", UIImage(named: "2-2")! )
+            }
+            else if twoOutRunnerOnSecond{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnerOnThird{
+                return ("捕ゴロ", "キャッチャーゴロ\n1死1塁", UIImage(named: "1-1")! )
+            }else if oneOutRunnerOnThird{
+                return ("捕ゴロ", "キャッチャーゴロ\n2死1塁", UIImage(named: "2-1")! )
+            }
+            else if twoOutRunnerOnThird{
+                return ("捕ゴロ", "キャッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnersOnFirstAndSecond{
+                return ("", "\n1死1,2塁", UIImage(named: "1-1,2")! )
+            }
+            else if oneOutRunnersOnFirstAndSecond{
+                return ("", "\n2死1,2塁", UIImage(named: "2-1,2")! )
+            }
+            else if twoOutRunnersOnFirstAndSecond{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-1,2")! )
+            }
+            else if noOutRunnersOnFirstAndThird{
+                return ("捕ゴロ", "キャッチャーゴロ\n1死1,2塁", UIImage(named: "1-1,2")! )
+            }
+            else if oneOutRunnersOnFirstAndThird{
+                return ("捕ゴロ", "キャッチャーゴロ\n2死1,2塁", UIImage(named: "2-1,2")! )
+            }
+            else if twoOutRunnersOnFirstAndThird{
+                return ("捕ゴロ", "キャッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+            else if noOutRunnersOnSecondAndThird{
+                return ("捕ゴロ", "キャッチャーゴロ\n1死1,3塁", UIImage(named: "1-1,3")! )
+            }
+            else if oneOutRunnersOnSecondAndThird{
+                return ("捕ゴロ", "キャッチャーゴロ\n2死1,3塁", UIImage(named: "2-1,3")! )
+            }
+            else if twoOutRunnersOnSecondAndThird{
+                return ("捕ゴロ", "キャッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutFullBase{
+                return ("捕併殺", "2-2-3ホームゲッツー\n2死2,3塁", UIImage(named: "2-2,3")! )
+            }
+            else if oneOutFullBase{
+                return ("捕併殺", "2-2-3ホームゲッツー\n3アウトチェンジ", UIImage(named: "3-1,2")! )
+            }
+            else if twoOutFullBase{
+                return ("捕ゴロ", "キャッチャーゴロ\n3アウトチェンジ", UIImage(named: "3-1,2,3")! )
+            }
+        case .firstGoroThrowToFirst:
+            if noOutNoRunner {
+                return ("一ゴロ", "ファーストゴロ\n走者なし", UIImage(named: "1-0")! )
+            }else if oneOutNoRunner{
+                return ("一ゴロ", "ファーストゴロ\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if twoOutNoRunner{
+                return ("一ゴロ", "ファーストゴロ\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnFirst{
+                return ("一ゴロ", "ファーストゴロ\n1死2塁", UIImage(named: "1-2")! )
+            }
+            else if oneOutRunnerOnFirst{
+                return ("一ゴロ", "ファーストゴロ\n2死2塁", UIImage(named: "2-2")! )
+            }
+            else if twoOutRunnerOnFirst{
+                return ("一ゴロ", "ファーストゴロ\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+            else if noOutRunnerOnSecond{
+                return ("一ゴロ", "ファーストゴロ\n1死3塁", UIImage(named: "1-3")! )
+            }
+            else if oneOutRunnerOnSecond{
+                return ("一ゴロ", "ファーストゴロ\n2死3塁", UIImage(named: "2-3")! )
+            }
+            else if twoOutRunnerOnSecond{
+                return ("一ゴロ", "ファーストゴロ\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnerOnThird{
+                return ("一ゴロ", "ファーストゴロ\n1死走者なし\n1点", UIImage(named: "1-4_1")! )
+            }
+            else if oneOutRunnerOnThird{
+                return ("一ゴロ", "ファーストゴロ\n2死走者なし\n1点", UIImage(named: "2-4_1")! )
+            }
+            else if twoOutRunnerOnThird{
+                return ("一ゴロ", "ファーストゴロ\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if noOutRunnersOnFirstAndSecond{
+                return ("一ゴロ", "ファーストゴロ\n1死2,3塁", UIImage(named: "1-2,3")! )
+            }
+            else if oneOutRunnersOnFirstAndSecond{
+                return ("一ゴロ", "ファーストゴロ\n2死2,3塁", UIImage(named: "2-2,3")! )
+            }
+            else if twoOutRunnersOnFirstAndSecond{
+                return ("一ゴロ", "ファーストゴロ\n3アウトチェンジ", UIImage(named: "3-1,2")! )
+            }
+            else if noOutRunnersOnFirstAndThird{
+                return ("一ゴロ", "ファーストゴロ\n1死2塁\n1点", UIImage(named: "1-2,4_1")! )
+            }
+            else if oneOutRunnersOnFirstAndThird{
+                return ("一ゴロ", "ファーストゴロ\n2死2塁\n1点", UIImage(named: "2-2,4_1")! )
+            }
+            else if twoOutRunnersOnFirstAndThird{
+                return ("一ゴロ", "ファーストゴロ\n3アウトチェンジ", UIImage(named: "3-1,3")! )
+            }
+            else if noOutRunnersOnSecondAndThird{
+                return ("一ゴロ", "ファーストゴロ\n1死3塁\n1点", UIImage(named: "1-3,4_1")! )
+            }
+            else if oneOutRunnersOnSecondAndThird{
+                return ("一ゴロ", "ファーストゴロ\n2死3塁\n1点", UIImage(named: "2-3,4_1")! )
+            }
+            else if twoOutRunnersOnSecondAndThird{
+                return ("一ゴロ", "ファーストゴロ\n3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+            else if noOutFullBase{
+                return ("一ゴロ", "ファーストゴロ\n1死2,3塁\n1点", UIImage(named: "1-2,3,4_1")! )
+            }
+            else if oneOutFullBase{
+                return ("一ゴロ", "ファーストゴロ\n2死2,3塁\n1点", UIImage(named: "2-2,3,4_1")! )
+            }
+            else if twoOutFullBase{
+                return ("一ゴロ", "ファーストゴロ\n3アウトチェンジ", UIImage(named: "3-1,2,3")! )
+            }
+        case .firstGoroThrowToSecond:
+            if noOutNoRunner {
+                return ("", "\n1死走者なし", UIImage(named: "1-0")! )
+            }else if oneOutNoRunner{
+                return ("", "\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if twoOutNoRunner{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnFirst{
+                return ("一併", "3-6-1 ダブルプレー\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if oneOutRunnerOnFirst{
+                return ("一併", "3-6-1 ダブルプレー\n3アウトチェンジ", UIImage(named: "2-1")! )
+            }
+            else if twoOutRunnerOnFirst{
+                return ("一ゴロ", "ファーストゴロ\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnSecond{
+                return ("", "\n1死2塁", UIImage(named: "1-2")! )
+            }
+            else if oneOutRunnerOnSecond{
+                return ("", "\n2死2塁", UIImage(named: "2-2")! )
+            }
+            else if twoOutRunnerOnSecond{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnerOnThird{
+                return ("", "\n1死走者なし\n1点", UIImage(named: "1-4_1")! )
+            }
+            else if oneOutRunnerOnThird{
+                return ("", "\n2死走者なし\n1点", UIImage(named: "2-4_1")! )
+            }
+            else if twoOutRunnerOnThird{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if noOutRunnersOnFirstAndSecond{
+                return ("一併", "3-6-1 ダブルプレー\n2死3塁", UIImage(named: "2-3")! )
+            }
+            else if oneOutRunnersOnFirstAndSecond{
+                return ("一併", "3-6-1 ダブルプレー\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if twoOutRunnersOnFirstAndSecond{
+                return ("一ゴロ", "ファーストゴロ\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnersOnFirstAndThird{
+                return ("一併", "3-6-1 ダブルプレー\n1死1塁\n1点", UIImage(named: "1-4_1")! )
+            }
+                
+            else if oneOutRunnersOnFirstAndThird{
+                return ("一併", "3-6-1 ダブルプレー\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if twoOutRunnersOnFirstAndThird{
+                return ("一ゴロ", "ファーストゴロ\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if noOutRunnersOnSecondAndThird{
+                return ("", "\n1死2塁\n1点", UIImage(named: "1-2,4_1")! )
+            }
+            else if oneOutRunnersOnSecondAndThird{
+                return ("", "\n2死2塁\n1点", UIImage(named: "2-2,4_1")! )
+            }
+            else if twoOutRunnersOnSecondAndThird{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+            else if noOutFullBase{
+                return ("一併", "3-6-1 ダブルプレー\n2死3塁", UIImage(named: "2-3,4-1")! )
+            }
+            else if oneOutFullBase{
+                return ("一併", "3-6-1 ダブルプレー\n2死1,2塁\n1点3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+            else if twoOutFullBase{
+                return ("一ゴロ", "ファーストゴロ\n3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+        case .firstGoroThrowToThird:
+            if noOutRunnerOnSecond{
+                return ("一ゴロ", "一ゴロタッチアウト\n1死1塁", UIImage(named: "1-1")! )
+            }else if oneOutRunnerOnThird{
+                return ("一ゴロ", "一ゴロタッチアウト\n2死1塁", UIImage(named: "2-1")! )
+            }else if twoOutRunnerOnThird{
+                return ("一ゴロ", "一ゴロタッチアウト\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }else if noOutRunnersOnFirstAndSecond{
+                return ("一ゴロ", "ファーストゴロ\n1死1,2塁", UIImage(named: "1-1,2")! )
+            }else if oneOutRunnersOnFirstAndSecond{
+                return ("一ゴロ", "ファーストゴロ\n2死1,2塁", UIImage(named: "2-1,2")! )
+            }else if twoOutRunnersOnFirstAndSecond{
+                return ("一ゴロ", "ファーストゴロ\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+        case .firstGoroThrowToHome:
+            if noOutNoRunner {
+                return ("", "\n1死走者なし", UIImage(named: "1-0")! )
+            }else if oneOutNoRunner{
+                return ("", "\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if twoOutNoRunner{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnFirst{
+                return ("", "\n1死1塁", UIImage(named: "1-1")! )
+            }
+            else if oneOutRunnerOnFirst{
+                return ("", "\n2死1塁", UIImage(named: "2-1")! )
+            }
+            else if twoOutRunnerOnFirst{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+            else if noOutRunnerOnSecond{
+                return ("", "\n1死2塁", UIImage(named: "1-2")! )
+            }
+            else if oneOutRunnerOnSecond{
+                return ("", "\n2死2塁", UIImage(named: "2-2")! )
+            }
+            else if twoOutRunnerOnSecond{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnerOnThird{
+                return ("一ゴロ", "ファーストゴロ\n1死1塁", UIImage(named: "1-1")! )
+            }
+            else if oneOutRunnerOnThird{
+                return ("一ゴロ", "ファーストゴロ\n2死1塁", UIImage(named: "2-1")! )
+            }
+            else if twoOutRunnerOnThird{
+                return ("一ゴロ", "ファーストゴロ\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnersOnFirstAndSecond{
+                return ("", "\n1死1,2塁", UIImage(named: "1-1,2")! )
+            }
+            else if oneOutRunnersOnFirstAndSecond{
+                return ("", "\n2死1,2塁", UIImage(named: "2-1,2")! )
+            }
+            else if twoOutRunnersOnFirstAndSecond{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-1,2")! )
+            }
+            else if noOutRunnersOnFirstAndThird{
+                return ("一ゴロ", "ファーストゴロ\n1死1,2塁", UIImage(named: "1-1,2")! )
+            }
+            else if oneOutRunnersOnFirstAndThird{
+                return ("一ゴロ", "ファーストゴロ\n2死1,2塁", UIImage(named: "2-1,2")! )
+            }
+            else if twoOutRunnersOnFirstAndThird{
+                return ("一ゴロ", "ファーストゴロ\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+            else if noOutRunnersOnSecondAndThird{
+                return ("一ゴロ", "ファーストゴロ\n1死1,3塁", UIImage(named: "1-1,3")! )
+            }
+            else if oneOutRunnersOnSecondAndThird{
+                return ("一ゴロ", "ファーストゴロ\n2死1,3塁", UIImage(named: "2-1,3")! )
+            }
+            else if twoOutRunnersOnSecondAndThird{
+                return ("一ゴロ", "ファーストゴロ\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutFullBase{
+                return ("一併殺", "3-2-4ホームゲッツー\n2死2,3塁", UIImage(named: "2-2,3")! )
+            }
+            else if oneOutFullBase{
+                return ("一併殺", "3-2-4ホームゲッツー\n3アウトチェンジ", UIImage(named: "3-1,2")! )
+            }
+            else if twoOutFullBase{
+                return ("一ゴロ", "ファーストゴロ\n3アウトチェンジ", UIImage(named: "3-1,2,3")! )
+            }
+            
+        case .secondGoroThrowToFirst:
+            if noOutNoRunner {
+                return ("二ゴロ", "セカンドゴロ\n走者なし", UIImage(named: "1-0")! )
+            }else if oneOutNoRunner{
+                return ("二ゴロ", "セカンドゴロ\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if twoOutNoRunner{
+                return ("二ゴロ", "セカンドゴロ\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnFirst{
+                return ("二ゴロ", "セカンドゴロ\n1死2塁", UIImage(named: "1-2")! )
+            }
+            else if oneOutRunnerOnFirst{
+                return ("二ゴロ", "セカンドゴロ\n2死2塁", UIImage(named: "2-2")! )
+            }
+            else if twoOutRunnerOnFirst{
+                return ("二ゴロ", "セカンドゴロ\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+            else if noOutRunnerOnSecond{
+                return ("二ゴロ", "セカンドゴロ\n1死3塁", UIImage(named: "1-3")! )
+            }
+            else if oneOutRunnerOnSecond{
+                return ("二ゴロ", "セカンドゴロ\n2死3塁", UIImage(named: "2-3")! )
+            }
+            else if twoOutRunnerOnSecond{
+                return ("二ゴロ", "セカンドゴロ\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnerOnThird{
+                return ("二ゴロ", "セカンドゴロ\n1死走者なし\n1点", UIImage(named: "1-4_1")! )
+            }
+            else if oneOutRunnerOnThird{
+                return ("二ゴロ", "セカンドゴロ\n2死走者なし\n1点", UIImage(named: "2-4_1")! )
+            }
+            else if twoOutRunnerOnThird{
+                return ("二ゴロ", "セカンドゴロ\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if noOutRunnersOnFirstAndSecond{
+                return ("二ゴロ", "セカンドゴロ\n1死2,3塁", UIImage(named: "1-2,3")! )
+            }
+            else if oneOutRunnersOnFirstAndSecond{
+                return ("二ゴロ", "セカンドゴロ\n2死2,3塁", UIImage(named: "2-2,3")! )
+            }
+            else if twoOutRunnersOnFirstAndSecond{
+                return ("二ゴロ", "セカンドゴロ\n3アウトチェンジ", UIImage(named: "3-1,2")! )
+            }
+            else if noOutRunnersOnFirstAndThird{
+                return ("二ゴロ", "セカンドゴロ\n1死2塁\n1点", UIImage(named: "1-2,4_1")! )
+            }
+            else if oneOutRunnersOnFirstAndThird{
+                return ("二ゴロ", "セカンドゴロ\n2死2塁\n1点", UIImage(named: "2-2,4_1")! )
+            }
+            else if twoOutRunnersOnFirstAndThird{
+                return ("二ゴロ", "セカンドゴロ\n3アウトチェンジ", UIImage(named: "3-1,3")! )
+            }
+            else if noOutRunnersOnSecondAndThird{
+                return ("二ゴロ", "セカンドゴロ\n1死3塁\n1点", UIImage(named: "1-3,4_1")! )
+            }
+            else if oneOutRunnersOnSecondAndThird{
+                return ("二ゴロ", "セカンドゴロ\n2死3塁\n1点", UIImage(named: "2-3,4_1")! )
+            }
+            else if twoOutRunnersOnSecondAndThird{
+                return ("二ゴロ", "セカンドゴロ\n3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+            else if noOutFullBase{
+                return ("二ゴロ", "セカンドゴロ\n1死2,3塁\n1点", UIImage(named: "1-2,3,4_1")! )
+            }
+            else if oneOutFullBase{
+                return ("二ゴロ", "セカンドゴロ\n2死2,3塁\n1点", UIImage(named: "2-2,3,4_1")! )
+            }
+            else if twoOutFullBase{
+                return ("二ゴロ", "セカンドゴロ\n3アウトチェンジ", UIImage(named: "3-1,2,3")! )
+            }
+        case .secondGoroThrowToSecond:
+            if noOutNoRunner {
+                return ("", "\n1死走者なし", UIImage(named: "1-0")! )
+            }else if oneOutNoRunner{
+                return ("", "\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if twoOutNoRunner{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnFirst{
+                return ("二併", "4-6-3 ダブルプレー\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if oneOutRunnerOnFirst{
+                return ("二併", "4-6-3 ダブルプレー\n3アウトチェンジ", UIImage(named: "2-1")! )
+            }
+            else if twoOutRunnerOnFirst{
+                return ("二ゴロ", "セカンドゴロ\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnSecond{
+                return ("", "\n1死2塁", UIImage(named: "1-2")! )
+            }
+            else if oneOutRunnerOnSecond{
+                return ("", "\n2死2塁", UIImage(named: "2-2")! )
+            }
+            else if twoOutRunnerOnSecond{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnerOnThird{
+                return ("", "\n1死走者なし\n1点", UIImage(named: "1-4_1")! )
+            }
+            else if oneOutRunnerOnThird{
+                return ("", "\n2死走者なし\n1点", UIImage(named: "2-4_1")! )
+            }
+            else if twoOutRunnerOnThird{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if noOutRunnersOnFirstAndSecond{
+                return ("二併", "4-6-3 ダブルプレー\n2死3塁", UIImage(named: "2-3")! )
+            }
+            else if oneOutRunnersOnFirstAndSecond{
+                return ("二併", "4-6-3 ダブルプレー\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if twoOutRunnersOnFirstAndSecond{
+                return ("二ゴロ", "セカンドゴロ\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnersOnFirstAndThird{
+                return ("二併", "4-6-3 ダブルプレー\n1死1塁\n1点", UIImage(named: "1-4_1")! )
+            }
+                
+            else if oneOutRunnersOnFirstAndThird{
+                return ("二併", "4-6-3 ダブルプレー\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if twoOutRunnersOnFirstAndThird{
+                return ("二ゴロ", "セカンドゴロ\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if noOutRunnersOnSecondAndThird{
+                return ("", "\n1死2塁\n1点", UIImage(named: "1-2,4_1")! )
+            }
+            else if oneOutRunnersOnSecondAndThird{
+                return ("", "\n2死2塁\n1点", UIImage(named: "2-2,4_1")! )
+            }
+            else if twoOutRunnersOnSecondAndThird{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+            else if noOutFullBase{
+                return ("二併", "4-6-3 ダブルプレー\n2死3塁", UIImage(named: "2-3,4-1")! )
+            }
+            else if oneOutFullBase{
+                return ("二併", "4-6-3 ダブルプレー\n2死1,2塁\n1点3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+            else if twoOutFullBase{
+                return ("二ゴロ", "セカンドゴロ\n3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+        case .secondGoroThrowToThird:
+            if noOutRunnerOnSecond{
+                return ("二ゴロ", "セカンドゴロタッチアウト\n1死1塁", UIImage(named: "1-1")! )
+            }else if oneOutRunnerOnThird{
+                return ("二ゴロ", "セカンドゴロタッチアウト\n2死1塁", UIImage(named: "2-1")! )
+            }else if twoOutRunnerOnThird{
+                return ("二ゴロ", "セカンドゴロタッチアウト\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }else if noOutRunnersOnFirstAndSecond{
+                return ("二ゴロ", "セカンドゴロ\n1死1,2塁", UIImage(named: "1-1,2")! )
+            }else if oneOutRunnersOnFirstAndSecond{
+                return ("二ゴロ", "セカンドゴロ\n2死1,2塁", UIImage(named: "2-1,2")! )
+            }else if twoOutRunnersOnFirstAndSecond{
+                return ("二ゴロ", "セカンドゴロ\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+        case .secondGoroThrowToHome:
+            if noOutNoRunner {
+                return ("", "\n1死走者なし", UIImage(named: "1-0")! )
+            }else if oneOutNoRunner{
+                return ("", "\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if twoOutNoRunner{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnFirst{
+                return ("", "\n1死1塁", UIImage(named: "1-1")! )
+            }
+            else if oneOutRunnerOnFirst{
+                return ("", "\n2死1塁", UIImage(named: "2-1")! )
+            }
+            else if twoOutRunnerOnFirst{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+            else if noOutRunnerOnSecond{
+                return ("", "\n1死2塁", UIImage(named: "1-2")! )
+            }
+            else if oneOutRunnerOnSecond{
+                return ("", "\n2死2塁", UIImage(named: "2-2")! )
+            }
+            else if twoOutRunnerOnSecond{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnerOnThird{
+                return ("二ゴロ", "セカンドゴロ\n1死1塁", UIImage(named: "1-1")! )
+            }
+            else if oneOutRunnerOnThird{
+                return ("二ゴロ", "セカンドゴロ\n2死1塁", UIImage(named: "2-1")! )
+            }
+            else if twoOutRunnerOnThird{
+                return ("二ゴロ", "セカンドゴロ\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnersOnFirstAndSecond{
+                return ("", "\n1死1,2塁", UIImage(named: "1-1,2")! )
+            }
+            else if oneOutRunnersOnFirstAndSecond{
+                return ("", "\n2死1,2塁", UIImage(named: "2-1,2")! )
+            }
+            else if twoOutRunnersOnFirstAndSecond{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-1,2")! )
+            }
+            else if noOutRunnersOnFirstAndThird{
+                return ("二ゴロ", "セカンドゴロ\n1死1,2塁", UIImage(named: "1-1,2")! )
+            }
+            else if oneOutRunnersOnFirstAndThird{
+                return ("二ゴロ", "セカンドゴロ\n2死1,2塁", UIImage(named: "2-1,2")! )
+            }
+            else if twoOutRunnersOnFirstAndThird{
+                return ("二ゴロ", "セカンドゴロ\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+            else if noOutRunnersOnSecondAndThird{
+                return ("二ゴロ", "セカンドゴロ\n1死1,3塁", UIImage(named: "1-1,3")! )
+            }
+            else if oneOutRunnersOnSecondAndThird{
+                return ("二ゴロ", "セカンドゴロ\n2死1,3塁", UIImage(named: "2-1,3")! )
+            }
+            else if twoOutRunnersOnSecondAndThird{
+                return ("二ゴロ", "セカンドゴロ\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutFullBase{
+                return ("二併", "4-2-3ホームゲッツー\n2死2,3塁", UIImage(named: "2-2,3")! )
+            }
+            else if oneOutFullBase{
+                return ("二併", "4-2-3ホームゲッツー\n3アウトチェンジ", UIImage(named: "3-1,2")! )
+            }
+            else if twoOutFullBase{
+                return ("二ゴロ", "セカンドゴロ\n3アウトチェンジ", UIImage(named: "3-1,2,3")! )
+            }
+            
+        case .thirdGoroThrowToFirst:
+            if noOutNoRunner {
+                return ("三ゴロ", "サードゴロ\n走者なし", UIImage(named: "1-0")! )
+            }else if oneOutNoRunner{
+                return ("三ゴロ", "サードゴロ\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if twoOutNoRunner{
+                return ("三ゴロ", "サードゴロ\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnFirst{
+                return ("三ゴロ", "サードゴロ\n1死2塁", UIImage(named: "1-2")! )
+            }
+            else if oneOutRunnerOnFirst{
+                return ("三ゴロ", "サードゴロ\n2死2塁", UIImage(named: "2-2")! )
+            }
+            else if twoOutRunnerOnFirst{
+                return ("三ゴロ", "サードゴロ\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+            else if noOutRunnerOnSecond{
+                return ("三ゴロ", "サードゴロ\n1死3塁", UIImage(named: "1-3")! )
+            }
+            else if oneOutRunnerOnSecond{
+                return ("三ゴロ", "サードゴロ\n2死3塁", UIImage(named: "2-3")! )
+            }
+            else if twoOutRunnerOnSecond{
+                return ("三ゴロ", "サードゴロ\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnerOnThird{
+                return ("三ゴロ", "サードゴロ\n1死走者なし\n1点", UIImage(named: "1-4_1")! )
+            }
+            else if oneOutRunnerOnThird{
+                return ("三ゴロ", "サードゴロ\n2死走者なし\n1点", UIImage(named: "2-4_1")! )
+            }
+            else if twoOutRunnerOnThird{
+                return ("三ゴロ", "サードゴロ\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if noOutRunnersOnFirstAndSecond{
+                return ("三ゴロ", "サードゴロ\n1死2,3塁", UIImage(named: "1-2,3")! )
+            }
+            else if oneOutRunnersOnFirstAndSecond{
+                return ("三ゴロ", "サードゴロ\n2死2,3塁", UIImage(named: "2-2,3")! )
+            }
+            else if twoOutRunnersOnFirstAndSecond{
+                return ("三ゴロ", "サードゴロ\n3アウトチェンジ", UIImage(named: "3-1,2")! )
+            }
+            else if noOutRunnersOnFirstAndThird{
+                return ("三ゴロ", "サードゴロ\n1死2塁\n1点", UIImage(named: "1-2,4_1")! )
+            }
+            else if oneOutRunnersOnFirstAndThird{
+                return ("三ゴロ", "サードゴロ\n2死2塁\n1点", UIImage(named: "2-2,4_1")! )
+            }
+            else if twoOutRunnersOnFirstAndThird{
+                return ("三ゴロ", "サードゴロ\n3アウトチェンジ", UIImage(named: "3-1,3")! )
+            }
+            else if noOutRunnersOnSecondAndThird{
+                return ("三ゴロ", "サードゴロ\n1死3塁\n1点", UIImage(named: "1-3,4_1")! )
+            }
+            else if oneOutRunnersOnSecondAndThird{
+                return ("三ゴロ", "サードゴロ\n2死3塁\n1点", UIImage(named: "2-3,4_1")! )
+            }
+            else if twoOutRunnersOnSecondAndThird{
+                return ("三ゴロ", "サードゴロ\n3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+            else if noOutFullBase{
+                return ("三ゴロ", "サードゴロ\n1死2,3塁\n1点", UIImage(named: "1-2,3,4_1")! )
+            }
+            else if oneOutFullBase{
+                return ("三ゴロ", "サードゴロ\n2死2,3塁\n1点", UIImage(named: "2-2,3,4_1")! )
+            }
+            else if twoOutFullBase{
+                return ("三ゴロ", "サードゴロ\n3アウトチェンジ", UIImage(named: "3-1,2,3")! )
+            }
+        case .thirdGoroThrowToSecond:
+            if noOutNoRunner {
+                return ("", "\n1死走者なし", UIImage(named: "1-0")! )
+            }else if oneOutNoRunner{
+                return ("", "\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if twoOutNoRunner{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnFirst{
+                return ("三併", "5-4-3 ダブルプレー\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if oneOutRunnerOnFirst{
+                return ("三併", "5-4-3 ダブルプレー\n3アウトチェンジ", UIImage(named: "2-1")! )
+            }
+            else if twoOutRunnerOnFirst{
+                return ("三ゴロ", "サードゴロ\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnSecond{
+                return ("", "\n1死2塁", UIImage(named: "1-2")! )
+            }
+            else if oneOutRunnerOnSecond{
+                return ("", "\n2死2塁", UIImage(named: "2-2")! )
+            }
+            else if twoOutRunnerOnSecond{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnerOnThird{
+                return ("", "\n1死走者なし\n1点", UIImage(named: "1-4_1")! )
+            }
+            else if oneOutRunnerOnThird{
+                return ("", "\n2死走者なし\n1点", UIImage(named: "2-4_1")! )
+            }
+            else if twoOutRunnerOnThird{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if noOutRunnersOnFirstAndSecond{
+                return ("三併", "5-4-3 ダブルプレー\n2死3塁", UIImage(named: "2-3")! )
+            }
+            else if oneOutRunnersOnFirstAndSecond{
+                return ("三併", "5-4-3 ダブルプレー\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if twoOutRunnersOnFirstAndSecond{
+                return ("三ゴロ", "サードゴロ\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnersOnFirstAndThird{
+                return ("三併", "5-4-3 ダブルプレー\n1死1塁\n1点", UIImage(named: "1-4_1")! )
+            }
+                
+            else if oneOutRunnersOnFirstAndThird{
+                return ("三併", "5-4-3 ダブルプレー\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if twoOutRunnersOnFirstAndThird{
+                return ("三ゴロ", "サードゴロ\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if noOutRunnersOnSecondAndThird{
+                return ("", "\n1死2塁\n1点", UIImage(named: "1-2,4_1")! )
+            }
+            else if oneOutRunnersOnSecondAndThird{
+                return ("", "\n2死2塁\n1点", UIImage(named: "2-2,4_1")! )
+            }
+            else if twoOutRunnersOnSecondAndThird{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+            else if noOutFullBase{
+                return ("三併", "5-4-3 ダブルプレー\n2死3塁", UIImage(named: "2-3,4-1")! )
+            }
+            else if oneOutFullBase{
+                return ("三併", "5-4-3 ダブルプレー\n2死1,2塁\n1点3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+            else if twoOutFullBase{
+                return ("三ゴロ", "サードゴロ\n3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+        case .thirdGoroThrowToThird:
+            if noOutRunnerOnSecond{
+                return ("三ゴロ", "サードゴロタッチアウト\n1死1塁", UIImage(named: "1-1")! )
+            }else if oneOutRunnerOnThird{
+                return ("三ゴロ", "サードゴロタッチアウト\n2死1塁", UIImage(named: "2-1")! )
+            }else if twoOutRunnerOnThird{
+                return ("三ゴロ", "サードゴロタッチアウト\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }else if noOutRunnersOnFirstAndSecond{
+                return ("三ゴロ", "サードゴロ\n1死1,2塁", UIImage(named: "1-1,2")! )
+            }else if oneOutRunnersOnFirstAndSecond{
+                return ("三ゴロ", "サードゴロ\n2死1,2塁", UIImage(named: "2-1,2")! )
+            }else if twoOutRunnersOnFirstAndSecond{
+                return ("三ゴロ", "サードゴロ\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+        case .thirdGoroThrowToHome:
+            if noOutNoRunner {
+                return ("", "\n1死走者なし", UIImage(named: "1-0")! )
+            }else if oneOutNoRunner{
+                return ("", "\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if twoOutNoRunner{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnFirst{
+                return ("", "\n1死1塁", UIImage(named: "1-1")! )
+            }
+            else if oneOutRunnerOnFirst{
+                return ("", "\n2死1塁", UIImage(named: "2-1")! )
+            }
+            else if twoOutRunnerOnFirst{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+            else if noOutRunnerOnSecond{
+                return ("", "\n1死2塁", UIImage(named: "1-2")! )
+            }
+            else if oneOutRunnerOnSecond{
+                return ("", "\n2死2塁", UIImage(named: "2-2")! )
+            }
+            else if twoOutRunnerOnSecond{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnerOnThird{
+                return ("三ゴロ", "サードゴロ\n1死1塁", UIImage(named: "1-1")! )
+            }
+            else if oneOutRunnerOnThird{
+                return ("三ゴロ", "サードゴロ\n2死1塁", UIImage(named: "2-1")! )
+            }
+            else if twoOutRunnerOnThird{
+                return ("三ゴロ", "サードゴロ\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnersOnFirstAndSecond{
+                return ("", "\n1死1,2塁", UIImage(named: "1-1,2")! )
+            }
+            else if oneOutRunnersOnFirstAndSecond{
+                return ("", "\n2死1,2塁", UIImage(named: "2-1,2")! )
+            }
+            else if twoOutRunnersOnFirstAndSecond{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-1,2")! )
+            }
+            else if noOutRunnersOnFirstAndThird{
+                return ("三ゴロ", "サードゴロ\n1死1,2塁", UIImage(named: "1-1,2")! )
+            }
+            else if oneOutRunnersOnFirstAndThird{
+                return ("三ゴロ", "サードゴロ\n2死1,2塁", UIImage(named: "2-1,2")! )
+            }
+            else if twoOutRunnersOnFirstAndThird{
+                return ("三ゴロ", "サードゴロ\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+            else if noOutRunnersOnSecondAndThird{
+                return ("三ゴロ", "サードゴロ\n1死1,3塁", UIImage(named: "1-1,3")! )
+            }
+            else if oneOutRunnersOnSecondAndThird{
+                return ("三ゴロ", "サードゴロ\n2死1,3塁", UIImage(named: "2-1,3")! )
+            }
+            else if twoOutRunnersOnSecondAndThird{
+                return ("三ゴロ", "サードゴロ\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutFullBase{
+                return ("三併", "5-2-3ホームゲッツー\n2死2,3塁", UIImage(named: "2-2,3")! )
+            }
+            else if oneOutFullBase{
+                return ("三併", "5-2-3ホームゲッツー\n3アウトチェンジ", UIImage(named: "3-1,2")! )
+            }
+            else if twoOutFullBase{
+                return ("三ゴロ", "サードゴロ\n3アウトチェンジ", UIImage(named: "3-1,2,3")! )
+            }
+            
+        case .shortGoroThrowToFirst:
+            if noOutNoRunner {
+                return ("遊ゴロ", "ショートゴロ\n走者なし", UIImage(named: "1-0")! )
+            }else if oneOutNoRunner{
+                return ("遊ゴロ", "ショートゴロ\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if twoOutNoRunner{
+                return ("遊ゴロ", "ショートゴロ\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnFirst{
+                return ("遊ゴロ", "ショートゴロ\n1死2塁", UIImage(named: "1-2")! )
+            }
+            else if oneOutRunnerOnFirst{
+                return ("遊ゴロ", "ショートゴロ\n2死2塁", UIImage(named: "2-2")! )
+            }
+            else if twoOutRunnerOnFirst{
+                return ("遊ゴロ", "ショートゴロ\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+            else if noOutRunnerOnSecond{
+                return ("遊ゴロ", "ショートゴロ\n1死3塁", UIImage(named: "1-3")! )
+            }
+            else if oneOutRunnerOnSecond{
+                return ("遊ゴロ", "ショートゴロ\n2死3塁", UIImage(named: "2-3")! )
+            }
+            else if twoOutRunnerOnSecond{
+                return ("遊ゴロ", "ショートゴロ\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnerOnThird{
+                return ("遊ゴロ", "ショートゴロ\n1死走者なし\n1点", UIImage(named: "1-4_1")! )
+            }
+            else if oneOutRunnerOnThird{
+                return ("遊ゴロ", "ショートゴロ\n2死走者なし\n1点", UIImage(named: "2-4_1")! )
+            }
+            else if twoOutRunnerOnThird{
+                return ("遊ゴロ", "ショートゴロ\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if noOutRunnersOnFirstAndSecond{
+                return ("遊ゴロ", "ショートゴロ\n1死2,3塁", UIImage(named: "1-2,3")! )
+            }
+            else if oneOutRunnersOnFirstAndSecond{
+                return ("遊ゴロ", "ショートゴロ\n2死2,3塁", UIImage(named: "2-2,3")! )
+            }
+            else if twoOutRunnersOnFirstAndSecond{
+                return ("遊ゴロ", "ショートゴロ\n3アウトチェンジ", UIImage(named: "3-1,2")! )
+            }
+            else if noOutRunnersOnFirstAndThird{
+                return ("遊ゴロ", "ショートゴロ\n1死2塁\n1点", UIImage(named: "1-2,4_1")! )
+            }
+            else if oneOutRunnersOnFirstAndThird{
+                return ("遊ゴロ", "ショートゴロ\n2死2塁\n1点", UIImage(named: "2-2,4_1")! )
+            }
+            else if twoOutRunnersOnFirstAndThird{
+                return ("遊ゴロ", "ショートゴロ\n3アウトチェンジ", UIImage(named: "3-1,3")! )
+            }
+            else if noOutRunnersOnSecondAndThird{
+                return ("遊ゴロ", "ショートゴロ\n1死3塁\n1点", UIImage(named: "1-3,4_1")! )
+            }
+            else if oneOutRunnersOnSecondAndThird{
+                return ("遊ゴロ", "ショートゴロ\n2死3塁\n1点", UIImage(named: "2-3,4_1")! )
+            }
+            else if twoOutRunnersOnSecondAndThird{
+                return ("遊ゴロ", "ショートゴロ\n3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+            else if noOutFullBase{
+                return ("遊ゴロ", "ショートゴロ\n1死2,3塁\n1点", UIImage(named: "1-2,3,4_1")! )
+            }
+            else if oneOutFullBase{
+                return ("遊ゴロ", "ショートゴロ\n2死2,3塁\n1点", UIImage(named: "2-2,3,4_1")! )
+            }
+            else if twoOutFullBase{
+                return ("遊ゴロ", "ショートゴロ\n3アウトチェンジ", UIImage(named: "3-1,2,3")! )
+            }
+        case .shortGoroThrowToSecond:
+            if noOutNoRunner {
+                return ("", "\n1死走者なし", UIImage(named: "1-0")! )
+            }else if oneOutNoRunner{
+                return ("", "\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if twoOutNoRunner{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnFirst{
+                return ("遊併", "6-4-3 ダブルプレー\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if oneOutRunnerOnFirst{
+                return ("遊併", "6-4-3 ダブルプレー\n3アウトチェンジ", UIImage(named: "2-1")! )
+            }
+            else if twoOutRunnerOnFirst{
+                return ("遊ゴロ", "ショートゴロ\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnSecond{
+                return ("", "\n1死2塁", UIImage(named: "1-2")! )
+            }
+            else if oneOutRunnerOnSecond{
+                return ("", "\n2死2塁", UIImage(named: "2-2")! )
+            }
+            else if twoOutRunnerOnSecond{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnerOnThird{
+                return ("", "\n1死走者なし\n1点", UIImage(named: "1-4_1")! )
+            }
+            else if oneOutRunnerOnThird{
+                return ("", "\n2死走者なし\n1点", UIImage(named: "2-4_1")! )
+            }
+            else if twoOutRunnerOnThird{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if noOutRunnersOnFirstAndSecond{
+                return ("遊併", "6-4-3 ダブルプレー\n2死3塁", UIImage(named: "2-3")! )
+            }
+            else if oneOutRunnersOnFirstAndSecond{
+                return ("遊併", "6-4-3 ダブルプレー\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if twoOutRunnersOnFirstAndSecond{
+                return ("遊ゴロ", "ショートゴロ\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnersOnFirstAndThird{
+                return ("遊併", "6-4-3 ダブルプレー\n1死1塁\n1点", UIImage(named: "1-4_1")! )
+            }
+                
+            else if oneOutRunnersOnFirstAndThird{
+                return ("遊併", "6-4-3 ダブルプレー\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if twoOutRunnersOnFirstAndThird{
+                return ("遊ゴロ", "ショートゴロ\n3アウトチェンジ", UIImage(named: "3-3")! )
+            }
+            else if noOutRunnersOnSecondAndThird{
+                return ("", "\n1死2塁\n1点", UIImage(named: "1-2,4_1")! )
+            }
+            else if oneOutRunnersOnSecondAndThird{
+                return ("", "\n2死2塁\n1点", UIImage(named: "2-2,4_1")! )
+            }
+            else if twoOutRunnersOnSecondAndThird{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+            else if noOutFullBase{
+                return ("遊併", "6-4-3 ダブルプレー\n2死3塁", UIImage(named: "2-3,4-1")! )
+            }
+            else if oneOutFullBase{
+                return ("遊併", "6-4-3 ダブルプレー\n2死1,2塁\n1点3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+            else if twoOutFullBase{
+                return ("遊ゴロ", "ショートゴロ\n3アウトチェンジ", UIImage(named: "3-2,3")! )
+            }
+        case .shortGoroThrowToThird:
+            if noOutRunnerOnSecond{
+                return ("遊ゴロ", "ショートゴロタッチアウト\n1死1塁", UIImage(named: "1-1")! )
+            }else if oneOutRunnerOnThird{
+                return ("遊ゴロ", "ショートゴロタッチアウト\n2死1塁", UIImage(named: "2-1")! )
+            }else if twoOutRunnerOnThird{
+                return ("遊ゴロ", "ショートゴロタッチアウト\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }else if noOutRunnersOnFirstAndSecond{
+                return ("遊ゴロ", "ショートゴロ\n1死1,2塁", UIImage(named: "1-1,2")! )
+            }else if oneOutRunnersOnFirstAndSecond{
+                return ("遊ゴロ", "ショートゴロ\n2死1,2塁", UIImage(named: "2-1,2")! )
+            }else if twoOutRunnersOnFirstAndSecond{
+                return ("遊ゴロ", "ショートゴロ\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+        case .shortGoroThrowToHome:
+            if noOutNoRunner {
+                return ("", "\n1死走者なし", UIImage(named: "1-0")! )
+            }else if oneOutNoRunner{
+                return ("", "\n2死走者なし", UIImage(named: "2-0")! )
+            }
+            else if twoOutNoRunner{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnerOnFirst{
+                return ("", "\n1死1塁", UIImage(named: "1-1")! )
+            }
+            else if oneOutRunnerOnFirst{
+                return ("", "\n2死1塁", UIImage(named: "2-1")! )
+            }
+            else if twoOutRunnerOnFirst{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+            else if noOutRunnerOnSecond{
+                return ("", "\n1死2塁", UIImage(named: "1-2")! )
+            }
+            else if oneOutRunnerOnSecond{
+                return ("", "\n2死2塁", UIImage(named: "2-2")! )
+            }
+            else if twoOutRunnerOnSecond{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutRunnerOnThird{
+                return ("遊ゴロ", "ショートゴロ\n1死1塁", UIImage(named: "1-1")! )
+            }
+            else if oneOutRunnerOnThird{
+                return ("遊ゴロ", "ショートゴロ\n2死1塁", UIImage(named: "2-1")! )
+            }
+            else if twoOutRunnerOnThird{
+                return ("遊ゴロ", "ショートゴロ\n3アウトチェンジ", UIImage(named: "3-0")! )
+            }
+            else if noOutRunnersOnFirstAndSecond{
+                return ("", "\n1死1,2塁", UIImage(named: "1-1,2")! )
+            }
+            else if oneOutRunnersOnFirstAndSecond{
+                return ("", "\n2死1,2塁", UIImage(named: "2-1,2")! )
+            }
+            else if twoOutRunnersOnFirstAndSecond{
+                return ("", "\n3アウトチェンジ", UIImage(named: "3-1,2")! )
+            }
+            else if noOutRunnersOnFirstAndThird{
+                return ("遊ゴロ", "ショートゴロ\n1死1,2塁", UIImage(named: "1-1,2")! )
+            }
+            else if oneOutRunnersOnFirstAndThird{
+                return ("遊ゴロ", "ショートゴロ\n2死1,2塁", UIImage(named: "2-1,2")! )
+            }
+            else if twoOutRunnersOnFirstAndThird{
+                return ("遊ゴロ", "ショートゴロ\n3アウトチェンジ", UIImage(named: "3-1")! )
+            }
+            else if noOutRunnersOnSecondAndThird{
+                return ("遊ゴロ", "ショートゴロ\n1死1,3塁", UIImage(named: "1-1,3")! )
+            }
+            else if oneOutRunnersOnSecondAndThird{
+                return ("遊ゴロ", "ショートゴロ\n2死1,3塁", UIImage(named: "2-1,3")! )
+            }
+            else if twoOutRunnersOnSecondAndThird{
+                return ("遊ゴロ", "ショートゴロ\n3アウトチェンジ", UIImage(named: "3-2")! )
+            }
+            else if noOutFullBase{
+                return ("遊併", "6-2-3ホームゲッツー\n2死2,3塁", UIImage(named: "2-2,3")! )
+            }
+            else if oneOutFullBase{
+                return ("遊併", "6-2-3ホームゲッツー\n3アウトチェンジ", UIImage(named: "3-1,2")! )
+            }
+            else if twoOutFullBase{
+                return ("遊ゴロ", "ショートゴロ\n3アウトチェンジ", UIImage(named: "3-1,2,3")! )
+            }
+            
             
         case .struckOutSwinging:
             
@@ -2828,8 +4150,6 @@ class ResultViewController: UIViewController {
             else if twoOutFullBase{
                 return ("右直", "ライトライナー\n3アウトチェンジ", UIImage(named: "3-1,2,3")! )
             }
-        case .pitcherGoro:
-            return ("", "", UIImage(named: "")! )
         case .struckOutSwinging:
             return ("", "", UIImage(named: "")! )
         case .missedStruckOut:
@@ -2940,6 +4260,54 @@ class ResultViewController: UIViewController {
             return ("", "", UIImage(named: "")! )
         case .deadBall:
             return ("", "", UIImage(named: "")! )
+        case .pitcherGoroThrowToHome:
+            <#code#>
+        case .pitcherGoroThrowToFirst:
+            <#code#>
+        case .pitcherGorothrowToSecond:
+            <#code#>
+        case .pitcherGoroThrowToThird:
+            <#code#>
+        case .catcherGoroThrowToHome:
+            <#code#>
+        case .catcherGoroThrowToFirst:
+            <#code#>
+        case .catcherGoroThrowToSecond:
+            <#code#>
+        case .catcherGoroThrowToThird:
+            <#code#>
+        case .firstGoroThrowToHome:
+            <#code#>
+        case .firstGoroThrowToFirst:
+            <#code#>
+        case .firstGoroThrowToSecond:
+            <#code#>
+        case .firstGoroThrowToThird:
+            <#code#>
+        case .secondGoroThrowToHome:
+            <#code#>
+        case .secondGoroThrowToFirst:
+            <#code#>
+        case .secondGoroThrowToSecond:
+            <#code#>
+        case .secondGoroThrowToThird:
+            <#code#>
+        case .thirdGoroThrowToHome:
+            <#code#>
+        case .thirdGoroThrowToFirst:
+            <#code#>
+        case .thirdGoroThrowToSecond:
+            <#code#>
+        case .thirdGoroThrowToThird:
+            <#code#>
+        case .shortGoroThrowToHome:
+            <#code#>
+        case .shortGoroThrowToFirst:
+            <#code#>
+        case .shortGoroThrowToSecond:
+            <#code#>
+        case .shortGoroThrowToThird:
+            <#code#>
         }
         
         //なんかエラーでるから仮置き
@@ -2972,8 +4340,6 @@ class ResultViewController: UIViewController {
         case .centerFly:
             return ""
         case .rightFly:
-            return ""
-        case .pitcherGoro:
             return ""
         case .struckOutSwinging:
             return ""
@@ -3013,6 +4379,54 @@ class ResultViewController: UIViewController {
             return ""
         case .deadBall:
             return ""
+        case .pitcherGoroThrowToHome:
+            <#code#>
+        case .pitcherGoroThrowToFirst:
+            <#code#>
+        case .pitcherGorothrowToSecond:
+            <#code#>
+        case .pitcherGoroThrowToThird:
+            <#code#>
+        case .catcherGoroThrowToHome:
+            <#code#>
+        case .catcherGoroThrowToFirst:
+            <#code#>
+        case .catcherGoroThrowToSecond:
+            <#code#>
+        case .catcherGoroThrowToThird:
+            <#code#>
+        case .firstGoroThrowToHome:
+            <#code#>
+        case .firstGoroThrowToFirst:
+            <#code#>
+        case .firstGoroThrowToSecond:
+            <#code#>
+        case .firstGoroThrowToThird:
+            <#code#>
+        case .secondGoroThrowToHome:
+            <#code#>
+        case .secondGoroThrowToFirst:
+            <#code#>
+        case .secondGoroThrowToSecond:
+            <#code#>
+        case .secondGoroThrowToThird:
+            <#code#>
+        case .thirdGoroThrowToHome:
+            <#code#>
+        case .thirdGoroThrowToFirst:
+            <#code#>
+        case .thirdGoroThrowToSecond:
+            <#code#>
+        case .thirdGoroThrowToThird:
+            <#code#>
+        case .shortGoroThrowToHome:
+            <#code#>
+        case .shortGoroThrowToFirst:
+            <#code#>
+        case .shortGoroThrowToSecond:
+            <#code#>
+        case .shortGoroThrowToThird:
+            <#code#>
         }
         
         //なんかエラーでるから仮置き
@@ -3099,6 +4513,8 @@ class ResultViewController: UIViewController {
                 Situation.outCounts += 1
             }
         }
+        Situation.strikeCounts = 0
+        Situation.ballCounts = 0
     }
     
     func batterOnBase(){

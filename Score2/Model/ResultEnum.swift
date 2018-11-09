@@ -12,33 +12,39 @@ enum ResultEnum: Int{
     case leftFly
     case centerFly
     case rightFly
-    case pitcherGoro
+    
+    case pitcherGoroThrowToFirst
+    case pitcherGorothrowToSecond
+    case pitcherGoroThrowToThird
+    case pitcherGoroThrowToHome
+    
+    case catcherGoroThrowToFirst
+    case catcherGoroThrowToSecond
+    case catcherGoroThrowToThird
+    case catcherGoroThrowToHome
+    
+    case firstGoroThrowToFirst
+    case firstGoroThrowToSecond
+    case firstGoroThrowToThird
+    case firstGoroThrowToHome
+    
+    case secondGoroThrowToFirst
+    case secondGoroThrowToSecond
+    case secondGoroThrowToThird
+    case secondGoroThrowToHome
+    
+    case thirdGoroThrowToFirst
+    case thirdGoroThrowToSecond
+    case thirdGoroThrowToThird
+    case thirdGoroThrowToHome
+    
+    case shortGoroThrowToFirst
+    case shortGoroThrowToSecond
+    case shortGoroThrowToThird
+    case shortGoroThrowToHome
+    
     case struckOutSwinging
     case missedStruckOut
-    //    case pitcherGoroThrowToHome
-    //    case pithergoroThrowToFirst
-    //    case pitcherGorothrowToSecond
-    //    case pitcherGoroThrowToThird
-    //    case catcherGoroThrowToHome
-    //    case catcherGoroThrowToFirst
-    //    case catcherGoroThrowToSecond
-    //    case catcherGoroThrowToThird
-    //    case firstGoroThrowToHome
-    //    case firstGoroThrowToFirst
-    //    case firstGoroThrowToSecond
-    //    case firstGoroThrowToThird
-    //    case secondGoroThrowToHome
-    //    case secondGoroThrowToFirst
-    //    case secondGoroThrowToSecond
-    //    case secondGoroThrowToThird
-    //    case thirdGoroThrowToHome
-    //    case thirdGoroThrowToFirst
-    //    case thirdGoroThrowToSecond
-    //    case thirdGoroThrowToThird
-    //    case shortGoroThrowToHome
-    //    case shortGoroThrowToFirst
-    //    case shortGoroThrowToSecond
-    //    case shortGoroThrowToThird
     //    //oohashi:外野ゴロヒットとライナーヒットで場合分け
     case pitcherOrCatcherHit //ohashi:ボタン一つで投手と捕手
     case firstHit
