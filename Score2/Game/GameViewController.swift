@@ -141,22 +141,22 @@ class GameViewController: UIViewController {
     
     //Ohashi:ドラッグメソッド
     @objc func handlePitcherPan(sender: UIPanGestureRecognizer){
-        handlePan(sender: sender, throwToFirst: .catcherFly, throwToSecond: .catcherFly, throwToThird: .catcherFly, throwToHome: .catcherFly)
+        handlePan(sender: sender, throwToFirst: .pitcherGoroThrowToFirst, throwToSecond: .pitcherGorothrowToSecond, throwToThird: .pitcherGoroThrowToThird, throwToHome: .pitcherGoroThrowToHome)
     }
     @objc func handleCatcherPan(sender: UIPanGestureRecognizer){
-        handlePan(sender: sender, throwToFirst: .catcherFly, throwToSecond: .catcherFly, throwToThird: .catcherFly, throwToHome: .catcherFly)
+        handlePan(sender: sender, throwToFirst: .catcherGoroThrowToFirst, throwToSecond: .catcherGoroThrowToSecond, throwToThird: .catcherGoroThrowToThird, throwToHome: .catcherGoroThrowToHome)
     }
     @objc func handleFirstPan(sender: UIPanGestureRecognizer){
-        handlePan(sender: sender, throwToFirst: .catcherFly, throwToSecond: .catcherFly, throwToThird: .catcherFly, throwToHome: .catcherFly)
+        handlePan(sender: sender, throwToFirst: .firstGoroThrowToFirst , throwToSecond: .firstGoroThrowToSecond, throwToThird: .firstGoroThrowToThird, throwToHome: .firstGoroThrowToHome)
     }
     @objc func handleSecondPan(sender: UIPanGestureRecognizer){
-        handlePan(sender: sender, throwToFirst: .catcherFly, throwToSecond: .catcherFly, throwToThird: .catcherFly, throwToHome: .catcherFly)
+        handlePan(sender: sender, throwToFirst: .secondGoroThrowToFirst, throwToSecond: .secondGoroThrowToSecond, throwToThird: .secondGoroThrowToThird, throwToHome: .secondGoroThrowToHome)
     }
     @objc func handleThirdPan(sender: UIPanGestureRecognizer){
-        handlePan(sender: sender, throwToFirst: .catcherFly, throwToSecond: .catcherFly, throwToThird: .catcherFly, throwToHome: .catcherFly)
+        handlePan(sender: sender, throwToFirst: .thirdGoroThrowToFirst, throwToSecond: .thirdGoroThrowToSecond, throwToThird: .thirdGoroThrowToThird, throwToHome: .thirdGoroThrowToHome)
     }
     @objc func handleShortPan(sender: UIPanGestureRecognizer){
-        handlePan(sender: sender, throwToFirst: .catcherFly, throwToSecond: .catcherFly, throwToThird: .catcherFly, throwToHome: .catcherFly)
+        handlePan(sender: sender, throwToFirst: .shortGoroThrowToFirst, throwToSecond: .shortGoroThrowToSecond, throwToThird: .shortGoroThrowToThird, throwToHome: .shortGoroThrowToHome)
     }
     
     func handlePan(sender: UIPanGestureRecognizer, throwToFirst: ResultEnum, throwToSecond: ResultEnum, throwToThird: ResultEnum, throwToHome: ResultEnum){
@@ -173,11 +173,17 @@ class GameViewController: UIViewController {
             if panView.frame.intersects(baseViewArray[0].frame){
                 baseViewArray[0].backgroundColor = .red
             }else if panView.frame.intersects(baseViewArray[1].frame){
-                baseViewArray[1].backgroundColor = .red
+                if Situation.firstRunner != nil{
+                    baseViewArray[1].backgroundColor = .red
+                }
             }else if panView.frame.intersects(baseViewArray[2].frame){
-                baseViewArray[2].backgroundColor = .red
+                if Situation.secondRunner != nil{
+                    baseViewArray[2].backgroundColor = .red
+                }
             }else if panView.frame.intersects(baseViewArray[3].frame){
-                baseViewArray[3].backgroundColor = .red
+                if Situation.thirdRunner != nil{
+                    baseViewArray[3].backgroundColor = .red
+                }
             }else{
                 baseViewArray[0].backgroundColor = .clear
                 baseViewArray[1].backgroundColor = .clear
@@ -196,39 +202,57 @@ class GameViewController: UIViewController {
                 Situation.result = throwToFirst
                 modalAppear()
             }else if panView.frame.intersects(baseViewArray[1].frame){
-                UIView.animate(withDuration: 0.5, animations: {
-                    panView.alpha = 0
-                    self.baseViewArray[1].backgroundColor = .clear
-                }, completion:{ _ in
-                    panView.center = self.panStartPoint
-                    panView.alpha = 1
-                })
-                
-                Situation.result = throwToSecond
-                modalAppear()
+                if Situation.firstRunner != nil{
+                    UIView.animate(withDuration: 0.5, animations: {
+                        panView.alpha = 0
+                        self.baseViewArray[1].backgroundColor = .clear
+                    }, completion:{ _ in
+                        panView.center = self.panStartPoint
+                        panView.alpha = 1
+                    })
+                    Situation.result = throwToSecond
+                    modalAppear()
+                }else{
+                    UIView.animate(withDuration: 0.5, animations: {
+                        panView.center = self.panStartPoint
+                    })
+                }
             }else if panView.frame.intersects(baseViewArray[2].frame){
-                UIView.animate(withDuration: 0.5, animations: {
-                    panView.alpha = 0
-                    panView.center = self.panStartPoint
-                    self.baseViewArray[2].backgroundColor = .clear
-                }, completion:{ _ in
-                    panView.center = self.panStartPoint
-                    panView.alpha = 1
-                })
-                Situation.result = throwToThird
-                modalAppear()
+                if Situation.secondRunner != nil{
+                    UIView.animate(withDuration: 0.5, animations: {
+                        panView.alpha = 0
+                        panView.center = self.panStartPoint
+                        self.baseViewArray[2].backgroundColor = .clear
+                    }, completion:{ _ in
+                        panView.center = self.panStartPoint
+                        panView.alpha = 1
+                    })
+                    Situation.result = throwToThird
+                    modalAppear()
+                }else {
+                    UIView.animate(withDuration: 0.5, animations: {
+                        panView.center = self.panStartPoint
+                    })
+                }
                 
             }else if panView.frame.intersects(baseViewArray[3].frame){
-                UIView.animate(withDuration: 0.5, animations: {
-                    panView.alpha = 0
-                    panView.center = self.panStartPoint
-                    self.baseViewArray[3].backgroundColor = .clear
-                }, completion:{ _ in
-                    panView.center = self.panStartPoint
-                    panView.alpha = 1
-                })
-                Situation.result = throwToHome
-                modalAppear()
+                if Situation.thirdRunner != nil{
+                    UIView.animate(withDuration: 0.5, animations: {
+                        panView.alpha = 0
+                        panView.center = self.panStartPoint
+                        self.baseViewArray[3].backgroundColor = .clear
+                    }, completion:{ _ in
+                        panView.center = self.panStartPoint
+                        panView.alpha = 1
+                    })
+                    Situation.result = throwToHome
+                    modalAppear()
+                }else{
+                    UIView.animate(withDuration: 0.5, animations: {
+                        panView.center = self.panStartPoint
+                    })
+                }
+                
             }else{
                 UIView.animate(withDuration: 0.5, animations: {
                     panView.center = self.panStartPoint
@@ -552,6 +576,48 @@ class GameViewController: UIViewController {
         resultViewController.modalPresentationStyle = .custom
         resultViewController.transitioningDelegate = self
         self.present(resultViewController, animated: true, completion: nil)
+    }
+    
+    func setCount(){
+        if Situation.ballCounts == 0{
+            ballOneImageView.alpha = 0
+            ballTwoImageView.alpha = 0
+            ballThreeImageView.alpha = 0
+        }
+        if Situation.strikeCounts == 0{
+            strikeOneImageView.alpha = 0
+            strikeTwoImageView.alpha = 0
+        }
+        if Situation.outCounts == 0{
+            outOneImageView.alpha = 0
+            outTwoImageView.alpha = 0
+        }else if Situation.outCounts == 1{
+            outOneImageView.alpha = 1
+            outTwoImageView.alpha = 0
+        }else{
+            outOneImageView.alpha = 1
+            outTwoImageView.alpha = 1
+        }
+    }
+    
+    func setRunner(){
+        if Situation.firstRunner == nil && Situation.secondRunner == nil && Situation.thirdRunner == nil{
+            backgroundImageView.image = UIImage(named: "base0-0-0")
+        }else if Situation.firstRunner != nil && Situation.secondRunner == nil && Situation.thirdRunner == nil{
+            backgroundImageView.image = UIImage(named: "base1-0-0")
+        }else if Situation.firstRunner == nil && Situation.secondRunner != nil && Situation.thirdRunner == nil{
+            backgroundImageView.image = UIImage(named: "base0-1-0")
+        }else if Situation.firstRunner == nil && Situation.secondRunner == nil && Situation.thirdRunner != nil{
+            backgroundImageView.image = UIImage(named: "base0-0-1")
+        }else if Situation.firstRunner != nil && Situation.secondRunner != nil && Situation.thirdRunner == nil{
+            backgroundImageView.image = UIImage(named: "base1-1-0")
+        }else if Situation.firstRunner != nil && Situation.secondRunner == nil && Situation.thirdRunner != nil{
+            backgroundImageView.image = UIImage(named: "base1-0-1")
+        }else if Situation.firstRunner == nil && Situation.secondRunner != nil && Situation.thirdRunner != nil{
+            backgroundImageView.image = UIImage(named: "base0-1-1")
+        }else if Situation.firstRunner != nil && Situation.secondRunner != nil && Situation.thirdRunner != nil{
+            backgroundImageView.image = UIImage(named: "base1-1-1")
+        }
     }
     
     

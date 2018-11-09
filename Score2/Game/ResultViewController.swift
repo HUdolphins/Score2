@@ -41,7 +41,6 @@ class ResultViewController: UIViewController {
    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         setupChildren()
         setupPageMenu()
     }
@@ -121,6 +120,17 @@ class ResultViewController: UIViewController {
             let resultDic = ["results": childOptionOne().resultTitle, "player": batter.id, "game": Situation.gameId]
             resultRef.child(key).setValue(resultDic)
         }
+        
+        //Ohashi:仮の結果処理
+        switch Situation.result! {
+        case .pitcherFly, .catcherFly, .firstFly, .secondFly, .thirdFly, .shortFly, .leftFly, .centerFly, .rightFly, .pitcherGoroThrowToFirst, .catcherGoroThrowToFirst, .firstGoroThrowToFirst, .secondGoroThrowToFirst, .thirdGoroThrowToFirst, .shortGoroThrowToFirst, .struckOutSwinging, .missedStruckOut:
+            batterOut()
+        default:
+            batterOnBaseSingle()
+        }
+        let gameViewController = GameViewController()
+        gameViewController.setCount()
+        gameViewController.setRunner()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -4261,53 +4271,53 @@ class ResultViewController: UIViewController {
         case .deadBall:
             return ("", "", UIImage(named: "")! )
         case .pitcherGoroThrowToHome:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .pitcherGoroThrowToFirst:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .pitcherGorothrowToSecond:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .pitcherGoroThrowToThird:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .catcherGoroThrowToHome:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .catcherGoroThrowToFirst:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .catcherGoroThrowToSecond:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .catcherGoroThrowToThird:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .firstGoroThrowToHome:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .firstGoroThrowToFirst:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .firstGoroThrowToSecond:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .firstGoroThrowToThird:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .secondGoroThrowToHome:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .secondGoroThrowToFirst:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .secondGoroThrowToSecond:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .secondGoroThrowToThird:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .thirdGoroThrowToHome:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .thirdGoroThrowToFirst:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .thirdGoroThrowToSecond:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .thirdGoroThrowToThird:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .shortGoroThrowToHome:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .shortGoroThrowToFirst:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .shortGoroThrowToSecond:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         case .shortGoroThrowToThird:
-            <#code#>
+            return ("", "", UIImage(named: "")! )
         }
         
         //なんかエラーでるから仮置き
@@ -4380,53 +4390,53 @@ class ResultViewController: UIViewController {
         case .deadBall:
             return ""
         case .pitcherGoroThrowToHome:
-            <#code#>
+            return ""
         case .pitcherGoroThrowToFirst:
-            <#code#>
+            return ""
         case .pitcherGorothrowToSecond:
-            <#code#>
+            return ""
         case .pitcherGoroThrowToThird:
-            <#code#>
+            return ""
         case .catcherGoroThrowToHome:
-            <#code#>
+            return ""
         case .catcherGoroThrowToFirst:
-            <#code#>
+            return ""
         case .catcherGoroThrowToSecond:
-            <#code#>
+            return ""
         case .catcherGoroThrowToThird:
-            <#code#>
+            return ""
         case .firstGoroThrowToHome:
-            <#code#>
+            return ""
         case .firstGoroThrowToFirst:
-            <#code#>
+            return ""
         case .firstGoroThrowToSecond:
-            <#code#>
+            return ""
         case .firstGoroThrowToThird:
-            <#code#>
+            return ""
         case .secondGoroThrowToHome:
-            <#code#>
+            return ""
         case .secondGoroThrowToFirst:
-            <#code#>
+            return ""
         case .secondGoroThrowToSecond:
-            <#code#>
+            return ""
         case .secondGoroThrowToThird:
-            <#code#>
+            return ""
         case .thirdGoroThrowToHome:
-            <#code#>
+            return ""
         case .thirdGoroThrowToFirst:
-            <#code#>
+            return ""
         case .thirdGoroThrowToSecond:
-            <#code#>
+            return ""
         case .thirdGoroThrowToThird:
-            <#code#>
+            return ""
         case .shortGoroThrowToHome:
-            <#code#>
+            return ""
         case .shortGoroThrowToFirst:
-            <#code#>
+            return ""
         case .shortGoroThrowToSecond:
-            <#code#>
+            return ""
         case .shortGoroThrowToThird:
-            <#code#>
+            return ""
         }
         
         //なんかエラーでるから仮置き
@@ -4435,56 +4445,7 @@ class ResultViewController: UIViewController {
     
     //ボタンを押したときの関数3つ
     //oohashi: 得点入った時アニメーション処理
-//    func childButtonTapedOne() -> String{
-//        switch self{
-//        case .pitcherFly, .catcherFly, .firstFly, .secondFly, .thirdFly, .shortFly, .leftFly, .centerFly, .rightFly, .struckOutSwinging, .missedStruckOut:
-//            batterOut()
-//
-//            //        case .pitcherGoro:
-//            //
-//            //        case .struckOutSwinging:
-//            //
-//            //        case .missedStruckOut:
-//            //
-//            //        case .leftIntermediateHit:
-//            //
-//            //        case .leftSingleHit:
-//            //
-//            //
-//            //        case .rightIntermediateHit:
-//            //
-//            //        case .pitcherOrCatcherHit:
-//            //
-//            //        case .firstHit:
-//            //
-//            //        case .secondHit:
-//            //
-//            //        case .thirdHit:
-//            //
-//            //        case .shortHit:
-//            //
-//            //        case .centerSingleHit:
-//            //
-//            //        case .rightSingleHit:
-//            //
-//            //        case .leftOverHit:
-//            //
-//            //        case .centerOverHit:
-//            //
-//            //        case .RightOverHit:
-//            //            retur
-//            //        case .thirdBaseLineHit:
-//            //
-//            //        case .firstBaselineHit:
-//            //
-//            //        case .fourBall:
-//            //
-//        //        case .deadBall:
-//        default:
-//            break
-//        }
-//        return Situation.result.childOptionOne().resultTitle
-//    }
+
     
     func batterOut(){
         if Situation.topOrBottom == "Top"{
@@ -4517,11 +4478,50 @@ class ResultViewController: UIViewController {
         Situation.ballCounts = 0
     }
     
-    func batterOnBase(){
+    func batterOnBaseSingle(){
         if Situation.topOrBottom == "Top"{
+            if let thirdRunner = Situation.thirdRunner{
+                Situation.topScore += 1
+                //Ohashi:TODOサードランナーに得点処理
+            }
+            if let secondRunner = Situation.secondRunner{
+                Situation.thirdRunner = secondRunner
+            }
+            if let firstRunner = Situation.firstRunner{
+                Situation.secondRunner = firstRunner
+            }
+            
             let ranner:FIRPlayer = Situation.topPlayerArray[Situation.topBattingOrder]
-            Situation.topBattingOrder += 1
+            Situation.firstRunner = ranner
+            if Situation.topBattingOrder == 8{
+                Situation.topBattingOrder = 0
+            }else{
+                Situation.topBattingOrder += 1
+            }
+        }else{
+            if let thirdRunner = Situation.thirdRunner{
+                Situation.bottomScore += 1
+                //Ohashi:TODOサードランナーに得点処理
+            }
+            if let secondRunner = Situation.secondRunner{
+                Situation.thirdRunner = secondRunner
+            }
+            if let firstRunner = Situation.firstRunner{
+                Situation.secondRunner = firstRunner
+            }
+            
+            let runner: FIRPlayer = Situation.bottomPlayerArray[Situation.bottomBattingOrder]
+                        Situation.firstRunner = runner
+            
+            if Situation.bottomBattingOrder == 8{
+                Situation.bottomBattingOrder = 0
+            }else{
+                Situation.bottomBattingOrder += 1
+            }
+
         }
+        Situation.strikeCounts = 0
+        Situation.ballCounts = 0
     }
     
     func noRunner(){
