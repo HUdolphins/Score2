@@ -19,7 +19,7 @@ class GameViewController: UIViewController {
     
     let countImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "count3-2-2")
+        imageView.image = UIImage(named: "count0-0-0")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -59,6 +59,14 @@ class GameViewController: UIViewController {
         return button
     }()
     
+    let ballOneImageView = UIImageView()
+    let ballTwoImageView = UIImageView()
+    let ballThreeImageView = UIImageView()
+    let strikeOneImageView = UIImageView()
+    let strikeTwoImageView = UIImageView()
+    let outOneImageView = UIImageView()
+    let outTwoImageView = UIImageView()
+    
     let firstBaseView = UIView()
     let secondBaseView = UIView()
     let thirdBaseView = UIView()
@@ -88,6 +96,7 @@ class GameViewController: UIViewController {
     let centerOverHitButton = UIButton()
     let rightOverHitButton = UIButton()
 
+    var countViewArray: [UIImageView] = []
     var baseViewArray: [UIView] = []
     var playerButtonArray: [UIButton] = []
     var playerOriginArray: [CGPoint] = []
@@ -102,7 +111,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         //Ohashi:配列に格納
-        
+        countViewArray = [ballOneImageView, ballTwoImageView, ballThreeImageView, strikeOneImageView, strikeTwoImageView, outOneImageView, outTwoImageView]
         baseViewArray = [firstBaseView, secondBaseView, thirdBaseView, homeBaseView]
         playerButtonArray = [pitcherPlayerButton, catcherPlayerButton, firstPlayerButton, secondPlayerButton, thirdPlayerButton, shortPlayerButton, leftPlayerButton, centerPlayerButton, rightPlayerButton]
         hitButtonArray = [pitcherOrCatcherHitButton, firstHitButton, secondHitButton, thirdHitButton, shortHitButton, leftHitButton, centerHitButton, rightHitButton, leftIntermediateHitButton, rightIntermediateHitButton, leftOverHitButton, centerOverHitButton, rightOverHitButton]
@@ -114,7 +123,6 @@ class GameViewController: UIViewController {
         super.viewWillAppear(animated)
         //Ohashi:セットアップビューはエクステンションに
         setupView()
-        setCount()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -233,41 +241,72 @@ class GameViewController: UIViewController {
     
     //Ohashi:カウントメソッド
     @objc func strike(sender: UIButton){
-        if Situation.strikeCounts == 2{
-            //Ohashi:アウトカウントの処理はResultViewControllerで
+        if Situation.strikeCounts == 0{
+            Situation.strikeCounts += 1
+            UIView.animate(withDuration: 0.3, animations: {
+                self.strikeOneImageView.alpha = 1
+            })
+        }else if Situation.strikeCounts == 1{
+            Situation.strikeCounts += 1
+            UIView.animate(withDuration: 0.3, animations: {
+                self.strikeTwoImageView.alpha = 1
+            })
+        }else if Situation.strikeCounts == 2{
             Situation.result = .missedStruckOut
             modalAppear()
-        }else{
-            Situation.strikeCounts += 1
         }
-        setCount()
     }
     @objc func takeALook(sender: UIButton){
-        if Situation.ballCounts == 3{
+        if Situation.ballCounts == 0{
+            Situation.ballCounts += 1
+            UIView.animate(withDuration: 0.3, animations: {
+                self.ballOneImageView.alpha = 1
+                })
+        }else if Situation.ballCounts == 1{
+            Situation.ballCounts += 1
+            UIView.animate(withDuration: 0.3, animations: {
+                self.ballTwoImageView.alpha = 1
+            })
+        }else if Situation.ballCounts == 2{
+            Situation.ballCounts += 1
+            UIView.animate(withDuration: 0.3, animations: {
+                self.ballThreeImageView.alpha = 1
+            })
+        }else if Situation.ballCounts == 3{
             Situation.result = .fourBall
             modalAppear()
-        }else{
-            Situation.ballCounts += 1
         }
-        setCount()
     }
     @objc func swing(sender: UIButton){
-        if Situation.strikeCounts == 2{
-            //Ohashi:アウトカウントの処理はResultViewControllerで
+        if Situation.strikeCounts == 0{
+            Situation.strikeCounts += 1
+            UIView.animate(withDuration: 0.3, animations: {
+                self.strikeOneImageView.alpha = 1
+            })
+        }else if Situation.strikeCounts == 1{
+            Situation.strikeCounts += 1
+            UIView.animate(withDuration: 0.3, animations: {
+                self.strikeTwoImageView.alpha = 1
+            })
+        }else if Situation.strikeCounts == 2{
             Situation.result = .struckOutSwinging
             modalAppear()
-        }else{
-            Situation.strikeCounts += 1
         }
-        setCount()
     }
     @objc func faul(sender: UIButton){
-        if Situation.strikeCounts == 2{
-            
-        }else{
+        if Situation.strikeCounts == 0{
             Situation.strikeCounts += 1
+            UIView.animate(withDuration: 0.3, animations: {
+                self.strikeOneImageView.alpha = 1
+            })
+        }else if Situation.strikeCounts == 1{
+            Situation.strikeCounts += 1
+            UIView.animate(withDuration: 0.3, animations: {
+                self.strikeTwoImageView.alpha = 1
+            })
+        }else if Situation.strikeCounts == 2{
+            
         }
-        setCount()
     }
     
     //Ohashi:フライボタン用メソッド
@@ -314,28 +353,32 @@ class GameViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    //Ohashi:結果モーダル表示用メソッド
-    func modalAppear(){
-        let resultViewController = ResultViewController()
-        resultViewController.modalPresentationStyle = .custom
-        resultViewController.transitioningDelegate = self
-        self.present(resultViewController, animated: true, completion: nil)
-    }
-    
-    
-}
-
-extension GameViewController{
-    //Ohashi:羅列系はこっちに
-    
     func setupView(){
         self.view.addSubview(backgroundImageView)
         self.homeButton.addTarget(self, action: #selector(homeButton(sender:)), for: .touchUpInside)
         self.view.addSubview(homeButton)
         //Ohashi:カウントビューの追加とサイズ
         self.view.addSubview(countImageView)
-        self.view.addConstraints([NSLayoutConstraint(item: countImageView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.28, constant: 0)])
+        self.view.addConstraints([NSLayoutConstraint(item: countImageView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.225, constant: 0)])
         self.view.addConstraints([NSLayoutConstraint(item: countImageView, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 0.13, constant: 0)])
+        
+        //Ohashi:カウント表示用ボールイメージ追加
+        for (index, ball) in countViewArray.enumerated(){
+            ball.alpha = 0
+            ball.translatesAutoresizingMaskIntoConstraints = false
+            if index == 0 || index == 1 || index == 2{
+                ball.image = UIImage(named: "greenBall")
+            }else if index == 3 || index == 4{
+                ball.image = UIImage(named: "yellowBall")
+            }else{
+                ball.image = UIImage(named: "redBall")
+            }
+            self.view.addSubview(ball)
+            self.view.addConstraints([NSLayoutConstraint(item: ball, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.05, constant: 0)])
+            self.view.addConstraints([NSLayoutConstraint(item: ball, attribute: .height, relatedBy: .equal, toItem: ball, attribute: .width, multiplier: 1, constant: 0)])
+        }
+        
+        
         //Ohashi:カウントボタン追加, メソッド付与と制約
         self.view.addSubview(strikeButton)
         strikeButton.addTarget(self, action: #selector(self.strike(sender:)), for: .touchUpInside)
@@ -496,86 +539,22 @@ extension GameViewController{
         self.view.addConstraints([NSLayoutConstraint(item: swingButton, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 223)])
         self.view.addConstraints([NSLayoutConstraint(item: faulButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 140)])
         self.view.addConstraints([NSLayoutConstraint(item: faulButton, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 270)])
-        //         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[strike]-10-[ball]-10-[swing]-10-[faul]-10-|", options: .alignAllLeft, metrics: nil, views: ["strike": strikeButton, "ball": takeALookButton, "swing": swingButton, "faul": faulButton]))
-        
+        //Ohashi:カウントイメージ
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-14-[one]-5-[two]-5-[three]", options: .alignAllTop, metrics: nil, views: ["one": ballOneImageView, "two": ballTwoImageView, "three": ballThreeImageView]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-14-[one]-5-[two]", options: .alignAllTop, metrics: nil, views: ["one": strikeOneImageView, "two": strikeTwoImageView]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-14-[one]-5-[two]", options: .alignAllTop, metrics: nil, views: ["one": outOneImageView, "two": outTwoImageView]))
+        self.view.addConstraints([NSLayoutConstraint(item: ballOneImageView, attribute: .top, relatedBy: .equal, toItem: countImageView, attribute: .top, multiplier: 1, constant: 5)])
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[ball]-5-[strike]-5-[out]", options: .alignAllLeft, metrics: nil, views: ["ball": ballOneImageView, "strike": strikeOneImageView, "out": outOneImageView]))
+    }
+    //Ohashi:結果モーダル表示用メソッド
+    func modalAppear(){
+        let resultViewController = ResultViewController()
+        resultViewController.modalPresentationStyle = .custom
+        resultViewController.transitioningDelegate = self
+        self.present(resultViewController, animated: true, completion: nil)
     }
     
-    func setCount(){
-        //Ohashi:ストライクとボールの書き順間違えた
-        if Situation.strikeCounts == 0 && Situation.ballCounts == 0 && Situation.outCounts == 0{
-            countImageView.image = UIImage(named: "count0-0-0")
-        }else if Situation.strikeCounts == 1 && Situation.ballCounts == 0 && Situation.outCounts == 0{
-            countImageView.image = UIImage(named: "count0-1-0")
-        }else if Situation.strikeCounts == 2 && Situation.ballCounts == 0 && Situation.outCounts == 0{
-            countImageView.image = UIImage(named: "count0-2-0")
-        }else if Situation.strikeCounts == 0 && Situation.ballCounts == 1 && Situation.outCounts == 0{
-            countImageView.image = UIImage(named: "count1-0-0")
-        }else if Situation.strikeCounts == 1 && Situation.ballCounts == 1 && Situation.outCounts == 0{
-            countImageView.image = UIImage(named: "count1-1-0")
-        }else if Situation.strikeCounts == 2 && Situation.ballCounts == 1 && Situation.outCounts == 0{
-            countImageView.image = UIImage(named: "count1-2-0")
-        }else if Situation.strikeCounts == 0 && Situation.ballCounts == 2 && Situation.outCounts == 0{
-            countImageView.image = UIImage(named: "count2-0-0")
-        }else if Situation.strikeCounts == 1 && Situation.ballCounts == 2 && Situation.outCounts == 0{
-            countImageView.image = UIImage(named: "count2-1-0")
-        }else if Situation.strikeCounts == 2 && Situation.ballCounts == 2 && Situation.outCounts == 0{
-            countImageView.image = UIImage(named: "count2-2-0")
-        }else if Situation.strikeCounts == 0 && Situation.ballCounts == 3 && Situation.outCounts == 0{
-            countImageView.image = UIImage(named: "count3-0-0")
-        }else if Situation.strikeCounts == 1 && Situation.ballCounts == 3 && Situation.outCounts == 0{
-            countImageView.image = UIImage(named: "count3-1-0")
-        }else if Situation.strikeCounts == 2 && Situation.ballCounts == 3 && Situation.outCounts == 0{
-            countImageView.image = UIImage(named: "count3-2-0")
-        }else if Situation.strikeCounts == 0 && Situation.ballCounts == 0 && Situation.outCounts == 1{
-            countImageView.image = UIImage(named: "count0-0-1")
-        }else if Situation.strikeCounts == 1 && Situation.ballCounts == 0 && Situation.outCounts == 1{
-            countImageView.image = UIImage(named: "count0-1-1")
-        }else if Situation.strikeCounts == 2 && Situation.ballCounts == 0 && Situation.outCounts == 1{
-            countImageView.image = UIImage(named: "count0-2-1")
-        }else if Situation.strikeCounts == 0 && Situation.ballCounts == 1 && Situation.outCounts == 1{
-            countImageView.image = UIImage(named: "count1-0-1")
-        }else if Situation.strikeCounts == 1 && Situation.ballCounts == 1 && Situation.outCounts == 1{
-            countImageView.image = UIImage(named: "count1-1-1")
-        }else if Situation.strikeCounts == 2 && Situation.ballCounts == 1 && Situation.outCounts == 1{
-            countImageView.image = UIImage(named: "count1-2-1")
-        }else if Situation.strikeCounts == 0 && Situation.ballCounts == 2 && Situation.outCounts == 1{
-            countImageView.image = UIImage(named: "count2-0-1")
-        }else if Situation.strikeCounts == 1 && Situation.ballCounts == 2 && Situation.outCounts == 1{
-            countImageView.image = UIImage(named: "count2-1-1")
-        }else if Situation.strikeCounts == 2 && Situation.ballCounts == 2 && Situation.outCounts == 1{
-            countImageView.image = UIImage(named: "count2-2-1")
-        }else if Situation.strikeCounts == 0 && Situation.ballCounts == 3 && Situation.outCounts == 1{
-            countImageView.image = UIImage(named: "count3-0-1")
-        }else if Situation.strikeCounts == 1 && Situation.ballCounts == 3 && Situation.outCounts == 1{
-            countImageView.image = UIImage(named: "count3-1-1")
-        }else if Situation.strikeCounts == 2 && Situation.ballCounts == 3 && Situation.outCounts == 1{
-            countImageView.image = UIImage(named: "count3-2-1")
-        }else if Situation.strikeCounts == 0 && Situation.ballCounts == 0 && Situation.outCounts == 2{
-            countImageView.image = UIImage(named: "count0-0-2")
-        }else if Situation.strikeCounts == 1 && Situation.ballCounts == 0 && Situation.outCounts == 2{
-            countImageView.image = UIImage(named: "count0-1-2")
-        }else if Situation.strikeCounts == 2 && Situation.ballCounts == 0 && Situation.outCounts == 2{
-            countImageView.image = UIImage(named: "count0-2-2")
-        }else if Situation.strikeCounts == 0 && Situation.ballCounts == 1 && Situation.outCounts == 2{
-            countImageView.image = UIImage(named: "count1-0-2")
-        }else if Situation.strikeCounts == 1 && Situation.ballCounts == 1 && Situation.outCounts == 2{
-            countImageView.image = UIImage(named: "count1-1-2")
-        }else if Situation.strikeCounts == 2 && Situation.ballCounts == 1 && Situation.outCounts == 2{
-            countImageView.image = UIImage(named: "count1-2-2")
-        }else if Situation.strikeCounts == 0 && Situation.ballCounts == 2 && Situation.outCounts == 2{
-            countImageView.image = UIImage(named: "count2-0-2")
-        }else if Situation.strikeCounts == 1 && Situation.ballCounts == 2 && Situation.outCounts == 2{
-            countImageView.image = UIImage(named: "count2-1-2")
-        }else if Situation.strikeCounts == 2 && Situation.ballCounts == 2 && Situation.outCounts == 2{
-            countImageView.image = UIImage(named: "count2-2-2")
-        }else if Situation.strikeCounts == 0 && Situation.ballCounts == 3 && Situation.outCounts == 2{
-            countImageView.image = UIImage(named: "count3-0-2")
-        }else if Situation.strikeCounts == 1 && Situation.ballCounts == 3 && Situation.outCounts == 2{
-            countImageView.image = UIImage(named: "count3-1-2")
-        }else if Situation.strikeCounts == 2 && Situation.ballCounts == 3 && Situation.outCounts == 2{
-            countImageView.image = UIImage(named: "count3-2-2")
-        }
-    }
     
 }
+
 
