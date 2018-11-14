@@ -82,6 +82,13 @@ class GameViewController: UIViewController {
     let centerPlayerButton = UIButton()
     let rightPlayerButton = UIButton()
     
+    let pictherBackImageView = UIImageView()
+    let catcherBackImageView = UIImageView()
+    let firstBackImageView = UIImageView()
+    let secondBackImageView = UIImageView()
+    let thirdBackImageView = UIImageView()
+    let shortBackImageView = UIImageView()
+    
     let pitcherOrCatcherHitButton = UIButton()
     let firstHitButton = UIButton()
     let secondHitButton = UIButton()
@@ -99,6 +106,7 @@ class GameViewController: UIViewController {
     var countViewArray: [UIImageView] = []
     var baseViewArray: [UIView] = []
     var playerButtonArray: [UIButton] = []
+    var backImageViewArray: [UIImageView] = []
     var playerOriginArray: [CGPoint] = []
     var hitButtonArray: [UIButton] = []
     
@@ -114,6 +122,7 @@ class GameViewController: UIViewController {
         countViewArray = [ballOneImageView, ballTwoImageView, ballThreeImageView, strikeOneImageView, strikeTwoImageView, outOneImageView, outTwoImageView]
         baseViewArray = [firstBaseView, secondBaseView, thirdBaseView, homeBaseView]
         playerButtonArray = [pitcherPlayerButton, catcherPlayerButton, firstPlayerButton, secondPlayerButton, thirdPlayerButton, shortPlayerButton, leftPlayerButton, centerPlayerButton, rightPlayerButton]
+        backImageViewArray = [pictherBackImageView, catcherBackImageView, firstBackImageView, secondBackImageView, thirdBackImageView, shortBackImageView]
         hitButtonArray = [pitcherOrCatcherHitButton, firstHitButton, secondHitButton, thirdHitButton, shortHitButton, leftHitButton, centerHitButton, rightHitButton, leftIntermediateHitButton, rightIntermediateHitButton, leftOverHitButton, centerOverHitButton, rightOverHitButton]
         
         
@@ -141,48 +150,49 @@ class GameViewController: UIViewController {
     
     //Ohashi:ドラッグメソッド
     @objc func handlePitcherPan(sender: UIPanGestureRecognizer){
-        handlePan(sender: sender, throwToFirst: .pitcherGoroThrowToFirst, throwToSecond: .pitcherGorothrowToSecond, throwToThird: .pitcherGoroThrowToThird, throwToHome: .pitcherGoroThrowToHome)
+        handlePan(sender: sender, playerButton: pitcherPlayerButton, throwToFirst: .pitcherGoroThrowToFirst, throwToSecond: .pitcherGorothrowToSecond, throwToThird: .pitcherGoroThrowToThird, throwToHome: .pitcherGoroThrowToHome)
     }
     @objc func handleCatcherPan(sender: UIPanGestureRecognizer){
-        handlePan(sender: sender, throwToFirst: .catcherGoroThrowToFirst, throwToSecond: .catcherGoroThrowToSecond, throwToThird: .catcherGoroThrowToThird, throwToHome: .catcherGoroThrowToHome)
+        handlePan(sender: sender, playerButton: catcherPlayerButton, throwToFirst: .catcherGoroThrowToFirst, throwToSecond: .catcherGoroThrowToSecond, throwToThird: .catcherGoroThrowToThird, throwToHome: .catcherGoroThrowToHome)
     }
     @objc func handleFirstPan(sender: UIPanGestureRecognizer){
-        handlePan(sender: sender, throwToFirst: .firstGoroThrowToFirst , throwToSecond: .firstGoroThrowToSecond, throwToThird: .firstGoroThrowToThird, throwToHome: .firstGoroThrowToHome)
+        handlePan(sender: sender, playerButton: firstPlayerButton, throwToFirst: .firstGoroThrowToFirst , throwToSecond: .firstGoroThrowToSecond, throwToThird: .firstGoroThrowToThird, throwToHome: .firstGoroThrowToHome)
     }
     @objc func handleSecondPan(sender: UIPanGestureRecognizer){
-        handlePan(sender: sender, throwToFirst: .secondGoroThrowToFirst, throwToSecond: .secondGoroThrowToSecond, throwToThird: .secondGoroThrowToThird, throwToHome: .secondGoroThrowToHome)
+        handlePan(sender: sender, playerButton: secondPlayerButton, throwToFirst: .secondGoroThrowToFirst, throwToSecond: .secondGoroThrowToSecond, throwToThird: .secondGoroThrowToThird, throwToHome: .secondGoroThrowToHome)
     }
     @objc func handleThirdPan(sender: UIPanGestureRecognizer){
-        handlePan(sender: sender, throwToFirst: .thirdGoroThrowToFirst, throwToSecond: .thirdGoroThrowToSecond, throwToThird: .thirdGoroThrowToThird, throwToHome: .thirdGoroThrowToHome)
+        handlePan(sender: sender, playerButton: thirdPlayerButton, throwToFirst: .thirdGoroThrowToFirst, throwToSecond: .thirdGoroThrowToSecond, throwToThird: .thirdGoroThrowToThird, throwToHome: .thirdGoroThrowToHome)
     }
     @objc func handleShortPan(sender: UIPanGestureRecognizer){
-        handlePan(sender: sender, throwToFirst: .shortGoroThrowToFirst, throwToSecond: .shortGoroThrowToSecond, throwToThird: .shortGoroThrowToThird, throwToHome: .shortGoroThrowToHome)
+        handlePan(sender: sender, playerButton: shortPlayerButton, throwToFirst: .shortGoroThrowToFirst, throwToSecond: .shortGoroThrowToSecond, throwToThird: .shortGoroThrowToThird, throwToHome: .shortGoroThrowToHome)
     }
     
-    func handlePan(sender: UIPanGestureRecognizer, throwToFirst: ResultEnum, throwToSecond: ResultEnum, throwToThird: ResultEnum, throwToHome: ResultEnum){
+    func handlePan(sender: UIPanGestureRecognizer, playerButton: UIButton, throwToFirst: ResultEnum, throwToSecond: ResultEnum, throwToThird: ResultEnum, throwToHome: ResultEnum){
         let panView = sender.view!
         let translation = sender.translation(in: view)
         
         switch sender.state {
         case .began:
             panStartPoint = panView.center
+            playerButton.setImage(UIImage(named: "ball"), for: .normal)
             print(panStartPoint)
         case  .changed:
             panView.center = CGPoint(x: panView.center.x + translation.x, y: panView.center.y + translation.y)
             sender.setTranslation(CGPoint.zero, in: view)
             if panView.frame.intersects(baseViewArray[0].frame){
-                baseViewArray[0].backgroundColor = .red
+                baseViewArray[0].backgroundColor = .white
             }else if panView.frame.intersects(baseViewArray[1].frame){
                 if Situation.firstRunner != nil{
-                    baseViewArray[1].backgroundColor = .red
+                    baseViewArray[1].backgroundColor = .white
                 }
             }else if panView.frame.intersects(baseViewArray[2].frame){
                 if Situation.secondRunner != nil{
-                    baseViewArray[2].backgroundColor = .red
+                    baseViewArray[2].backgroundColor = .white
                 }
             }else if panView.frame.intersects(baseViewArray[3].frame){
                 if Situation.thirdRunner != nil{
-                    baseViewArray[3].backgroundColor = .red
+                    baseViewArray[3].backgroundColor = .white
                 }
             }else{
                 baseViewArray[0].backgroundColor = .clear
@@ -198,8 +208,10 @@ class GameViewController: UIViewController {
                 }, completion:{ _ in
                     panView.center = self.panStartPoint
                     panView.alpha = 1
+                    playerButton.setImage(UIImage(named: "player"), for: .normal)
                 })
                 Situation.result = throwToFirst
+                
                 modalAppear()
             }else if panView.frame.intersects(baseViewArray[1].frame){
                 if Situation.firstRunner != nil{
@@ -209,13 +221,18 @@ class GameViewController: UIViewController {
                     }, completion:{ _ in
                         panView.center = self.panStartPoint
                         panView.alpha = 1
+                        playerButton.setImage(UIImage(named: "player"), for: .normal)
                     })
                     Situation.result = throwToSecond
+                    
                     modalAppear()
                 }else{
                     UIView.animate(withDuration: 0.5, animations: {
                         panView.center = self.panStartPoint
+                    }, completion:{ _ in
+                        playerButton.setImage(UIImage(named: "player"), for: .normal)
                     })
+                    
                 }
             }else if panView.frame.intersects(baseViewArray[2].frame){
                 if Situation.secondRunner != nil{
@@ -226,13 +243,18 @@ class GameViewController: UIViewController {
                     }, completion:{ _ in
                         panView.center = self.panStartPoint
                         panView.alpha = 1
+                        playerButton.setImage(UIImage(named: "player"), for: .normal)
                     })
                     Situation.result = throwToThird
+                    
                     modalAppear()
                 }else {
                     UIView.animate(withDuration: 0.5, animations: {
                         panView.center = self.panStartPoint
+                    }, completion: { _ in
+                        playerButton.setImage(UIImage(named: "player"), for: .normal)
                     })
+                    
                 }
                 
             }else if panView.frame.intersects(baseViewArray[3].frame){
@@ -244,18 +266,23 @@ class GameViewController: UIViewController {
                     }, completion:{ _ in
                         panView.center = self.panStartPoint
                         panView.alpha = 1
+                        playerButton.setImage(UIImage(named: "player"), for: .normal)
                     })
                     Situation.result = throwToHome
                     modalAppear()
                 }else{
                     UIView.animate(withDuration: 0.5, animations: {
                         panView.center = self.panStartPoint
+                    }, completion: { _ in
+                        playerButton.setImage(UIImage(named: "player"), for: .normal)
                     })
                 }
                 
             }else{
                 UIView.animate(withDuration: 0.5, animations: {
                     panView.center = self.panStartPoint
+                }, completion: { _ in
+                    playerButton.setImage(UIImage(named: "player"), for: .normal)
                 })
             }
         default:
@@ -367,6 +394,28 @@ class GameViewController: UIViewController {
             Situation.result = .pitcherOrCatcherHit
         case 102:
             Situation.result = .firstHit
+        case 103:
+            Situation.result = .secondHit
+        case 104:
+            Situation.result = .thirdHit
+        case 105:
+            Situation.result = .shortHit
+        case 106:
+            Situation.result = .leftSingleHit
+        case 107:
+            Situation.result = .centerSingleHit
+        case 108:
+            Situation.result = .rightSingleHit
+        case 109:
+            Situation.result = .leftOverHit
+        case 110:
+            Situation.result = .centerOverHit
+        case 111:
+            Situation.result = .rightOverHit
+        case 112:
+            Situation.result = .leftIntermediateHit
+        case 113:
+            Situation.result = .rightIntermediateHit
         default:
             break
         }
@@ -441,6 +490,7 @@ class GameViewController: UIViewController {
             //ohashi: 各ボタンサイズ設定
             self.view.addConstraints([NSLayoutConstraint(item: value, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.1, constant: 0)])
             self.view.addConstraints([NSLayoutConstraint(item: value, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 0.07, constant: 0)])
+            self.view.bringSubviewToFront(value)
         }
         //Ohashi:内野手にだけドラッグつける
         let pitcherPan = UIPanGestureRecognizer(target: self, action: #selector(self.handlePitcherPan(sender:)))
@@ -456,6 +506,16 @@ class GameViewController: UIViewController {
         let shortPan = UIPanGestureRecognizer(target: self, action: #selector(self.handleShortPan(sender:)))
         shortPlayerButton.addGestureRecognizer(shortPan)
         
+        //Ohashi:内野手の後ろの画像
+        backImageViewArray.forEach{
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.image = UIImage(named: "player")
+            self.view.addSubview($0)
+            self.view.addConstraints([NSLayoutConstraint(item: $0, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.1, constant: 0)])
+            self.view.addConstraints([NSLayoutConstraint(item: $0, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 0.07, constant: 0)])
+        }
+        
+        //Ohashi:ヒットボタン
         for (index, value) in hitButtonArray.enumerated(){
             value.translatesAutoresizingMaskIntoConstraints = false
             if index <= 4{
@@ -504,6 +564,25 @@ class GameViewController: UIViewController {
         //Ohashi:ライト
         self.view.addConstraints([NSLayoutConstraint(item: playerButtonArray[8], attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 150)])
         self.view.addConstraints([NSLayoutConstraint(item: playerButtonArray[8], attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: -210)])
+        
+        //Ohashi:ピッチャーバックイメージ
+        self.view.addConstraints([NSLayoutConstraint(item: backImageViewArray[0], attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0)])
+        self.view.addConstraints([NSLayoutConstraint(item: backImageViewArray[0], attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 50)])
+        //Ohashi:キャッチャーバックイメージ
+        self.view.addConstraints([NSLayoutConstraint(item: backImageViewArray[1], attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0)])
+        self.view.addConstraints([NSLayoutConstraint(item: backImageViewArray[1], attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 260)])
+        //Ohashi:ファーストバックイメージ
+        self.view.addConstraints([NSLayoutConstraint(item: backImageViewArray[2], attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 150)])
+        self.view.addConstraints([NSLayoutConstraint(item: backImageViewArray[2], attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 0)])
+        //Ohashi:セカンドバックイメージ
+        self.view.addConstraints([NSLayoutConstraint(item: backImageViewArray[3], attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 90)])
+        self.view.addConstraints([NSLayoutConstraint(item: backImageViewArray[3], attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: -100)])
+        //Ohashi:サードバックイメージ
+        self.view.addConstraints([NSLayoutConstraint(item: backImageViewArray[4], attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: -150)])
+        self.view.addConstraints([NSLayoutConstraint(item: backImageViewArray[4], attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 0)])
+        //Ohashi:ショートバックイメージ
+        self.view.addConstraints([NSLayoutConstraint(item: backImageViewArray[5], attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: -90)])
+        self.view.addConstraints([NSLayoutConstraint(item: backImageViewArray[5], attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: -100)])
         //Ohashi:ファーストベース
         self.view.addConstraints([NSLayoutConstraint(item: baseViewArray[0], attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 140)])
         self.view.addConstraints([NSLayoutConstraint(item: baseViewArray[0], attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 60)])
@@ -557,21 +636,21 @@ class GameViewController: UIViewController {
         self.view.addConstraints([NSLayoutConstraint(item: hitButtonArray[12], attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 160)])
         self.view.addConstraints([NSLayoutConstraint(item: hitButtonArray[12], attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: -270)])
         //Ohashi:ホームボタン
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[home]", options: .alignAllTop, metrics: nil, views: ["home": homeButton]))
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[count]-50-[home]-10-|", options: .alignAllLeft, metrics: nil, views: ["home": homeButton, "count": countImageView]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[home]-5-|", options: .alignAllTop, metrics: nil, views: ["home": homeButton]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[count]-50-[home]-10-|", options: .alignAllRight, metrics: nil, views: ["home": homeButton, "count": countImageView]))
         //Ohashi:カウントボタン
-        self.view.addConstraints([NSLayoutConstraint(item: takeALookButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 140)])
+        self.view.addConstraints([NSLayoutConstraint(item: takeALookButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: -140)])
         self.view.addConstraints([NSLayoutConstraint(item: takeALookButton, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 126)])
-        self.view.addConstraints([NSLayoutConstraint(item: strikeButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 140)])
+        self.view.addConstraints([NSLayoutConstraint(item: strikeButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: -140)])
         self.view.addConstraints([NSLayoutConstraint(item: strikeButton, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 175)])
-        self.view.addConstraints([NSLayoutConstraint(item: swingButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 152)])
+        self.view.addConstraints([NSLayoutConstraint(item: swingButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: -152)])
         self.view.addConstraints([NSLayoutConstraint(item: swingButton, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 223)])
-        self.view.addConstraints([NSLayoutConstraint(item: faulButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 143)])
+        self.view.addConstraints([NSLayoutConstraint(item: faulButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: -143)])
         self.view.addConstraints([NSLayoutConstraint(item: faulButton, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 270)])
         //Ohashi:カウントイメージ
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-14-[one]-5-[two]-5-[three]", options: .alignAllTop, metrics: nil, views: ["one": ballOneImageView, "two": ballTwoImageView, "three": ballThreeImageView]))
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-14-[one]-5-[two]", options: .alignAllTop, metrics: nil, views: ["one": strikeOneImageView, "two": strikeTwoImageView]))
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-14-[one]-5-[two]", options: .alignAllTop, metrics: nil, views: ["one": outOneImageView, "two": outTwoImageView]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[one]-5-[two]-5-[three]-14-|", options: .alignAllTop, metrics: nil, views: ["one": ballOneImageView, "two": ballTwoImageView, "three": ballThreeImageView]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[one]-5-[two]", options: .alignAllTop, metrics: nil, views: ["one": strikeOneImageView, "two": strikeTwoImageView]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[one]-5-[two]", options: .alignAllTop, metrics: nil, views: ["one": outOneImageView, "two": outTwoImageView]))
         self.view.addConstraints([NSLayoutConstraint(item: ballOneImageView, attribute: .top, relatedBy: .equal, toItem: countImageView, attribute: .top, multiplier: 1, constant: 5)])
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[ball]-5-[strike]-5-[out]", options: .alignAllLeft, metrics: nil, views: ["ball": ballOneImageView, "strike": strikeOneImageView, "out": outOneImageView]))
     }

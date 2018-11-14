@@ -86,6 +86,15 @@ class TopPlayerSettingViewController: UIViewController {
             self.view.addSubview(value)
         }
         
+        positionPickerView1.backgroundColor = .red
+        positionPickerView1.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(positionPickerView1)
+        positionPickerView1.textStore = positionPickerView1.data[0]
+        positionPickerView1.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -30).isActive = true
+        positionPickerView1.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0).isActive = true
+        positionPickerView1.heightAnchor.constraint(equalTo: orderLabel1.heightAnchor).isActive = true
+        positionPickerView1.widthAnchor.constraint(equalTo: orderLabel1.widthAnchor).isActive = true
+        
         //Ohashi:以下制約
         let objects = ["team": teamNameTextField, "label1": orderLabel1, "label2": orderLabel2, "label3": orderLabel3, "label4": orderLabel4, "label5": orderLabel5, "label6": orderLabel6, "label7": orderLabel7, "label8": orderLabel8, "label9": orderLabel9, "name1": playerName1, "name2": playerName2, "name3": playerName3, "name4": playerName4, "name5": playerName5, "name6": playerName6, "name7": playerName7, "name8": playerName8, "name9": playerName9, "number1": uniformNumber1, "number2": uniformNumber2, "number3": uniformNumber3, "number4": uniformNumber4, "number5": uniformNumber5, "number6": uniformNumber6, "number7": uniformNumber7, "number8": uniformNumber8, "number9": uniformNumber9 ]
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[label1]-8-[name1]-8-[number1]", options: .alignAllTop, metrics: nil, views: objects))
@@ -96,107 +105,4 @@ class TopPlayerSettingViewController: UIViewController {
     
 }
 
-
-class PositionPickerKeyboard: UIControl {
-    
-    var data: [String] = ["投", "捕", "一", "二", "三", "遊", "左", "中", "右", "指"]
-    var textStore: String!
-    
-   
-    override init(frame: CGRect) {
-        super.init(frame: CGRect.zero)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTap(sender:)))
-        self.addGestureRecognizer(tap)
-    }
-    
-    override func draw(_ rect: CGRect) {
-        UIColor.black.set()
-        UIRectFrame(rect)
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .center
-        let attrs: [NSAttributedString.Key: Any] = [NSAttributedString.Key(rawValue: NSAttributedString.Key.font.rawValue): UIFont.systemFont(ofSize: 17), NSAttributedString.Key(rawValue: NSAttributedString.Key.paragraphStyle.rawValue): paragraphStyle]
-        NSString(string: textStore).draw(in: rect, withAttributes: attrs)
-        
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        addTarget(self, action: #selector(PositionPickerKeyboard.didTap(sender:)), for: .touchUpInside)
-    }
-    
-    @objc func didTap(sender: PositionPickerKeyboard) {
-        becomeFirstResponder()
-    }
-    
-    @objc func didTapDone(sender: UIButton) {
-        resignFirstResponder()
-    }
-    
-    override var canBecomeFirstResponder: Bool {
-        return true
-    }
-    
-    override var inputView: UIView? {
-        let pickerView = UIPickerView()
-        pickerView.delegate = self
-        let row = data.index(of: textStore) ?? -1
-        pickerView.selectRow(row, inComponent: 0, animated: false)
-        return pickerView
-    }
-    
-    override var inputAccessoryView: UIView? {
-        let button = UIButton(type: .system)
-        button.setTitle("Done", for: .normal)
-        button.addTarget(self, action: #selector(self.didTapDone(sender:)), for: .touchUpInside)
-        button.sizeToFit()
-        
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: 44))
-        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        view.backgroundColor = .groupTableViewBackground
-        
-        button.frame.origin.x = 16
-        button.center.y = view.center.y
-        button.autoresizingMask = [.flexibleRightMargin, .flexibleBottomMargin, .flexibleTopMargin]
-        view.addSubview(button)
-        
-        return view
-    }
-    
-}
-extension PositionPickerKeyboard: UIKeyInput {
-    // It is not necessary to store text in this situation.
-    var hasText: Bool {
-        return !textStore.isEmpty
-    }
-    
-    func insertText(_ text: String) {
-        textStore += text
-        setNeedsDisplay()
-    }
-    
-    func deleteBackward() {
-        textStore.remove(at: textStore.characters.index(before: textStore.characters.endIndex))
-        setNeedsDisplay()
-    }
-}
-
-extension PositionPickerKeyboard: UIPickerViewDelegate, UIPickerViewDataSource {
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return data.count
-    }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return data[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        textStore = data[row]
-        setNeedsDisplay()
-    }
-}
 

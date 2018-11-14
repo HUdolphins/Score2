@@ -3572,6 +3572,8 @@ class ResultViewController: UIViewController {
     }
     
 //Ohashi:*※※*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+    
+    //Ohashi:TODO:ファースト前バントなんかにしたりして
     func childOptionTwo() -> (resultTitle: String,resultString: String, resultImage: UIImage){
         switch Situation.result!{
             
