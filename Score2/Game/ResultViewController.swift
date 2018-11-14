@@ -128,9 +128,8 @@ class ResultViewController: UIViewController {
         default:
             batterOnBaseSingle()
         }
-        let gameViewController = GameViewController()
-        gameViewController.setCount()
-        gameViewController.setRunner()
+        let gameSuperViewController = self.presentingViewController as! GameSuperViewController
+        gameSuperViewController.reloadSituation()
         self.dismiss(animated: true, completion: nil)
     }
     

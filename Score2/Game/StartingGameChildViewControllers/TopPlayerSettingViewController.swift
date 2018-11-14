@@ -38,6 +38,9 @@ class TopPlayerSettingViewController: UIViewController {
     var playerName9 = UITextField()
     
 //    var positionPickerView = UIPickerView()
+    var positionPickerView1 = PositionPickerKeyboard()
+    
+    
     
     var uniformNumber1 = UITextField()
     var uniformNumber2 = UITextField()
@@ -92,3 +95,108 @@ class TopPlayerSettingViewController: UIViewController {
     }
     
 }
+
+
+class PositionPickerKeyboard: UIControl {
+    
+    var data: [String] = ["投", "捕", "一", "二", "三", "遊", "左", "中", "右", "指"]
+    var textStore: String!
+    
+   
+    override init(frame: CGRect) {
+        super.init(frame: CGRect.zero)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTap(sender:)))
+        self.addGestureRecognizer(tap)
+    }
+    
+    override func draw(_ rect: CGRect) {
+        UIColor.black.set()
+        UIRectFrame(rect)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        let attrs: [NSAttributedString.Key: Any] = [NSAttributedString.Key(rawValue: NSAttributedString.Key.font.rawValue): UIFont.systemFont(ofSize: 17), NSAttributedString.Key(rawValue: NSAttributedString.Key.paragraphStyle.rawValue): paragraphStyle]
+        NSString(string: textStore).draw(in: rect, withAttributes: attrs)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        addTarget(self, action: #selector(PositionPickerKeyboard.didTap(sender:)), for: .touchUpInside)
+    }
+    
+    @objc func didTap(sender: PositionPickerKeyboard) {
+        becomeFirstResponder()
+    }
+    
+    @objc func didTapDone(sender: UIButton) {
+        resignFirstResponder()
+    }
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    override var inputView: UIView? {
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        let row = data.index(of: textStore) ?? -1
+        pickerView.selectRow(row, inComponent: 0, animated: false)
+        return pickerView
+    }
+    
+    override var inputAccessoryView: UIView? {
+        let button = UIButton(type: .system)
+        button.setTitle("Done", for: .normal)
+        button.addTarget(self, action: #selector(self.didTapDone(sender:)), for: .touchUpInside)
+        button.sizeToFit()
+        
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: 44))
+        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        view.backgroundColor = .groupTableViewBackground
+        
+        button.frame.origin.x = 16
+        button.center.y = view.center.y
+        button.autoresizingMask = [.flexibleRightMargin, .flexibleBottomMargin, .flexibleTopMargin]
+        view.addSubview(button)
+        
+        return view
+    }
+    
+}
+extension PositionPickerKeyboard: UIKeyInput {
+    // It is not necessary to store text in this situation.
+    var hasText: Bool {
+        return !textStore.isEmpty
+    }
+    
+    func insertText(_ text: String) {
+        textStore += text
+        setNeedsDisplay()
+    }
+    
+    func deleteBackward() {
+        textStore.remove(at: textStore.characters.index(before: textStore.characters.endIndex))
+        setNeedsDisplay()
+    }
+}
+
+extension PositionPickerKeyboard: UIPickerViewDelegate, UIPickerViewDataSource {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return data.count
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return data[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        textStore = data[row]
+        setNeedsDisplay()
+    }
+}
+

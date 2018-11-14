@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		871F205E2192FBA3001B2983 /* ReadingGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871F205D2192FBA3001B2983 /* ReadingGameViewController.swift */; };
 		873B4213218E652200D42246 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873B4212218E652100D42246 /* Const.swift */; };
+		8790C1BE219A4DF2006B9FCD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8790C1BD219A4DF2006B9FCD /* LoginViewController.swift */; };
+		8790C1C0219A4FFF006B9FCD /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8790C1BF219A4FFF006B9FCD /* CreateAccountViewController.swift */; };
+		8790C1C2219A5B82006B9FCD /* TrialGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8790C1C1219A5B82006B9FCD /* TrialGameViewController.swift */; };
 		879D33F621913FDE00E0244E /* HomeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879D33F521913FDE00E0244E /* HomeViewCell.swift */; };
 		87B6DFDA2189A4120062F959 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B6DFD92189A4120062F959 /* AppDelegate.swift */; };
 		87B6DFDC2189A4120062F959 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B6DFDB2189A4120062F959 /* GameViewController.swift */; };
@@ -46,6 +49,10 @@
 /* Begin PBXFileReference section */
 		871F205D2192FBA3001B2983 /* ReadingGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingGameViewController.swift; sourceTree = "<group>"; };
 		873B4212218E652100D42246 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		8790C1BD219A4DF2006B9FCD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8790C1BF219A4FFF006B9FCD /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		8790C1C1219A5B82006B9FCD /* TrialGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrialGameViewController.swift; sourceTree = "<group>"; };
+		8790C1C3219A7A20006B9FCD /* Score2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Score2.entitlements; sourceTree = "<group>"; };
 		879D33F521913FDE00E0244E /* HomeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCell.swift; sourceTree = "<group>"; };
 		87B6DFD62189A4120062F959 /* Score2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Score2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87B6DFD92189A4120062F959 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +111,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8790C1BC219A4DB4006B9FCD /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8790C1BD219A4DF2006B9FCD /* LoginViewController.swift */,
+				8790C1BF219A4FFF006B9FCD /* CreateAccountViewController.swift */,
+				8790C1C1219A5B82006B9FCD /* TrialGameViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		87B6DFCD2189A4120062F959 = {
 			isa = PBXGroup;
 			children = (
@@ -125,8 +142,10 @@
 		87B6DFD82189A4120062F959 /* Score2 */ = {
 			isa = PBXGroup;
 			children = (
+				8790C1C3219A7A20006B9FCD /* Score2.entitlements */,
 				87B6DFD92189A4120062F959 /* AppDelegate.swift */,
 				87B6DFEB2189A4B70062F959 /* RootViewController.swift */,
+				8790C1BC219A4DB4006B9FCD /* Login */,
 				87B6DFF62189AC790062F959 /* Account */,
 				87B6DFF02189AB670062F959 /* Game */,
 				87B6DFEF2189AB420062F959 /* Home */,
@@ -232,6 +251,7 @@
 				87B6DFD32189A4120062F959 /* Frameworks */,
 				87B6DFD42189A4120062F959 /* Resources */,
 				0DCEA072265082154E189B7E /* [CP] Embed Pods Frameworks */,
+				41B25EF3EA7767F7EA48DF55 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -254,6 +274,11 @@
 				TargetAttributes = {
 					87B6DFD52189A4120062F959 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -297,27 +322,55 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Score2/Pods-Score2-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/ESTabBarController/ESTabBarController.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/PageMenu/PageMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESTabBarController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PageMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Score2/Pods-Score2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		41B25EF3EA7767F7EA48DF55 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Score2/Pods-Score2-resources.sh",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Score2/Pods-Score2-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CD45D0631E59D30C86C25E92 /* [CP] Check Pods Manifest.lock */ = {
@@ -355,14 +408,17 @@
 				87B6DFFE218AA2B20062F959 /* FIRPlayer.swift in Sources */,
 				873B4213218E652200D42246 /* Const.swift in Sources */,
 				879D33F621913FDE00E0244E /* HomeViewCell.swift in Sources */,
+				8790C1C0219A4FFF006B9FCD /* CreateAccountViewController.swift in Sources */,
 				87B6DFDC2189A4120062F959 /* GameViewController.swift in Sources */,
 				87B6E013218B3ACE0062F959 /* ResultChildViewController4.swift in Sources */,
+				8790C1C2219A5B82006B9FCD /* TrialGameViewController.swift in Sources */,
 				871F205E2192FBA3001B2983 /* ReadingGameViewController.swift in Sources */,
 				87B6DFDA2189A4120062F959 /* AppDelegate.swift in Sources */,
 				87B6E020218BC5DD0062F959 /* TopPlayerSettingViewController.swift in Sources */,
 				87B6E008218B03E40062F959 /* BottomTeamViewController.swift in Sources */,
 				87B6E022218BC6050062F959 /* BottomPlayerSettingViewController.swift in Sources */,
 				87B6DFEC2189A4B70062F959 /* RootViewController.swift in Sources */,
+				8790C1BE219A4DF2006B9FCD /* LoginViewController.swift in Sources */,
 				87B6E002218AFD940062F959 /* GameSuperViewController.swift in Sources */,
 				87B6DFEE2189AB280062F959 /* HomeViewController.swift in Sources */,
 				87B6E00D218B3A890062F959 /* ResultChildViewController1.swift in Sources */,
@@ -520,6 +576,7 @@
 			baseConfigurationReference = ACBD0D8F2150B04EBA6FDD1A /* Pods-Score2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Score2/Score2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KB8AR825XN;
 				INFOPLIST_FILE = Score2/Info.plist;
@@ -539,6 +596,7 @@
 			baseConfigurationReference = 9E5EE9C915613CE933F9A9CF /* Pods-Score2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Score2/Score2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KB8AR825XN;
 				INFOPLIST_FILE = Score2/Info.plist;

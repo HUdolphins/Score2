@@ -418,8 +418,8 @@ class GameViewController: UIViewController {
         self.view.addConstraints([NSLayoutConstraint(item: faulButton, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 0.07, constant: 0)])
         self.view.addConstraints([NSLayoutConstraint(item: strikeButton, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.11, constant: 0)])
         self.view.addConstraints([NSLayoutConstraint(item: takeALookButton, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.11, constant: 0)])
-        self.view.addConstraints([NSLayoutConstraint(item: swingButton, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.16, constant: 0)])
-        self.view.addConstraints([NSLayoutConstraint(item: faulButton, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.14, constant: 0)])
+        self.view.addConstraints([NSLayoutConstraint(item: swingButton, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.17, constant: 0)])
+        self.view.addConstraints([NSLayoutConstraint(item: faulButton, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 0.13, constant: 0)])
         
         baseViewArray.forEach{
             //Ohashi:ベースのautolayout適用，viewに追加
@@ -458,7 +458,12 @@ class GameViewController: UIViewController {
         
         for (index, value) in hitButtonArray.enumerated(){
             value.translatesAutoresizingMaskIntoConstraints = false
-            value.setImage(UIImage(named: "hit"), for: .normal)
+            if index <= 4{
+                value.setImage(UIImage(named: "whiteHit"), for: .normal)
+            }else{
+                value.setImage(UIImage(named: "hit"), for: .normal)
+            }
+            
             value.tag = index + 101
             value.addTarget(self, action: #selector(self.pushedHitButton(sender:)), for: .touchUpInside)
             self.view.addSubview(value)
@@ -555,13 +560,13 @@ class GameViewController: UIViewController {
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[home]", options: .alignAllTop, metrics: nil, views: ["home": homeButton]))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[count]-50-[home]-10-|", options: .alignAllLeft, metrics: nil, views: ["home": homeButton, "count": countImageView]))
         //Ohashi:カウントボタン
-        self.view.addConstraints([NSLayoutConstraint(item: strikeButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 140)])
-        self.view.addConstraints([NSLayoutConstraint(item: strikeButton, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 126)])
         self.view.addConstraints([NSLayoutConstraint(item: takeALookButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 140)])
-        self.view.addConstraints([NSLayoutConstraint(item: takeALookButton, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 175)])
-        self.view.addConstraints([NSLayoutConstraint(item: swingButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 155)])
+        self.view.addConstraints([NSLayoutConstraint(item: takeALookButton, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 126)])
+        self.view.addConstraints([NSLayoutConstraint(item: strikeButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 140)])
+        self.view.addConstraints([NSLayoutConstraint(item: strikeButton, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 175)])
+        self.view.addConstraints([NSLayoutConstraint(item: swingButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 152)])
         self.view.addConstraints([NSLayoutConstraint(item: swingButton, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 223)])
-        self.view.addConstraints([NSLayoutConstraint(item: faulButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 140)])
+        self.view.addConstraints([NSLayoutConstraint(item: faulButton, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 143)])
         self.view.addConstraints([NSLayoutConstraint(item: faulButton, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 270)])
         //Ohashi:カウントイメージ
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-14-[one]-5-[two]-5-[three]", options: .alignAllTop, metrics: nil, views: ["one": ballOneImageView, "two": ballTwoImageView, "three": ballThreeImageView]))
@@ -577,49 +582,6 @@ class GameViewController: UIViewController {
         resultViewController.transitioningDelegate = self
         self.present(resultViewController, animated: true, completion: nil)
     }
-    
-    func setCount(){
-        if Situation.ballCounts == 0{
-            ballOneImageView.alpha = 0
-            ballTwoImageView.alpha = 0
-            ballThreeImageView.alpha = 0
-        }
-        if Situation.strikeCounts == 0{
-            strikeOneImageView.alpha = 0
-            strikeTwoImageView.alpha = 0
-        }
-        if Situation.outCounts == 0{
-            outOneImageView.alpha = 0
-            outTwoImageView.alpha = 0
-        }else if Situation.outCounts == 1{
-            outOneImageView.alpha = 1
-            outTwoImageView.alpha = 0
-        }else{
-            outOneImageView.alpha = 1
-            outTwoImageView.alpha = 1
-        }
-    }
-    
-    func setRunner(){
-        if Situation.firstRunner == nil && Situation.secondRunner == nil && Situation.thirdRunner == nil{
-            backgroundImageView.image = UIImage(named: "base0-0-0")
-        }else if Situation.firstRunner != nil && Situation.secondRunner == nil && Situation.thirdRunner == nil{
-            backgroundImageView.image = UIImage(named: "base1-0-0")
-        }else if Situation.firstRunner == nil && Situation.secondRunner != nil && Situation.thirdRunner == nil{
-            backgroundImageView.image = UIImage(named: "base0-1-0")
-        }else if Situation.firstRunner == nil && Situation.secondRunner == nil && Situation.thirdRunner != nil{
-            backgroundImageView.image = UIImage(named: "base0-0-1")
-        }else if Situation.firstRunner != nil && Situation.secondRunner != nil && Situation.thirdRunner == nil{
-            backgroundImageView.image = UIImage(named: "base1-1-0")
-        }else if Situation.firstRunner != nil && Situation.secondRunner == nil && Situation.thirdRunner != nil{
-            backgroundImageView.image = UIImage(named: "base1-0-1")
-        }else if Situation.firstRunner == nil && Situation.secondRunner != nil && Situation.thirdRunner != nil{
-            backgroundImageView.image = UIImage(named: "base0-1-1")
-        }else if Situation.firstRunner != nil && Situation.secondRunner != nil && Situation.thirdRunner != nil{
-            backgroundImageView.image = UIImage(named: "base1-1-1")
-        }
-    }
-    
     
 }
 

@@ -14,4 +14,8 @@ target 'Score2' do
   pod 'Firebase/Database'
   pod 'SVProgressHUD','2.2.5'
   pod 'PageMenu'
+  pod 'FBSDKLoginKit'
+  pod 'TwitterKit'
+    
+
 end

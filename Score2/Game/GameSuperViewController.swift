@@ -11,6 +11,11 @@ import ESTabBarController
 
 class GameSuperViewController: UIViewController {
 
+    let gameViewController = GameViewController()
+    let topTeamViewController = TopTeamViewController()
+    let bottomTeamViewController = BottomTeamViewController()
+    let gameSettingViewController = GameSettingViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,10 +36,7 @@ class GameSuperViewController: UIViewController {
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([tabBarView.topAnchor.constraint(equalTo: safeArea.topAnchor), tabBarView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor), tabBarView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor), tabBarView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)])
         tabBarController.didMove(toParent: self)
-        let gameViewController = GameViewController()
-        let topTeamViewController = TopTeamViewController()
-        let bottomTeamViewController = BottomTeamViewController()
-        let gameSettingViewController = GameSettingViewController()
+       
         
         tabBarController.setView(gameViewController, at: 0)
         tabBarController.setView(topTeamViewController, at: 2)
@@ -51,7 +53,47 @@ class GameSuperViewController: UIViewController {
             self.present(videoViewController, animated: true, completion: nil)
         }, at: 1)
         
+    }
+    
+    func reloadSituation(){
         
+        if Situation.ballCounts == 0{
+            gameViewController.ballOneImageView.alpha = 0
+            gameViewController.ballTwoImageView.alpha = 0
+            gameViewController.ballThreeImageView.alpha = 0
+        }
+        if Situation.strikeCounts == 0{
+            gameViewController.strikeOneImageView.alpha = 0
+            gameViewController.strikeTwoImageView.alpha = 0
+        }
+        if Situation.outCounts == 0{
+            gameViewController.outOneImageView.alpha = 0
+            gameViewController.outTwoImageView.alpha = 0
+        }else if Situation.outCounts == 1{
+            gameViewController.outOneImageView.alpha = 1
+            gameViewController.outTwoImageView.alpha = 0
+        }else{
+            gameViewController.outOneImageView.alpha = 1
+            gameViewController.outTwoImageView.alpha = 1
+        }
+        
+        if Situation.firstRunner == nil && Situation.secondRunner == nil && Situation.thirdRunner == nil{
+            gameViewController.backgroundImageView.image = UIImage(named: "base0-0-0")
+        }else if Situation.firstRunner != nil && Situation.secondRunner == nil && Situation.thirdRunner == nil{
+            gameViewController.backgroundImageView.image = UIImage(named: "base1-0-0")
+        }else if Situation.firstRunner == nil && Situation.secondRunner != nil && Situation.thirdRunner == nil{
+            gameViewController.backgroundImageView.image = UIImage(named: "base0-1-0")
+        }else if Situation.firstRunner == nil && Situation.secondRunner == nil && Situation.thirdRunner != nil{
+            gameViewController.backgroundImageView.image = UIImage(named: "base0-0-1")
+        }else if Situation.firstRunner != nil && Situation.secondRunner != nil && Situation.thirdRunner == nil{
+            gameViewController.backgroundImageView.image = UIImage(named: "base1-1-0")
+        }else if Situation.firstRunner != nil && Situation.secondRunner == nil && Situation.thirdRunner != nil{
+            gameViewController.backgroundImageView.image = UIImage(named: "base1-0-1")
+        }else if Situation.firstRunner == nil && Situation.secondRunner != nil && Situation.thirdRunner != nil{
+            gameViewController.backgroundImageView.image = UIImage(named: "base0-1-1")
+        }else if Situation.firstRunner != nil && Situation.secondRunner != nil && Situation.thirdRunner != nil{
+            gameViewController.backgroundImageView.image = UIImage(named: "base1-1-1")
+        }
     }
 
 }

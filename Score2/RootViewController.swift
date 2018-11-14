@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 import ESTabBarController
 
 class RootViewController: UIViewController {
@@ -16,6 +17,17 @@ class RootViewController: UIViewController {
 
         setupTab()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
+//        if Auth.auth().currentUser == nil {
+//            let createAccountViewController = CreateAccountViewController()
+//            self.present(createAccountViewController, animated: true, completion: nil)
+//        }
+    }
+
     
     func setupTab(){
         let tabBarController: ESTabBarController = ESTabBarController(tabIconNames: ["home", "game", "account"])
