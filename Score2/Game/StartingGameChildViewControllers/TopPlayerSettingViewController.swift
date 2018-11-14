@@ -10,6 +10,8 @@ import UIKit
 
 class TopPlayerSettingViewController: UIViewController {
 
+    var beforePosition: Int!
+    var afterPosition: Int!
     var teamNameTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -39,7 +41,14 @@ class TopPlayerSettingViewController: UIViewController {
     
 //    var positionPickerView = UIPickerView()
     var positionPickerView1 = PositionPickerKeyboard()
-    
+    var positionPickerView2 = PositionPickerKeyboard()
+    var positionPickerView3 = PositionPickerKeyboard()
+    var positionPickerView4 = PositionPickerKeyboard()
+    var positionPickerView5 = PositionPickerKeyboard()
+    var positionPickerView6 = PositionPickerKeyboard()
+    var positionPickerView7 = PositionPickerKeyboard()
+    var positionPickerView8 = PositionPickerKeyboard()
+    var positionPickerView9 = PositionPickerKeyboard()
     
     
     var uniformNumber1 = UITextField()
@@ -54,6 +63,7 @@ class TopPlayerSettingViewController: UIViewController {
     
     var orderLabels: [UILabel] = []
     var playerNames: [UITextField] = []
+    var positionArray: [PositionPickerKeyboard] = []
     var uniformNumbers: [UITextField] = []
     
     override func viewDidLoad() {
@@ -64,6 +74,7 @@ class TopPlayerSettingViewController: UIViewController {
     func setupView(){
         orderLabels = [orderLabel1, orderLabel2, orderLabel3, orderLabel4, orderLabel5, orderLabel6, orderLabel7, orderLabel8, orderLabel9]
         playerNames = [playerName1, playerName2, playerName3, playerName4, playerName5, playerName6, playerName7, playerName8, playerName9]
+        positionArray = [positionPickerView1, positionPickerView2, positionPickerView3, positionPickerView4, positionPickerView5, positionPickerView6, positionPickerView7, positionPickerView8, positionPickerView9]
         uniformNumbers = [uniformNumber1, uniformNumber2, uniformNumber3, uniformNumber4, uniformNumber5, uniformNumber6, uniformNumber7, uniformNumber8, uniformNumber9]
         
         self.view.addSubview(teamNameTextField)
@@ -80,20 +91,25 @@ class TopPlayerSettingViewController: UIViewController {
             self.view.addSubview(value)
         }
         
+        for (index, value) in positionArray.enumerated(){
+            value.translatesAutoresizingMaskIntoConstraints = false
+            self.view.addSubview(value)
+            value.textStore = value.data[index]
+            value.heightAnchor.constraint(equalTo: orderLabel1.heightAnchor).isActive = true
+            value.widthAnchor.constraint(equalTo: orderLabel1.widthAnchor).isActive = true
+        }
+        
         for (index, value) in uniformNumbers.enumerated(){
             value.translatesAutoresizingMaskIntoConstraints = false
             value.text = "\(index + 1)"
             self.view.addSubview(value)
         }
         
-        positionPickerView1.backgroundColor = .red
-        positionPickerView1.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(positionPickerView1)
-        positionPickerView1.textStore = positionPickerView1.data[0]
+        
+       
         positionPickerView1.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -30).isActive = true
         positionPickerView1.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0).isActive = true
-        positionPickerView1.heightAnchor.constraint(equalTo: orderLabel1.heightAnchor).isActive = true
-        positionPickerView1.widthAnchor.constraint(equalTo: orderLabel1.widthAnchor).isActive = true
+        
         
         //Ohashi:以下制約
         let objects = ["team": teamNameTextField, "label1": orderLabel1, "label2": orderLabel2, "label3": orderLabel3, "label4": orderLabel4, "label5": orderLabel5, "label6": orderLabel6, "label7": orderLabel7, "label8": orderLabel8, "label9": orderLabel9, "name1": playerName1, "name2": playerName2, "name3": playerName3, "name4": playerName4, "name5": playerName5, "name6": playerName6, "name7": playerName7, "name8": playerName8, "name9": playerName9, "number1": uniformNumber1, "number2": uniformNumber2, "number3": uniformNumber3, "number4": uniformNumber4, "number5": uniformNumber5, "number6": uniformNumber6, "number7": uniformNumber7, "number8": uniformNumber8, "number9": uniformNumber9 ]
