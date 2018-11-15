@@ -92,10 +92,15 @@ class CustomPresentationController: UIPresentationController {
 
 
 
+
 class PositionPickerKeyboard: UIControl {
     
     var data: [String] = ["投", "捕", "一", "二", "三", "遊", "左", "中", "右", "指"]
     var textStore: String!
+    var beforePosition: String!
+    //Ohashi:ここに表か裏かの判定用変数セットする？
+    var topOrBottom: Bool = true
+    
     
     
     override init(frame: CGRect) {
@@ -190,8 +195,43 @@ extension PositionPickerKeyboard: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        //Ohashi:表だったら表のbeforePositionとafterPositionを変更
+        beforePosition = textStore
         textStore = data[row]
         setNeedsDisplay()
+        if topOrBottom{
+            
+            //Ohashi:通知を発行
+            print("DEBUG_PRiNT:通知発行")
+            NotificationCenter.default.post(name: .topPositionChangeNotification, object: nil)
+            beforePosition = nil
+        }else{
+            beforePosition = textStore
+            textStore = data[row]
+            //Ohashi:通知を発行
+            print("DEBUG_PRiNT:通知発行")
+            NotificationCenter.default.post(name: .bottomPositionChangeNotification, object: nil)
+            beforePosition = nil
+        }
+        
+        
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+extension Notification.Name{
+    static let topPositionChangeNotification = Notification.Name(rawValue: "topPositionChange")
+    static let bottomPositionChangeNotification = Notification.Name(rawValue: "bottomPositionChange")
+}
